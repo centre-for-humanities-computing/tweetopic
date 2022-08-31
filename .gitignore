@@ -1,0 +1,5 @@
+*.ipynb
+/.vscode/
+/.ipynb_checkpoints/
+*.zip
+*.csv
