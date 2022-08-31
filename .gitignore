@@ -3,3 +3,4 @@
 /.ipynb_checkpoints/
 *.zip
 *.csv
+__pycache__/
