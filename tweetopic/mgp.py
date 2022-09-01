@@ -277,7 +277,7 @@ def _init_doc_word_ids(
     return doc_unique_words, doc_unique_words_count
 
 
-@njit
+@njit(parallel=False)
 def _fit_model(
     n_iter: int,
     alpha: float,
