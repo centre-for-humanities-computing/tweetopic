@@ -1,7 +1,7 @@
 # TweeTopic
 
 :zap: Blazing Fast :zap:
-
+<br>
 implementation of the Gibbs Sampling Dirichlet Mixture Model for topic modelling over short texts
 <br>
 utilizing the :muscle: power of
