@@ -1,12 +1,9 @@
 # TweeTopic
 
 :zap: Blazing Fast :zap:
-<br>
 implementation of the Gibbs Sampling Dirichlet Mixture Model for topic modelling over short texts
 <br>
-utilizing the :muscle: power of
-<br>
-:1234: Numpy and :snake: Numba
+Utilizing the :muscle: power of :1234: Numpy and :snake: Numba
 
 ## References
 
