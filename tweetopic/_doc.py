@@ -13,11 +13,11 @@ MAX_UNIQUE_WORDS = 255
 
 def init_doc_words(doc_term_matrix: spr.lil_matrix) -> Tuple[np.ndarray, np.ndarray]:
     n_docs, _ = doc_term_matrix.shape
-    doc_unique_words = np.zeros((n_docs, MAX_UNIQUE_WORDS)).astype(np.uint8)
+    doc_unique_words = np.zeros((n_docs, MAX_UNIQUE_WORDS)).astype(np.uint32)
     doc_unique_word_counts = np.zeros((n_docs, MAX_UNIQUE_WORDS)).astype(np.uint8)
     for i_doc in range(n_docs):
-        unique_words = doc_term_matrix[0].rows[0]  # type: ignore
-        unique_word_counts = doc_term_matrix[0].data[0]  # type: ignore
+        unique_words = doc_term_matrix[i_doc].rows[0]  # type: ignore
+        unique_word_counts = doc_term_matrix[i_doc].data[0]  # type: ignore
         for i_unique in range(len(unique_words)):
             doc_unique_words[i_doc, i_unique] = unique_words[i_unique]
             doc_unique_word_counts[i_doc, i_unique] = unique_word_counts[i_unique]
@@ -53,6 +53,7 @@ def _remove_add_doc(
             cluster_word_distribution[i_cluster, i_word] += count
 
 
+@njit
 def remove_doc(
     i_doc: int,
     i_cluster: int,
@@ -74,6 +75,7 @@ def remove_doc(
     )
 
 
+@njit
 def add_doc(
     i_doc: int,
     i_cluster: int,

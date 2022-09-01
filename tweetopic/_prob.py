@@ -100,7 +100,7 @@ def _cond_prob(
         i_word = doc_unique_words[i_document, i_unique]
         count = doc_unique_word_counts[i_document, i_unique]
         if not count:
-            # Breaking out ath the first word that doesn't occur in the document
+            # Breaking out at the first word that doesn't occur in the document
             break
         for j in range(count):
             log_numerator += log(

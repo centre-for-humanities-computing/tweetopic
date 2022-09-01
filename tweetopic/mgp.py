@@ -14,6 +14,8 @@ from tweetopic._doc import MAX_UNIQUE_WORDS, init_doc_words, remove_doc, add_doc
 @njit
 def _init_clusters(
     cluster_word_distribution: np.ndarray,
+    cluster_word_count: np.ndarray,
+    cluster_doc_count: np.ndarray,
     doc_clusters: np.ndarray,
     doc_unique_words: np.ndarray,
     doc_unique_word_counts: np.ndarray,
@@ -23,8 +25,12 @@ def _init_clusters(
 
     Parameters
     ----------
+    cluster_word_count(OUT): array of shape (n_clusters,)
+        Contains the amount of words there are in each cluster.
     cluster_word_distribution(OUT): matrix of shape (n_clusters, n_vocab)
         Contains the amount a word occurs in a certain cluster.
+    cluster_doc_count(OUT): array of shape (n_clusters,)
+        Array containing how many documents there are in each cluster.
     doc_clusters: array of shape (n_docs)
         Contains a cluster label for each document, that has
         to be assigned.
@@ -39,13 +45,23 @@ def _init_clusters(
     might arise.
     """
     n_docs, _ = doc_unique_words.shape
-    for cluster, i_doc in zip(doc_clusters, range(n_docs)):
-        for i_unique in range(MAX_UNIQUE_WORDS):
-            i_word = doc_unique_words[i_doc, i_unique]
-            count = doc_unique_word_counts[i_doc, i_unique]
-            if not count:
-                break
-            cluster_word_distribution[cluster, i_word] += count
+    for i_doc in range(n_docs):
+        i_cluster = doc_clusters[i_doc]
+        add_doc(
+            i_doc=i_doc,
+            i_cluster=i_cluster,
+            cluster_word_distribution=cluster_word_distribution,
+            cluster_word_count=cluster_word_count,
+            cluster_doc_count=cluster_doc_count,
+            doc_unique_words=doc_unique_words,
+            doc_unique_word_counts=doc_unique_word_counts,
+        )
+        # for i_unique in range(MAX_UNIQUE_WORDS):
+        #     i_word = doc_unique_words[i_doc, i_unique]
+        #     count = doc_unique_word_counts[i_doc, i_unique]
+        #     if not count:
+        #         break
+        #     cluster_word_distribution[cluster, i_word] += count
 
 
 @njit(parallel=False)
@@ -219,15 +235,17 @@ class MovieGroupProcess:
             1, np.ones(self.n_clusters) / self.n_clusters, size=self.n_documents
         )
         doc_clusters = np.argmax(initial_clusters, axis=1)
-        self.cluster_doc_count = initial_clusters.sum(axis=0)
+        self.cluster_doc_count = np.zeros(self.n_clusters)
         self.cluster_word_distribution = np.zeros((self.n_clusters, self.n_vocab))
+        self.cluster_word_count = np.zeros(self.n_clusters)
         _init_clusters(
-            self.cluster_word_distribution,
-            doc_clusters,
-            doc_unique_words,
-            doc_unique_word_counts,
+            cluster_word_distribution=self.cluster_word_distribution,
+            cluster_word_count=self.cluster_word_count,
+            cluster_doc_count=self.cluster_doc_count,
+            doc_clusters=doc_clusters,
+            doc_unique_words=doc_unique_words,
+            doc_unique_word_counts=doc_unique_word_counts,
         )
-        self.cluster_word_count = np.sum(self.cluster_word_distribution, axis=1)
         print("Fitting model")
         _fit_model(
             n_iter=n_iterations,
