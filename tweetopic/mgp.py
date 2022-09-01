@@ -323,3 +323,40 @@ class MovieGroupProcess:
             }
             res.append(top_words)
         return res
+
+    def most_important_words(self, top_n: Optional[int] = 10) -> List[Dict[str, int]]:
+        """
+        Calculates the most important words for each cluster.
+
+        Parameters
+        ----------
+        top_n: int or None, default 10
+            Top N words to return. If None, all words are returned.
+
+        Returns
+        -------
+        list of dict of str to int
+            Dictionary for each cluster mapping the words to number of occurances.
+        """
+        if self.vectorizer is None:
+            raise NotFittedException("MovieGroupProcess: Model was not fitted.")
+        feature_names = self.vectorizer.get_feature_names_out()
+        dist: np.ndarray = self.cluster_word_distribution  # type: ignore
+        word_use = dist.sum(axis=0)
+        importance = dist / (
+            np.log(word_use) + 1
+        )  # Dividing every term by log total number of occurances.
+        res = []
+        for i_cluster in range(self.n_clusters):
+            top_indices = np.argsort(-importance[i_cluster])
+            if top_n is not None:
+                top_indices = top_indices[:top_n]  # type: ignore
+            top_words = {
+                feature_names[i]: dist[i_cluster, i]
+                for i in top_indices
+                if dist[
+                    i_cluster, i
+                ]  # Only return words if they are actually in the cluster
+            }
+            res.append(top_words)
+        return res
