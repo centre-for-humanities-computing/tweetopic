@@ -1,0 +1,95 @@
+from typing import Tuple
+
+import numpy as np
+import scipy.sparse as spr
+from numba import njit
+
+# Since GSDMM is for topic modelling of short texts, it is reasonable
+# to assume that no text will have larger number of unique words than 255.
+# Conveniently some numbers fit in the np.uint8 type, and as such
+# reducing memory usage.
+MAX_UNIQUE_WORDS = 255
+
+
+def init_doc_words(doc_term_matrix: spr.lil_matrix) -> Tuple[np.ndarray, np.ndarray]:
+    n_docs, _ = doc_term_matrix.shape
+    doc_unique_words = np.zeros((n_docs, MAX_UNIQUE_WORDS)).astype(np.uint8)
+    doc_unique_word_counts = np.zeros((n_docs, MAX_UNIQUE_WORDS)).astype(np.uint8)
+    for i_doc in range(n_docs):
+        unique_words = doc_term_matrix[0].rows[0]  # type: ignore
+        unique_word_counts = doc_term_matrix[0].data[0]  # type: ignore
+        for i_unique in range(len(unique_words)):
+            doc_unique_words[i_doc, i_unique] = unique_words[i_unique]
+            doc_unique_word_counts[i_doc, i_unique] = unique_word_counts[i_unique]
+    return doc_unique_words, doc_unique_word_counts
+
+
+@njit
+def _remove_add_doc(
+    i_doc: int,
+    i_cluster: int,
+    remove: bool,
+    cluster_word_distribution: np.ndarray,
+    cluster_word_count: np.ndarray,
+    cluster_doc_count: np.ndarray,
+    doc_unique_words: np.ndarray,
+    doc_unique_word_counts: np.ndarray,
+) -> None:
+    if remove:
+        cluster_doc_count[i_cluster] -= 1
+    else:
+        cluster_doc_count[i_cluster] += 1
+    for i_unique in range(MAX_UNIQUE_WORDS):
+        i_word = doc_unique_words[i_doc, i_unique]
+        count = doc_unique_word_counts[i_doc, i_unique]
+        if not count:
+            # Break out when the word is not present in the document
+            break
+        if remove:
+            cluster_word_count[i_cluster] -= count
+            cluster_word_distribution[i_cluster, i_word] -= count
+        else:
+            cluster_word_count[i_cluster] += count
+            cluster_word_distribution[i_cluster, i_word] += count
+
+
+def remove_doc(
+    i_doc: int,
+    i_cluster: int,
+    cluster_word_distribution: np.ndarray,
+    cluster_word_count: np.ndarray,
+    cluster_doc_count: np.ndarray,
+    doc_unique_words: np.ndarray,
+    doc_unique_word_counts: np.ndarray,
+) -> None:
+    return _remove_add_doc(
+        i_doc,
+        i_cluster,
+        remove=True,
+        cluster_word_distribution=cluster_word_distribution,
+        cluster_word_count=cluster_word_count,
+        cluster_doc_count=cluster_doc_count,
+        doc_unique_words=doc_unique_words,
+        doc_unique_word_counts=doc_unique_word_counts,
+    )
+
+
+def add_doc(
+    i_doc: int,
+    i_cluster: int,
+    cluster_word_distribution: np.ndarray,
+    cluster_word_count: np.ndarray,
+    cluster_doc_count: np.ndarray,
+    doc_unique_words: np.ndarray,
+    doc_unique_word_counts: np.ndarray,
+) -> None:
+    return _remove_add_doc(
+        i_doc,
+        i_cluster,
+        remove=False,
+        cluster_word_distribution=cluster_word_distribution,
+        cluster_word_count=cluster_word_count,
+        cluster_doc_count=cluster_doc_count,
+        doc_unique_words=doc_unique_words,
+        doc_unique_word_counts=doc_unique_word_counts,
+    )

@@ -1,58 +1,22 @@
 from __future__ import annotations
 
-from math import exp, log
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Dict, Iterable, List, Optional
 
 import numpy as np
 from numba import njit
 from sklearn.feature_extraction.text import CountVectorizer
 
 from tweetopic.exceptions import NotFittedException
-
-# Since GSDMM is for topic modelling of short texts, it is reasonable
-# to assume that no text will have larger number of unique words than 255.
-# Conveniently some numbers fit in the np.uint8 type, and as such
-# reducing memory usage.
-MAX_UNIQUE_WORDS = 255
-
-
-@njit(parallel=False)
-def _sample_categorical(pvals: np.ndarray) -> int:
-    """
-    Samples from a categorical distribution given its parameters.
-
-    Parameters
-    ----------
-    pvals: array of shape (n_clusters, )
-        Parameters of the categorical distribution.
-
-    Returns
-    -------
-    int
-        Sample.
-    """
-    # NOTE: This function was needed as numba's implementation
-    # of numpy's multinomial sampling function has some floating point shenanigans going on.
-    # Rejection sampling with cummulutative probabilities :)
-    cum_prob = 0
-    u = np.random.uniform(0.0, 1.0)
-    for i in range(len(pvals)):
-        cum_prob += pvals[i]
-        if u < cum_prob:
-            return i
-    else:
-        # This shouldn't ever happen, but floating point errors can
-        # cause such behaviour ever so often.
-        return 0
+from tweetopic._prob import sample_categorical, predict_doc
+from tweetopic._doc import MAX_UNIQUE_WORDS, init_doc_words, remove_doc, add_doc
 
 
 @njit
 def _init_clusters(
     cluster_word_distribution: np.ndarray,
     doc_clusters: np.ndarray,
-    doc_term_matrix: np.ndarray,
     doc_unique_words: np.ndarray,
-    doc_unique_words_count: np.ndarray,
+    doc_unique_word_counts: np.ndarray,
 ) -> None:
     """
     Randomly initializes clusters in the model.
@@ -64,217 +28,24 @@ def _init_clusters(
     doc_clusters: array of shape (n_docs)
         Contains a cluster label for each document, that has
         to be assigned.
-    doc_term_matrix: matrix of shape (n_documents, n_vocab)
-        Contains how many times a term occurs in each document.
-        (Bag of words matrix)
     doc_unique_words: matrix of shape (n_documents, MAX_UNIQUE_WORDS)
         Matrix containing all indices of unique words in the document.
-    doc_unique_words_count: array of shape (n_documents,)
-        Vector containing the number of unique terms in each document.
-
+    doc_unique_word_counts: matrix of shape (n_documents, MAX_UNIQUE_WORDS)
+        Matrix containing all counts for each unique word in the document.
     NOTE
     ----
     Beware that the function modifies a numpy array, that's passed in as
     an input parameter. Should not be used in parallel, as race conditions
     might arise.
     """
-    n_docs = doc_term_matrix.shape[0]
+    n_docs, _ = doc_unique_words.shape
     for cluster, i_doc in zip(doc_clusters, range(n_docs)):
-        for i_unique in range(doc_unique_words_count[i_doc]):
-            i_term = doc_unique_words[i_doc, i_unique]
-            cluster_word_distribution[cluster, i_term] += doc_term_matrix[i_doc, i_term]
-
-
-@njit(parallel=False)
-def _cond_prob(
-    i_cluster: int,
-    document: np.ndarray,
-    doc_unique_words: np.ndarray,
-    n_words: int,
-    n_unique_words: int,
-    alpha: float,
-    beta: float,
-    n_clusters: int,
-    n_vocab: int,
-    n_docs: int,
-    cluster_doc_count: np.ndarray,
-    cluster_word_count: np.ndarray,
-    cluster_word_distribution: np.ndarray,
-) -> float:
-    """
-    Computes the conditional probability of a certain document
-    joining the given mixture component.
-
-    Implements formula no. 4 from Yin & Wang (2014).
-
-    Parameters
-    ----------
-    i_cluster: int
-        The label of the cluster.
-    document: array of shape (n_vocab,)
-        BOW vector of the document.
-    doc_unique_words: array of shape (MAX_UNIQUE_WORDS, )
-        Array containing all the ids of unique words in a document.
-    n_words: int
-        Total number of words in the document.
-    n_unique_words: int
-        Number of unique words in the document.
-    alpha: float
-        Alpha parameter of the model.
-    beta: float
-        Beta parameter of the model.
-    n_clusters: int
-        Number of mixture components in the model.
-    n_vocab: int
-        Number of total vocabulary items.
-    n_docs: int
-        Total number of documents.
-    cluster_doc_count: array of shape (n_clusters,)
-        Array containing how many documents there are in each cluster.
-    cluster_word_count: array of shape (n_clusters,)
-        Contains the amount of words there are in each cluster.
-    cluster_word_distribution: matrix of shape (n_clusters, n_vocab)
-        Contains the amount a word occurs in a certain cluster.
-    """
-    # I broke the formula into different pieces so that it's easier to write
-    # I could not find a better way to organize it, as I'm not in total command of
-    # the algebra going on here :))
-    # I use logs instead of computing the products directly,
-    # as it would quickly result in numerical overflow.
-    log_norm_term = log(
-        (cluster_doc_count[i_cluster] + alpha) / (n_docs - 1 + n_clusters * alpha)
-    )
-    log_numerator = 0
-    # By not looping through the entire BOW vector we sparse an
-    # immense amount of iterations.
-    # The information might be redundant, but it makes stuff
-    # run at light speed.
-    for unique_id in range(n_unique_words):
-        i_word = doc_unique_words[unique_id]
-        for j in range(document[i_word]):
-            log_numerator += log(
-                cluster_word_distribution[i_cluster, i_word] + beta + j
-            )
-    log_denominator = 0
-    subres = cluster_word_count[i_cluster] + (n_vocab * beta)
-    for j in range(n_words):
-        log_denominator += log(subres + j)
-    res = exp(log_norm_term + log_numerator - log_denominator)
-    return res
-
-
-@njit(parallel=False)
-def _predict_doc(
-    probabilities: np.ndarray,
-    document: np.ndarray,
-    doc_unique_words: np.ndarray,
-    n_words: int,
-    n_unique_words: int,
-    alpha: float,
-    beta: float,
-    n_clusters: int,
-    n_vocab: int,
-    n_docs: int,
-    cluster_doc_count: np.ndarray,
-    cluster_word_count: np.ndarray,
-    cluster_word_distribution: np.ndarray,
-) -> None:
-    """
-    Computes the parameters of the multinomial distribution used for sampling.
-
-    Parameters
-    ----------
-    probabilities(OUT): array of shape (n_clusters, )
-        Parameters of the categorical distribution.
-    document: array of shape (n_vocab,)
-        BOW vector of the document.
-    doc_unique_words: array of shape (MAX_UNIQUE_WORDS, )
-        Array containing all the ids of unique words in a document.
-    n_words: int
-        Total number of words in the document.
-    n_unique_words: int
-        Number of unique words in the document.
-    alpha: float
-        Alpha parameter of the model.
-    beta: float
-        Beta parameter of the model.
-    n_clusters: int
-        Number of mixture components in the model.
-    n_vocab: int
-        Number of total vocabulary items.
-    n_docs: int
-        Total number of documents.
-    cluster_doc_count: array of shape (n_clusters,)
-        Array containing how many documents there are in each cluster.
-    cluster_word_count: array of shape (n_clusters,)
-        Contains the amount of words there are in each cluster.
-    cluster_word_distribution: matrix of shape (n_clusters, n_vocab)
-        Contains the amount a word occurs in a certain cluster.
-
-    NOTE
-    ----
-    Beware that the function modifies a numpy array, that's passed in as
-    an input parameter. Should not be used in parallel, as race conditions
-    might arise.
-    """
-    # NOTE: we modify the original array here instead of returning a new
-    # one, as allocating new arrays in such a nested loop is very inefficient.
-    # Obtain all conditional probabilities
-    for i_cluster in range(n_clusters):
-        probabilities[i_cluster] = _cond_prob(
-            i_cluster=i_cluster,
-            document=document,
-            doc_unique_words=doc_unique_words,
-            n_words=n_words,
-            n_unique_words=n_unique_words,
-            alpha=alpha,
-            beta=beta,
-            n_clusters=n_clusters,
-            n_vocab=n_vocab,
-            n_docs=n_docs,
-            cluster_doc_count=cluster_doc_count,
-            cluster_word_count=cluster_word_count,
-            cluster_word_distribution=cluster_word_distribution,
-        )
-    # Normalize probability vector
-    norm_term = sum(probabilities) or 1
-    probabilities[:] = probabilities / norm_term
-
-
-@njit(parallel=False)
-def _init_doc_word_ids(
-    doc_term_matrix: np.ndarray,
-) -> Tuple[np.ndarray, np.ndarray]:
-    """
-    Calculates a matrix of unique words for each document.
-
-    Parameters
-    ----------
-    doc_term_matrix: matrix of shape (n_documents, n_vocab)
-        Contains how many times a term occurs in each document.
-        (Bag of words matrix)
-
-    Returns
-    -------
-    doc_unique_words: matrix of shape (n_documents, MAX_UNIQUE_WORDS)
-        Matrix containing all indices of unique words in the document.
-    doc_unique_words_count: array of shape (n_documents,)
-        Vector containing the number of unique terms in each document.
-    """
-    n_docs, n_vocab = doc_term_matrix.shape
-    # Initializing output arrays
-    doc_unique_words = np.zeros((n_docs, MAX_UNIQUE_WORDS)).astype(np.uint8)
-    doc_unique_words_count = np.zeros(n_docs).astype(np.uint8)
-    for i_doc in range(n_docs):
-        for i_term in range(n_vocab):
-            # For each term if it is contained in the document,
-            # it gets added to the list of unique words,
-            # and the number of unique words is increased by one.
-            if doc_term_matrix[i_doc, i_term]:
-                i_next = doc_unique_words_count[i_doc]
-                doc_unique_words[i_doc, i_next] = i_term
-                doc_unique_words_count[i_doc] += 1
-    return doc_unique_words, doc_unique_words_count
+        for i_unique in range(MAX_UNIQUE_WORDS):
+            i_word = doc_unique_words[i_doc, i_unique]
+            count = doc_unique_word_counts[i_doc, i_unique]
+            if not count:
+                break
+            cluster_word_distribution[cluster, i_word] += count
 
 
 @njit(parallel=False)
@@ -285,10 +56,9 @@ def _fit_model(
     n_clusters: int,
     n_vocab: int,
     n_docs: int,
-    doc_term_matrix: np.ndarray,
     doc_unique_words: np.ndarray,
+    doc_unique_word_counts: np.ndarray,
     doc_clusters: np.ndarray,
-    doc_unique_words_count: np.ndarray,
     cluster_doc_count: np.ndarray,
     cluster_word_count: np.ndarray,
     cluster_word_distribution: np.ndarray,
@@ -328,24 +98,31 @@ def _fit_model(
     cluster_word_distribution(OUT): matrix of shape (n_clusters, n_vocab)
         Contains the amount a word occurs in a certain cluster.
     """
-    doc_word_count = np.sum(doc_term_matrix, axis=1)
+    doc_word_count = np.sum(doc_unique_word_counts, axis=1)
     prediction = np.empty(n_clusters)
     for iteration in range(n_iter):
         print(f"Iteration no. {iteration}")
         total_transfers = 0
-        for i_doc in range(doc_term_matrix.shape[0]):
+        for i_doc in range(n_docs):
             # Removing document from previous cluster
             prev_cluster = doc_clusters[i_doc]
-            cluster_doc_count[prev_cluster] -= 1
-            cluster_word_count[prev_cluster] -= doc_word_count[i_doc]
-            cluster_word_distribution[prev_cluster, :] -= doc_term_matrix[i_doc, :]
+            # Removing document from the previous cluster
+            remove_doc(
+                i_doc,
+                prev_cluster,
+                cluster_word_distribution=cluster_word_distribution,
+                cluster_word_count=cluster_word_count,
+                cluster_doc_count=cluster_doc_count,
+                doc_unique_words=doc_unique_words,
+                doc_unique_word_counts=doc_unique_word_counts,
+            )
             # Getting new prediction for the document at hand
-            _predict_doc(
+            predict_doc(
                 probabilities=prediction,
-                document=doc_term_matrix[i_doc],
-                doc_unique_words=doc_unique_words[i_doc],
+                i_document=i_doc,
+                doc_unique_words=doc_unique_words,
+                doc_unique_word_counts=doc_unique_word_counts,
                 n_words=doc_word_count[i_doc],
-                n_unique_words=doc_unique_words_count[i_doc],
                 alpha=alpha,
                 beta=beta,
                 n_clusters=n_clusters,
@@ -355,14 +132,20 @@ def _fit_model(
                 cluster_word_count=cluster_word_count,
                 cluster_word_distribution=cluster_word_distribution,
             )
-            new_cluster = _sample_categorical(prediction)
+            new_cluster = sample_categorical(prediction)
             if prev_cluster != new_cluster:
                 total_transfers += 1
             # Adding document back to the newly chosen cluster
             doc_clusters[i_doc] = new_cluster
-            cluster_doc_count[new_cluster] += 1
-            cluster_word_count[new_cluster] += doc_word_count[i_doc]
-            cluster_word_distribution[new_cluster, :] += doc_term_matrix[i_doc, :]
+            add_doc(
+                i_doc,
+                new_cluster,
+                cluster_word_distribution=cluster_word_distribution,
+                cluster_word_count=cluster_word_count,
+                cluster_doc_count=cluster_doc_count,
+                doc_unique_words=doc_unique_words,
+                doc_unique_word_counts=doc_unique_word_counts,
+            )
         n_populated = np.count_nonzero(cluster_doc_count)
         print(f"    {n_populated} out of {n_clusters} clusters remain populated.")
         if not total_transfers:
@@ -423,12 +206,14 @@ class MovieGroupProcess:
     ) -> MovieGroupProcess:
         print("Converting documents to BOW matrix.")
         self.vectorizer = CountVectorizer(**vectorizer_kwargs)
-        doc_term_matrix_sparse = self.vectorizer.fit_transform(documents)
+        doc_term_matrix = self.vectorizer.fit_transform(documents)
         # TODO: figure out a better way to do this, this is mildly stupid
-        doc_term_matrix = doc_term_matrix_sparse.toarray().astype(np.uint8)
+        # doc_term_matrix = doc_term_matrix_sparse.toarray().astype(np.uint8)
         self.n_documents, self.n_vocab = doc_term_matrix.shape
         print("Calculating unique words.")
-        doc_unique_words, doc_unique_words_count = _init_doc_word_ids(doc_term_matrix)
+        doc_unique_words, doc_unique_word_counts = init_doc_words(
+            doc_term_matrix.tolil()
+        )
         print("Initialising mixture components")
         initial_clusters = np.random.multinomial(
             1, np.ones(self.n_clusters) / self.n_clusters, size=self.n_documents
@@ -439,9 +224,8 @@ class MovieGroupProcess:
         _init_clusters(
             self.cluster_word_distribution,
             doc_clusters,
-            doc_term_matrix,
             doc_unique_words,
-            doc_unique_words_count,
+            doc_unique_word_counts,
         )
         self.cluster_word_count = np.sum(self.cluster_word_distribution, axis=1)
         print("Fitting model")
@@ -452,10 +236,9 @@ class MovieGroupProcess:
             n_clusters=self.n_clusters,
             n_vocab=self.n_vocab,
             n_docs=self.n_documents,
-            doc_term_matrix=doc_term_matrix,
-            doc_clusters=doc_clusters,
             doc_unique_words=doc_unique_words,
-            doc_unique_words_count=doc_unique_words_count,
+            doc_unique_word_counts=doc_unique_word_counts,
+            doc_clusters=doc_clusters,
             cluster_doc_count=self.cluster_doc_count,
             cluster_word_count=self.cluster_word_count,
             cluster_word_distribution=self.cluster_word_distribution,
@@ -465,24 +248,24 @@ class MovieGroupProcess:
     def predict(self, documents: Iterable[str]) -> np.ndarray:
         if self.vectorizer is None:
             raise NotFittedException("MovieGroupProcess: Model was not fitted.")
-        embeddings = self.vectorizer.transform(documents).toarray()
-        doc_unique_words, doc_unique_words_count = _init_doc_word_ids(embeddings)
-        doc_words_count = np.sum(embeddings, axis=1)
+        embeddings = self.vectorizer.transform(documents)
+        doc_unique_words, doc_unique_word_counts = init_doc_words(embeddings.tolil())
+        doc_words_count = np.sum(doc_unique_word_counts, axis=1)
         n_docs = embeddings.shape[0]
         predictions = []
         for i_doc in range(n_docs):
             pred = np.zeros(self.n_clusters)
-            _predict_doc(
+            predict_doc(
                 probabilities=pred,
-                document=embeddings[i_doc],
-                doc_unique_words=doc_unique_words[i_doc],
-                n_unique_words=doc_unique_words_count[i_doc],
+                i_document=i_doc,
+                doc_unique_words=doc_unique_words,
+                doc_unique_word_counts=doc_unique_word_counts,
                 n_words=doc_words_count[i_doc],
                 alpha=self.alpha,
                 beta=self.beta,
                 n_clusters=self.n_clusters,
                 n_vocab=self.n_vocab,
-                n_docs=self.n_documents,
+                n_docs=n_docs,
                 cluster_doc_count=self.cluster_doc_count,  # type: ignore
                 cluster_word_count=self.cluster_word_count,  # type: ignore
                 cluster_word_distribution=self.cluster_word_distribution,  # type: ignore
