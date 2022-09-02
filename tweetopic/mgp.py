@@ -1,3 +1,4 @@
+"""Module containing tools for fitting a Dirichlet Mixture Model"""
 from __future__ import annotations
 
 from typing import Dict, Iterable, List, Optional

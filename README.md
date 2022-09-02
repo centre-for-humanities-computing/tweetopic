@@ -1,12 +1,13 @@
 # TweeTopic
 
-:zap: Blazing Fast implementation of the Gibbs Sampling Dirichlet Mixture Model for topic modelling over short texts utilizing the power of :1234: Numpy and :snake: Numba
+:zap: Blazing Fast implementation of the Gibbs Sampling Dirichlet Mixture Model for topic modelling over short texts utilizing the power of :1234: Numpy and :snake: Numba.
+<br>The package uses the Movie Group Process algorithm described in Yin and Wang (2014).
 
 ## Installation
 
 The package might be released on PIP in the future, for now you can install it directly from Github with the following command:
 <br>
-`pip install git+https://github.com/rwalk/gsdmm.git`
+`pip install git+https://github.com/centre-for-humanities-computing/tweetopic`
 
 ## Usage
 
@@ -57,7 +58,15 @@ mgp.visualize()
 
 ![PyLDAvis visualization](https://github.com/centre-for-humanities-computing/tweetopic/blob/main/assets/pyldavis.png)
 
-> Note: You must install optional dependencies if you intend to use pyLDAvis)
+> Note: You must install optional dependencies if you intend to use pyLDAvis
+
+## Limitations
+
+TweeTopic is so efficient and fast, as it exploits the fact that it's only short texts, we want to cluster. The number of unique terms in any document _MUST_ be less than 256.
+Additionally any term in any document may at most appear 255 times.
+<br>As of now, this requirement is not enforced by the package, please be aware of this, as it might cause strange behaviour.
+
+> Note: If it is so demanded, this restriction could be relaxed, make sure to file an issue, if you intend to use TweeTopic for longer texts.
 
 ## References
 
