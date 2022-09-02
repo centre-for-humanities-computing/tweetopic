@@ -6,3 +6,5 @@
 __pycache__/
 *.txt
 !requirements.txt
+!optional_requirements.txt
+/tweetopic/_old.py

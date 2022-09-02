@@ -3,12 +3,13 @@ from __future__ import annotations
 from typing import Dict, Iterable, List, Optional
 
 import numpy as np
+import scipy.sparse as spr
 from numba import njit
 from sklearn.feature_extraction.text import CountVectorizer
 
+from tweetopic._doc import add_doc, init_doc_words, remove_doc
+from tweetopic._prob import predict_doc, sample_categorical
 from tweetopic.exceptions import NotFittedException
-from tweetopic._prob import sample_categorical, predict_doc
-from tweetopic._doc import MAX_UNIQUE_WORDS, init_doc_words, remove_doc, add_doc
 
 
 @njit
@@ -56,12 +57,6 @@ def _init_clusters(
             doc_unique_words=doc_unique_words,
             doc_unique_word_counts=doc_unique_word_counts,
         )
-        # for i_unique in range(MAX_UNIQUE_WORDS):
-        #     i_word = doc_unique_words[i_doc, i_unique]
-        #     count = doc_unique_word_counts[i_doc, i_unique]
-        #     if not count:
-        #         break
-        #     cluster_word_distribution[cluster, i_word] += count
 
 
 @njit(parallel=False)
@@ -167,8 +162,7 @@ def _fit_model(
         if not total_transfers:
             print("    The model converged, stopping iterations.")
             break
-        else:
-            print(f"    Transferred {total_transfers} documents.")
+        print(f"    Transferred {total_transfers} documents.")
 
 
 class MovieGroupProcess:
@@ -185,6 +179,9 @@ class MovieGroupProcess:
     beta: float, default 0.1
         Willingness to join clusters, where the terms in the document
         are not present.
+    multiple_occurance: bool, default True
+        Specifies whether a term should only be counted once in each document.
+        If set to False, Formula 3 will be used, else  FOrmula 4 will be used.
 
     Attributes
     ----------
@@ -203,7 +200,14 @@ class MovieGroupProcess:
         Total number of documents seen during fitting.
     """
 
-    def __init__(self, n_clusters: int = 8, alpha: float = 0.1, beta: float = 0.1):
+    def __init__(
+        self,
+        n_clusters: int = 8,
+        alpha: float = 0.1,
+        beta: float = 0.1,
+        multiple_occurance=True,
+    ):
+        self.multiple_occurance = multiple_occurance
         self.n_clusters = n_clusters
         self.alpha = alpha
         self.beta = beta
@@ -213,6 +217,7 @@ class MovieGroupProcess:
         self.vectorizer: Optional[CountVectorizer] = None
         self.n_documents = 0
         self.n_vocab = 0
+        self._doc_term_matrix = None
 
     def fit(
         self,
@@ -220,16 +225,45 @@ class MovieGroupProcess:
         n_iterations: int = 30,
         **vectorizer_kwargs,
     ) -> MovieGroupProcess:
+        """
+        Fits the model with the MGP algorithm described in Yin and Wang (2014).
+
+        Parameters
+        ----------
+        documents: iterable of str
+            Stream of documents to fit the model with.
+        n_iterations: int, default 30
+            Number of iterations used for fitting the model.
+            Results usually improve with higher number of iterations.
+        **vectorizer_kwargs
+            The rest of the arguments supplied are passed to sklearn's
+            CountVectorizer.
+            For a detailed list of arguments consult the documentation:
+            http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html
+
+        Returns
+        -------
+        MovieGroupProcess
+            The same model fitted.
+
+        Note
+        ----
+        fit() mutates the original object too, the fitted model is returned for convenience.
+        """
         print("Converting documents to BOW matrix.")
         self.vectorizer = CountVectorizer(**vectorizer_kwargs)
         doc_term_matrix = self.vectorizer.fit_transform(documents)
-        # TODO: figure out a better way to do this, this is mildly stupid
-        # doc_term_matrix = doc_term_matrix_sparse.toarray().astype(np.uint8)
+        # Saving it for visualization later
+        self._doc_term_matrix = doc_term_matrix
         self.n_documents, self.n_vocab = doc_term_matrix.shape
         print("Calculating unique words.")
         doc_unique_words, doc_unique_word_counts = init_doc_words(
             doc_term_matrix.tolil()
         )
+        if not self.multiple_occurance:
+            # If terms are not allowed to appear more than once,
+            # we set the number of occurances to one for each nonzero element
+            doc_unique_word_counts[doc_unique_word_counts != 0] = 1
         print("Initialising mixture components")
         initial_clusters = np.random.multinomial(
             1, np.ones(self.n_clusters) / self.n_clusters, size=self.n_documents
@@ -263,10 +297,27 @@ class MovieGroupProcess:
         )
         return self
 
-    def predict(self, documents: Iterable[str]) -> np.ndarray:
-        if self.vectorizer is None:
-            raise NotFittedException("MovieGroupProcess: Model was not fitted.")
-        embeddings = self.vectorizer.transform(documents)
+    def transform(self, embeddings: spr.csr_matrix) -> np.ndarray:
+        """
+        Predicts mixture component labels from BOW representations
+        of the provided documents produced by self.vectorizer.
+        This function is mostly here for sklearn compatibility.
+
+        Parameters
+        ----------
+        embeddings: sparse array of shape (n_documents, n_vocab)
+            BOW embeddings of documents
+
+        Returns
+        -------
+        array of shape (n_documents, n_clusters)
+            Matrix of probabilities of documents belonging to each cluster.
+
+        Raises
+        ------
+        NotFittedException
+            If the model is not fitted, an exception will be raised.
+        """
         doc_unique_words, doc_unique_word_counts = init_doc_words(embeddings.tolil())
         doc_words_count = np.sum(doc_unique_word_counts, axis=1)
         n_docs = embeddings.shape[0]
@@ -291,6 +342,35 @@ class MovieGroupProcess:
             predictions.append(pred)
         return np.stack(predictions)
 
+    def predict(self, documents: Iterable[str]) -> np.ndarray:
+        """
+        Predicts mixture component labels for the given documents.
+
+        Parameters
+        ----------
+        documents: iterable of str
+            Stream of text documents.
+
+        Returns
+        -------
+        array of shape (n_documents, n_clusters)
+            Matrix of probabilities of documents belonging to each cluster.
+
+        Raises
+        ------
+        NotFittedException
+            If the model is not fitted, an exception will be raised.
+        """
+        if self.vectorizer is None:
+            raise NotFittedException("MovieGroupProcess: Model was not fitted.")
+        embeddings = self.vectorizer.transform(documents)
+        return self.transform(embeddings)
+
+    @property
+    def components_(self):
+        """Alias of cluster_word_distribution for compatibility with sklearn"""
+        return self.cluster_word_distribution
+
     def top_words(self, top_n: Optional[int] = 10) -> List[Dict[str, int]]:
         """
         Calculates the top words for each cluster.
@@ -304,6 +384,11 @@ class MovieGroupProcess:
         -------
         list of dict of str to int
             Dictionary for each cluster mapping the words to number of occurances.
+
+        Raises
+        ------
+        NotFittedException
+            If the model is not fitted, an exception will be raised.
         """
         if self.vectorizer is None:
             raise NotFittedException("MovieGroupProcess: Model was not fitted.")
@@ -337,6 +422,11 @@ class MovieGroupProcess:
         -------
         list of dict of str to int
             Dictionary for each cluster mapping the words to number of occurances.
+
+        Raises
+        ------
+        NotFittedException
+            If the model is not fitted, an exception will be raised.
         """
         if self.vectorizer is None:
             raise NotFittedException("MovieGroupProcess: Model was not fitted.")
@@ -360,3 +450,28 @@ class MovieGroupProcess:
             }
             res.append(top_words)
         return res
+
+    def visualize(self):
+        """
+        Visualizes the model with pyLDAvis for inspection of the different
+        mixture components :)
+
+        Raises
+        ------
+        ModuleNotFoundError
+            If pyLDAvis is not installed an exception is thrown.
+        """
+        try:
+            import pyLDAvis
+            import pyLDAvis.sklearn
+        except ModuleNotFoundError as exception:
+            raise ImportError(
+                "Optional dependency pyLDAvis not installed."
+            ) from exception
+        # pyLDAvis.enable_notebook()
+        return pyLDAvis.sklearn.prepare(self, self._doc_term_matrix, self.vectorizer)
+
+    @property
+    def visualise(self):
+        """Alias of visualize() for those living on this side of the Pacific."""
+        return self.visualize
