@@ -60,7 +60,7 @@ mgp.visualize()
 
 > Note: You must install optional dependencies if you intend to use pyLDAvis
 
-## [API reference](docs/mgp.md)
+## [API reference](docs/MovieGroupProcess.html)
 
 ## Limitations
 

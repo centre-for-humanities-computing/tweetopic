@@ -1,6 +1,6 @@
 # MovieGroupProcess
 
-> <span style="color:DarkGoldenRod">class</span> **MovieGroupProcess**(n_clusters: <span style="color:cadetblue">int</span> = 8, alpha: <span style="color:cadetblue">float</span> = 0.1, beta: <span style="color:cadetblue">float</span> = 0.1, multiple_occurance: <span style="color:cadetblue">bool</span>=True)
+<span style="color:DarkGoldenRod">class</span> **MovieGroupProcess**(n_clusters: <span style="color:cadetblue">int</span> = 8, alpha: <span style="color:cadetblue">float</span> = 0.1, beta: <span style="color:cadetblue">float</span> = 0.1, multiple_occurance: <span style="color:cadetblue">bool</span>=True)
 
 Class for fitting a dirichlet mixture model with the movie group process algorithm described in [Yin & Wang's paper (2014)](https://dl.acm.org/doi/10.1145/2623330.2623715).
 
@@ -39,7 +39,7 @@ are not present.
 
 <br>
 
-> <span style="color:DarkGoldenRod">def</span> **fit**(documents: <span style="color:cadetblue">Iterable[str]</span>,n_iterations: <span style="color:cadetblue">int</span> = 30,\*\*vectorizer_kwargs) -> <span style="color:cadetblue">MovieGroupProcess</span>
+<span style="color:DarkGoldenRod">def</span> **fit**(documents: <span style="color:cadetblue">Iterable[str]</span>, n_iterations: <span style="color:cadetblue">int</span> = 30, \*\*vectorizer_kwargs) -> <span style="color:cadetblue">MovieGroupProcess</span>
 
 Fits the model with the MGP algorithm described in Yin and Wang (2014).
 
@@ -60,11 +60,15 @@ Results usually improve with higher number of iterations.
 
 <br>
 
-> <span style="color:DarkGoldenRod">def</span> **transform**(embeddings: <span style="color:cadetblue">scipy.sparse.csr_matrix</span>) -> <span style="color:cadetblue">np.ndarray</span>
+<br>
+
+<span style="color:DarkGoldenRod">def</span> **transform**(embeddings: <span style="color:cadetblue">scipy.sparse.csr_matrix</span>) -> <span style="color:cadetblue">np.ndarray</span>
 
 Predicts mixture component labels from BOW representations
 of the provided documents produced by self.vectorizer.
 This function is mostly here for sklearn compatibility.
+
+**_Parameters_**
 
 **embedings**: <span style="color:cadetblue">sparse array</span> _of shape (n_documents, n_vocab)_<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOW embeddings of documents
@@ -75,9 +79,13 @@ This function is mostly here for sklearn compatibility.
 
 <br>
 
-> <span style="color:DarkGoldenRod">def</span> **predict**(documents: <span style="color:cadetblue">Iterable[str]</span>) -> <span style="color:cadetblue">np.ndarray</span>
+<br>
+
+<span style="color:DarkGoldenRod">def</span> **predict**(documents: <span style="color:cadetblue">Iterable[str]</span>) -> <span style="color:cadetblue">np.ndarray</span>
 
 Predicts mixture component labels for the given documents.
+
+**_Parameters_**
 
 **documents**: <span style="color:cadetblue">iterable of str</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stream of text documents.
@@ -88,7 +96,9 @@ Predicts mixture component labels for the given documents.
 
 <br>
 
-> <span style="color:DarkGoldenRod">def</span> **top_words**(top_n: <span style="color:cadetblue">int</span>) -> <span style="color:cadetblue">List[Dict[str, int]]</span>
+<br>
+
+<span style="color:DarkGoldenRod">def</span> **top_words**(top_n: <span style="color:cadetblue">int</span>) -> <span style="color:cadetblue">List[Dict[str, int]]</span>
 
 Calculates the top words for each cluster.
 
@@ -103,7 +113,9 @@ Calculates the top words for each cluster.
 
 <br>
 
-> <span style="color:DarkGoldenRod">def</span> **most_important_words**(top_n: <span style="color:cadetblue">int</span>) -> <span style="color:cadetblue">List[Dict[str, int]]</span>
+<br>
+
+<span style="color:DarkGoldenRod">def</span> **most_important_words**(top_n: <span style="color:cadetblue">int</span>) -> <span style="color:cadetblue">List[Dict[str, int]]</span>
 
 Calculates the most important words for each cluster, where
 <br>`importance = n_occurances_in_component/(log(n_occurances_in_corpus) + 1)`
@@ -119,7 +131,9 @@ Calculates the most important words for each cluster, where
 
 <br>
 
-> <span style="color:DarkGoldenRod">def</span> **visualize**()
+<br>
+
+<span style="color:DarkGoldenRod">def</span> **visualize**()
 
 Visualizes the model with pyLDAvis for inspection of the different
 mixture components :)
