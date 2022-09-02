@@ -60,6 +60,8 @@ mgp.visualize()
 
 > Note: You must install optional dependencies if you intend to use pyLDAvis
 
+## [API reference](docs/mgp.md)
+
 ## Limitations
 
 TweeTopic is so efficient and fast, as it exploits the fact that it's only short texts, we want to cluster. The number of unique terms in any document _MUST_ be less than 256.
