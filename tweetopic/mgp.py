@@ -468,7 +468,7 @@ class MovieGroupProcess:
             raise ImportError(
                 "Optional dependency pyLDAvis not installed."
             ) from exception
-        # pyLDAvis.enable_notebook()
+        pyLDAvis.enable_notebook()
         return pyLDAvis.sklearn.prepare(self, self._doc_term_matrix, self.vectorizer)
 
     @property
