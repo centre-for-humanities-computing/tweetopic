@@ -3,6 +3,14 @@
 :zap: Blazing Fast implementation of the Gibbs Sampling Dirichlet Mixture Model for topic modelling over short texts utilizing the power of :1234: Numpy and :snake: Numba.
 <br>The package uses the Movie Group Process algorithm described in Yin and Wang (2014).
 
+## Features
+
+- Fast :zap:
+- Scalable :collision:
+- High consistency and coherence :dart:
+- High quality topics :fire:
+- Easy visualization and inspection :eyes:
+
 ## Installation
 
 The package might be released on PIP in the future, for now you can install it directly from Github with the following command:
@@ -50,7 +58,7 @@ mgp.top_words(top_n=3)
 ]
 ```
 
-Or use rich visualizations provided by pyLDAvis:
+Or use rich visualizations provided by [pyLDAvis](https://github.com/bmabey/pyLDAvis):
 
 ```python
 mgp.visualize()
@@ -60,7 +68,7 @@ mgp.visualize()
 
 > Note: You must install optional dependencies if you intend to use pyLDAvis
 
-## [API reference](docs/mgp.md)
+## [API reference](https://centre-for-humanities-computing.github.io/tweetopic/)
 
 ## Limitations
 
@@ -69,6 +77,13 @@ Additionally any term in any document may at most appear 255 times.
 <br>As of now, this requirement is not enforced by the package, please be aware of this, as it might cause strange behaviour.
 
 > Note: If it is so demanded, this restriction could be relaxed, make sure to file an issue, if you intend to use TweeTopic for longer texts.
+
+## Differences from the [gsdmm](https://github.com/rwalk/gsdmm) package
+
+- _TweeTopic_ is usually orders of magnitude faster than _gsdmm_ thanks to the clever use of data structures and numba accelarated loops.
+  After some surface level benchmarking it seems that in many cases _TweeTopic_ performs the same task about 60 times faster.
+- _TweeTopic_ supports texts where a term occurs multiple times. _gsdmm_ only implements single occurance terms.
+- gsdmm is no longer maintained
 
 ## References
 
