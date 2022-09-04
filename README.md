@@ -1,4 +1,5 @@
-# TweeTopic
+<a href="https://github.com/centre-for-humanities-computing/tweettopics"><img src="https://github.com/centre-for-humanities-computing/tweettopics/raw/main/docs/_static/icon_w_title_below.png" height="175" align="right" /></a>
+# TweetTopics: Blazing Fast Topic models for Short Texts
 
 [![PyPI version](https://badge.fury.io/py/tweettopics.svg)](https://pypi.org/project/tweettopics/)
 [![pip downloads](https://img.shields.io/pypi/dm/tweettopics.svg)](https://pypi.org/project/tweettopics/)
