@@ -1,10 +1,15 @@
-<a href="https://github.com/centre-for-humanities-computing/tweettopics"><img src="https://github.com/centre-for-humanities-computing/tweettopics/raw/main/docs/_static/icon_w_title_below.png" height="175" align="right" /></a>
-# TweetTopics: Blazing Fast Topic models for Short Texts
+![Logo with text](./docs/_static/icon_with_text.svg)
+
+# tweetopic: Blazing Fast Topic modelling for Short Texts
 
 [![PyPI version](https://badge.fury.io/py/tweettopics.svg)](https://pypi.org/project/tweettopics/)
 [![pip downloads](https://img.shields.io/pypi/dm/tweettopics.svg)](https://pypi.org/project/tweettopics/)
 [![python version](https://img.shields.io/badge/Python-%3E=3.7-blue)](https://github.com/centre-for-humanities-computing/tweettopics)
 [![Code style: black](https://img.shields.io/badge/Code%20Style-Black-black)](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html)
+<br>
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=%white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
 :zap: Blazing Fast implementation of the Gibbs Sampling Dirichlet Mixture Model for topic modelling over short texts utilizing the power of :1234: Numpy and :snake: Numba.
 <br>The package uses the Movie Group Process algorithm described in Yin and Wang (2014).
@@ -80,17 +85,17 @@ mgp.visualize()
 
 ## Limitations
 
-TweeTopic is so efficient and fast, as it exploits the fact that it's only short texts, we want to cluster. The number of unique terms in any document _MUST_ be less than 256.
+tweetopic is so efficient and fast, as it exploits the fact that it's only short texts, we want to cluster. The number of unique terms in any document _MUST_ be less than 256.
 Additionally any term in any document may at most appear 255 times.
 <br>As of now, this requirement is not enforced by the package, please be aware of this, as it might cause strange behaviour.
 
-> Note: If it is so demanded, this restriction could be relaxed, make sure to file an issue, if you intend to use TweeTopic for longer texts.
+> Note: If it is so demanded, this restriction could be relaxed, make sure to file an issue, if you intend to use tweetopic for longer texts.
 
 ## Differences from the [gsdmm](https://github.com/rwalk/gsdmm) package
 
-- _TweeTopic_ is usually orders of magnitude faster than _gsdmm_ thanks to the clever use of data structures and numba accelarated loops.
-  After some surface level benchmarking it seems that in many cases _TweeTopic_ performs the same task about 60 times faster.
-- _TweeTopic_ supports texts where a term occurs multiple times. _gsdmm_ only implements single occurance terms.
+- _tweetopic_ is usually orders of magnitude faster than _gsdmm_ thanks to the clever use of data structures and numba accelarated loops.
+  After some surface level benchmarking it seems that in many cases _tweetopic_ performs the same task about 60 times faster.
+- _tweetopic_ supports texts where a term occurs multiple times. _gsdmm_ only implements single occurance terms.
 - gsdmm is no longer maintained
 
 ## 🎓 References
