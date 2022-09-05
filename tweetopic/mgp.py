@@ -1,8 +1,11 @@
 """Module containing tools for fitting a Dirichlet Mixture Model."""
 from __future__ import annotations
 
+import os
+from pathlib import Path
 from typing import Iterable
 
+import joblib
 import numpy as np
 import scipy.sparse as spr
 from numba import njit
@@ -177,9 +180,6 @@ class MovieGroupProcess:
     beta: float, default 0.1
         Willingness to join clusters, where the terms in the document
         are not present.
-    multiple_occurance: bool, default True
-        Specifies whether a term should only be counted once in each document.
-        If set to False, Formula 3 will be used, else  Formula 4 will be used.
 
     Attributes
     ----------
@@ -203,9 +203,7 @@ class MovieGroupProcess:
         n_clusters: int = 8,
         alpha: float = 0.1,
         beta: float = 0.1,
-        multiple_occurance=True,
     ):
-        self.multiple_occurance = multiple_occurance
         self.n_clusters = n_clusters
         self.alpha = alpha
         self.beta = beta
@@ -216,6 +214,20 @@ class MovieGroupProcess:
         self.n_documents = 0
         self.n_vocab = 0
         self._doc_term_matrix = None
+
+    @classmethod
+    def _from_attrs(cls, **attributes) -> MovieGroupProcess:
+        """Creates model from a dict of its attributes.
+        Exists for easier model persistence.
+        """
+        mgp = cls(
+            n_clusters=attributes["n_clusters"],
+            alpha=attributes["alpha"],
+            beta=attributes["beta"],
+        )
+        for key, value in attributes.items():
+            mgp.__setattr__(key, value)
+        return mgp
 
     def fit(
         self,
@@ -259,10 +271,6 @@ class MovieGroupProcess:
         doc_unique_words, doc_unique_word_counts = init_doc_words(
             doc_term_matrix.tolil(),
         )
-        if not self.multiple_occurance:
-            # If terms are not allowed to appear more than once,
-            # we set the number of occurances to one for each nonzero element
-            doc_unique_word_counts[doc_unique_word_counts != 0] = 1
         print("Initialising mixture components")
         initial_clusters = np.random.multinomial(
             1,
@@ -366,10 +374,12 @@ class MovieGroupProcess:
         return self.transform(embeddings)
 
     @property
-    def components_(self):
+    def components_(self) -> np.ndarray:
         """Alias of cluster_word_distribution for compatibility with
         sklearn."""
-        return self.cluster_word_distribution
+        if self.vectorizer is None:
+            raise NotFittedException("MovieGroupProcess: Model was not fitted.")
+        return self.cluster_word_distribution  # type: ignore
 
     def top_words(self, top_n: int | None = 10) -> list[dict[str, int]]:
         """Calculates the top words for each cluster.
@@ -475,3 +485,119 @@ class MovieGroupProcess:
         """Alias of visualize() for those living on this side of the
         Pacific."""
         return self.visualize
+
+    @property
+    def n_components_(self) -> int:
+        """Alias of n_clusters for Sklearn compatibility."""
+        return self.n_clusters
+
+    def fit_transform(
+        self, documents: Iterable[str], n_iterations: int = 30, **vectorizer_kwargs
+    ) -> np.ndarray:
+        """Fits the model and assigns cluster labels to each document.
+
+        Parameters
+        ----------
+        documents: iterable of str
+            Stream of documents to fit the model with.
+        n_iterations: int, default 30
+            Number of iterations used for fitting the model.
+            Results usually improve with higher number of iterations.
+        **vectorizer_kwargs
+            The rest of the arguments supplied are passed to sklearn's
+            CountVectorizer.
+            For a detailed list of arguments consult the documentation:
+            http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html
+
+        Returns
+        -------
+        array of shape (n_documents, n_clusters)
+            Matrix of probabilities of documents belonging to each cluster.
+
+        Raises
+        ------
+        NotFittedException
+            If the model is not fitted, an exception will be raised.
+
+        Note
+        ----
+        The `documents` argument has to be a repeatable iterable.
+        Please keep this in mind when using generators.
+        We recommend that you use the @multigen wrapper in such cases:
+        https://stackoverflow.com/questions/1376438/how-to-make-a-repeating-generator-in-python
+        """
+        return self.fit(documents, n_iterations, **vectorizer_kwargs).predict(documents)
+
+    @property
+    def _primitive_params(self):
+        """Returns the primitive parameters of the model as a dict."""
+        return {
+            "n_clusters": self.n_clusters,
+            "alpha": self.alpha,
+            "beta": self.beta,
+            "n_vocab": self.n_vocab,
+            "n_documents": self.n_documents,
+        }
+
+    @property
+    def _dense_params(self):
+        """Returns the dense array parameters of the model as a dict."""
+        return {
+            "cluster_word_distribution": self.cluster_word_distribution,
+            "cluster_doc_count": self.cluster_doc_count,
+            "cluster_word_count": self.cluster_word_count,
+        }
+
+    def save(self, path: str) -> None:
+        """Persists model to disk to the given directory.
+
+        Parameters
+        ----------
+        path: str
+            Path to the directory where the model should be saved.
+            If the directory does not exist, it will be created.
+        """
+        Path(path).mkdir(parents=True, exist_ok=True)
+        joblib.dump(self._primitive_params, os.path.join(path, "params.joblib"))
+        for param_name, value in self._dense_params:
+            np.save(os.path.join(path, f"{param_name}.npy"), value)
+        spr.save_npz(os.path.join(path, "_doc_term_matrix.npz"), self._doc_term_matrix)
+        joblib.dump(self.vectorizer, os.path.join(path, "vectorizer.joblib"))
+
+    @classmethod
+    def load(cls, path: str) -> MovieGroupProcess:
+        """Loads model from the given directory.
+
+        Parameters
+        ----------
+        path: str
+            Path to the directory where the model should is saved.
+
+        Returns
+        -------
+        MovieGroupProcess
+            The saved model.
+        """
+        primitive_params = joblib.load(os.path.join("params.joblib"))
+        dense_param_names = [
+            "cluster_word_distribution",
+            "cluster_doc_count",
+            "cluster_word_count",
+        ]
+        dense_params = {
+            param: np.load(os.path.join(path, f"{param}.npy"))
+            for param in dense_param_names
+        }
+        attrs = {
+            **primitive_params,
+            **dense_params,
+        }
+        try:
+            attrs["_doc_term_matrix"] = spr.load_npz(
+                os.path.join(path, "_doc_term_matrix.npz")
+            )
+        except FileNotFoundError:
+            print("Doc term matrix not found while loading, model visualization off.")
+            attrs["_doc_term_matrix"] = None
+        attrs["vectorizer"] = joblib.load(os.path.join(path, "vectorizer.joblib"))
+        return MovieGroupProcess._from_attrs(**attrs)
