@@ -41,19 +41,3 @@ repos:
     hooks:
       - id: flake8
         args: [--config, .flake8]
-
-  # # due to it being too slow it is relegated to an independent workflow
-  # - repo: https://github.com/terrencepreilly/darglint
-  #   rev: v1.8.1
-  #   hooks:
-  #     - id: darglint
-
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0 # Use the ref you want to point at
-    hooks:
-      - id: check-yaml
-        name: check yaml
-        description: checks yaml files for parseable syntax.
-        entry: check-yaml
-        language: python
-        types: [yaml]
