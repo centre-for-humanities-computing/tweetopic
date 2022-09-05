@@ -8,8 +8,7 @@ from tweetopic._doc import MAX_UNIQUE_WORDS
 
 @njit(parallel=False)
 def sample_categorical(pvals: np.ndarray) -> int:
-    """
-    Samples from a categorical distribution given its parameters.
+    """Samples from a categorical distribution given its parameters.
 
     Parameters
     ----------
@@ -52,9 +51,8 @@ def _cond_prob(
     cluster_word_count: np.ndarray,
     cluster_word_distribution: np.ndarray,
 ) -> float:
-    """
-    Computes the conditional probability of a certain document
-    joining the given mixture component.
+    """Computes the conditional probability of a certain document joining the
+    given mixture component.
 
     Implements formula no. 4 from Yin & Wang (2014).
 
@@ -93,7 +91,7 @@ def _cond_prob(
     # I use logs instead of computing the products directly,
     # as it would quickly result in numerical overflow.
     log_norm_term = log(
-        (cluster_doc_count[i_cluster] + alpha) / (n_docs - 1 + n_clusters * alpha)
+        (cluster_doc_count[i_cluster] + alpha) / (n_docs - 1 + n_clusters * alpha),
     )
     log_numerator = 0
     for i_unique in range(MAX_UNIQUE_WORDS):
@@ -104,7 +102,7 @@ def _cond_prob(
             break
         for j in range(count):
             log_numerator += log(
-                cluster_word_distribution[i_cluster, i_word] + beta + j
+                cluster_word_distribution[i_cluster, i_word] + beta + j,
             )
     log_denominator = 0
     subres = cluster_word_count[i_cluster] + (n_vocab * beta)
@@ -130,8 +128,8 @@ def predict_doc(
     cluster_word_count: np.ndarray,
     cluster_word_distribution: np.ndarray,
 ) -> None:
-    """
-    Computes the parameters of the multinomial distribution used for sampling.
+    """Computes the parameters of the multinomial distribution used for
+    sampling.
 
     Parameters
     ----------
