@@ -24,10 +24,16 @@
 
 ## 🛠 Installation
 
-The package might be released on PIP in the future, for now you can install it directly from Github with the following command:
+Install from PyPI:
 
 ```bash
 pip install tweetopic
+```
+
+If you intend to use the visualization features of PyLDAvis, install the package with optional dependencies:
+
+```bash
+pip install tweetopic[viz]
 ```
 
 ## 👩‍💻 Usage
