@@ -218,6 +218,7 @@ class MovieGroupProcess:
     @classmethod
     def _from_attrs(cls, **attributes) -> MovieGroupProcess:
         """Creates model from a dict of its attributes.
+
         Exists for easier model persistence.
         """
         mgp = cls(
@@ -594,7 +595,7 @@ class MovieGroupProcess:
         }
         try:
             attrs["_doc_term_matrix"] = spr.load_npz(
-                os.path.join(path, "_doc_term_matrix.npz")
+                os.path.join(path, "_doc_term_matrix.npz"),
             )
         except FileNotFoundError:
             print("Doc term matrix not found while loading, model visualization off.")
