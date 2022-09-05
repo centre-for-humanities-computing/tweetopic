@@ -1,0 +1,18 @@
+# python
+__pycache__/
+*.egg-info/
+
+# Notebooks
+*.ipynb
+/.ipynb_checkpoints/
+
+# VScode
+/.vscode/
+
+# Data files
+*.zip
+*.csv
+*.txt
+
+# Other
+/tweetopic/_old.py
