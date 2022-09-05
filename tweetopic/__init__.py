@@ -1,1 +1,1 @@
-from tweetopic.mgp import MovieGroupProcess
+from tweetopic.mgp import MovieGroupProcess  # noqa: F401

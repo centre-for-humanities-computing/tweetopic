@@ -1,7 +1,7 @@
-"""Module containing tools for fitting a Dirichlet Mixture Model"""
+"""Module containing tools for fitting a Dirichlet Mixture Model."""
 from __future__ import annotations
 
-from typing import Dict, Iterable, List, Optional
+from typing import Iterable
 
 import numpy as np
 import scipy.sparse as spr
@@ -22,8 +22,7 @@ def _init_clusters(
     doc_unique_words: np.ndarray,
     doc_unique_word_counts: np.ndarray,
 ) -> None:
-    """
-    Randomly initializes clusters in the model.
+    """Randomly initializes clusters in the model.
 
     Parameters
     ----------
@@ -75,9 +74,8 @@ def _fit_model(
     cluster_word_count: np.ndarray,
     cluster_word_distribution: np.ndarray,
 ) -> None:
-    """
-    Fits the Dirichlet Mixture Model with Gibbs Sampling.
-    Implements algorithm described in Yin & Wang (2014)
+    """Fits the Dirichlet Mixture Model with Gibbs Sampling. Implements
+    algorithm described in Yin & Wang (2014)
 
     Parameters
     ----------
@@ -167,9 +165,8 @@ def _fit_model(
 
 
 class MovieGroupProcess:
-    """
-    Class for fitting a dirichlet mixture model with the movie group process algorithm
-    described in Yin & Wang's paper (2014).
+    """Class for fitting a dirichlet mixture model with the movie group process
+    algorithm described in Yin & Wang's paper (2014).
 
     Hyperparameters
     ---------------
@@ -212,10 +209,10 @@ class MovieGroupProcess:
         self.n_clusters = n_clusters
         self.alpha = alpha
         self.beta = beta
-        self.cluster_word_distribution: Optional[np.ndarray] = None
-        self.cluster_doc_count: Optional[np.ndarray] = None
-        self.cluster_word_count: Optional[np.ndarray] = None
-        self.vectorizer: Optional[CountVectorizer] = None
+        self.cluster_word_distribution: np.ndarray | None = None
+        self.cluster_doc_count: np.ndarray | None = None
+        self.cluster_word_count: np.ndarray | None = None
+        self.vectorizer: CountVectorizer | None = None
         self.n_documents = 0
         self.n_vocab = 0
         self._doc_term_matrix = None
@@ -226,8 +223,8 @@ class MovieGroupProcess:
         n_iterations: int = 30,
         **vectorizer_kwargs,
     ) -> MovieGroupProcess:
-        """
-        Fits the model with the MGP algorithm described in Yin and Wang (2014).
+        """Fits the model with the MGP algorithm described in Yin and Wang
+        (2014).
 
         Parameters
         ----------
@@ -249,7 +246,8 @@ class MovieGroupProcess:
 
         Note
         ----
-        fit() mutates the original object too, the fitted model is returned for convenience.
+        fit() mutates the original object too, the fitted model is returned for
+        convenience.
         """
         print("Converting documents to BOW matrix.")
         self.vectorizer = CountVectorizer(**vectorizer_kwargs)
@@ -259,7 +257,7 @@ class MovieGroupProcess:
         self.n_documents, self.n_vocab = doc_term_matrix.shape
         print("Calculating unique words.")
         doc_unique_words, doc_unique_word_counts = init_doc_words(
-            doc_term_matrix.tolil()
+            doc_term_matrix.tolil(),
         )
         if not self.multiple_occurance:
             # If terms are not allowed to appear more than once,
@@ -267,7 +265,9 @@ class MovieGroupProcess:
             doc_unique_word_counts[doc_unique_word_counts != 0] = 1
         print("Initialising mixture components")
         initial_clusters = np.random.multinomial(
-            1, np.ones(self.n_clusters) / self.n_clusters, size=self.n_documents
+            1,
+            np.ones(self.n_clusters) / self.n_clusters,
+            size=self.n_documents,
         )
         doc_clusters = np.argmax(initial_clusters, axis=1)
         self.cluster_doc_count = np.zeros(self.n_clusters)
@@ -299,10 +299,9 @@ class MovieGroupProcess:
         return self
 
     def transform(self, embeddings: spr.csr_matrix) -> np.ndarray:
-        """
-        Predicts mixture component labels from BOW representations
-        of the provided documents produced by self.vectorizer.
-        This function is mostly here for sklearn compatibility.
+        """Predicts mixture component labels from BOW representations of the
+        provided documents produced by self.vectorizer. This function is mostly
+        here for sklearn compatibility.
 
         Parameters
         ----------
@@ -344,8 +343,7 @@ class MovieGroupProcess:
         return np.stack(predictions)
 
     def predict(self, documents: Iterable[str]) -> np.ndarray:
-        """
-        Predicts mixture component labels for the given documents.
+        """Predicts mixture component labels for the given documents.
 
         Parameters
         ----------
@@ -369,12 +367,12 @@ class MovieGroupProcess:
 
     @property
     def components_(self):
-        """Alias of cluster_word_distribution for compatibility with sklearn"""
+        """Alias of cluster_word_distribution for compatibility with
+        sklearn."""
         return self.cluster_word_distribution
 
-    def top_words(self, top_n: Optional[int] = 10) -> List[Dict[str, int]]:
-        """
-        Calculates the top words for each cluster.
+    def top_words(self, top_n: int | None = 10) -> list[dict[str, int]]:
+        """Calculates the top words for each cluster.
 
         Parameters
         ----------
@@ -404,15 +402,15 @@ class MovieGroupProcess:
                 feature_names[i]: dist[i_cluster, i]
                 for i in top_indices
                 if dist[
-                    i_cluster, i
+                    i_cluster,
+                    i,
                 ]  # Only return words if they are actually in the cluster
             }
             res.append(top_words)
         return res
 
-    def most_important_words(self, top_n: Optional[int] = 10) -> List[Dict[str, int]]:
-        """
-        Calculates the most important words for each cluster.
+    def most_important_words(self, top_n: int | None = 10) -> list[dict[str, int]]:
+        """Calculates the most important words for each cluster.
 
         Parameters
         ----------
@@ -446,15 +444,15 @@ class MovieGroupProcess:
                 feature_names[i]: dist[i_cluster, i]
                 for i in top_indices
                 if dist[
-                    i_cluster, i
+                    i_cluster,
+                    i,
                 ]  # Only return words if they are actually in the cluster
             }
             res.append(top_words)
         return res
 
     def visualize(self):
-        """
-        Visualizes the model with pyLDAvis for inspection of the different
+        """Visualizes the model with pyLDAvis for inspection of the different
         mixture components :)
 
         Raises
@@ -467,12 +465,13 @@ class MovieGroupProcess:
             import pyLDAvis.sklearn
         except ModuleNotFoundError as exception:
             raise ImportError(
-                "Optional dependency pyLDAvis not installed."
+                "Optional dependency pyLDAvis not installed.",
             ) from exception
         pyLDAvis.enable_notebook()
         return pyLDAvis.sklearn.prepare(self, self._doc_term_matrix, self.vectorizer)
 
     @property
     def visualise(self):
-        """Alias of visualize() for those living on this side of the Pacific."""
+        """Alias of visualize() for those living on this side of the
+        Pacific."""
         return self.visualize
