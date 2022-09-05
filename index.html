@@ -1,123 +1,294 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
+    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.04.07"/>
+        <title></title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-api-name: #28a4df;
+  --color-api-pre-name: #ffa671;
   
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-api-name: #28a4df;
+  --color-api-pre-name: #ffa671;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-api-name: #28a4df;
+  --color-api-pre-name: #ffa671;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
 
-      <title>tweetopic API reference | tweetopic  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" />
-      <link rel="stylesheet" href="_static/theme.e6081a2fb60dd7bf7015.css" />
-      <link rel="shortcut icon" href="_static/icon.svg" />
-        <link rel="search" title="Search" href="search.html" />
-        <link rel="index" title="Index" href="genindex.html" />
-  </head>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
 
-  <body class="antialiased text-gray scroll-smooth">
-    <div
-      id="page"
-      data-controller="sidebar search"
-      data-action="keydown@window->search#focus"
-      class="h-screen xl:grid xl:grid-layout"
-    >
-      <a class="block text-xl bg-white py-4 z-20 absolute top-0 h-14 inset-x-0 text-center transform -translate-y-full focus:translate-y-0 focus:outline-none transition-transform duration-75" href="#tweetopic-api-reference" title="Skip navigation links">Skip to content</a>
 
-      <header class="grid-area-header z-10 h-14">
-        <div class="bg-gray-dark shadow-md flex items-center h-full xl:px-2 relative"><div class="flex items-center"><a class="hover:bg-gray-700 focus:bg-gray-700 focus:outline-none tooltipped tooltipped-sw"
-   href="#"
-   aria-label="Back to homepage"><span class="hidden lg:inline-block shrink-0 font-medium text-gray-100 mx-5 leading-14 tracking-wider">tweetopic  documentation</span>
-</a></div><div class="flex justify-end items-center flex-1"><form
-  id="searchbox"
-  action="search.html"
-  data-action="click->search#focusSearchInput"
-  method="get"
-  class="flex print:hidden justify-between items-center leading-14 md:ml-4 bg-gray-dark text-gray-300 focus-within:bg-gray-50 focus-within:text-gray-800 focus-within:absolute focus-within:inset-x-0 focus-within:top-0 md:focus-within:w-full md:focus-within:static">
 
-  <button
-    class="text-inherit h-14 w-14"
-    aria-label="Get search results"
-    tabindex="-1"
-  >
-    <svg aria-hidden="true" class="fill-current stroke-current h-8 w-8" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-  </button>
-
-  <input
-    name="q"
-    id="search-input"
-    data-search-target="searchInput"
-    type="search"
-    aria-label="Search the docs"
-    placeholder="Search the docs"
-    class="pr-2 bg-transparent text-inherit focus:outline-none w-0 md:w-auto focus:w-full transition-all duration-100"
-  />
-</form></div>
-</div>
-      </header>
-
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand"> </div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
       
-  <main
-    data-controller="scroll"
-    data-action="scroll->scroll#showButton"
-    class="px-4 col-span-full overflow-y-auto flex flex-col h-full w-full"
-    >
-    <div class="flex flex-col h-full mx-auto max-w-prose">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/icon_w_title_below.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/icon_w_title_below_dark.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  
+</div>
+</div>
 
-      <article role="main" class="flex-1">
-        
-  <a class="reference internal image-reference" href="_images/icon_w_title.png"><img alt="_images/icon_w_title.png" src="_images/icon_w_title.png" style="width: 600px;" /></a>
-<section id="module-tweetopic.mgp">
-<span id="tweetopic-api-reference"></span><h1>tweetopic API reference<a class="headerlink" href="#module-tweetopic.mgp" title="Permalink to this heading">¶</a></h1>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-tweetopic.mgp">
+<span id="moviegroupprocess"></span><h1>MovieGroupProcess<a class="headerlink" href="#module-tweetopic.mgp" title="Permalink to this heading">#</a></h1>
 <p>Module containing tools for fitting a Dirichlet Mixture Model.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tweetopic.mgp.</span></span><span class="sig-name descname"><span class="pre">MovieGroupProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_clusters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiple_occurance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tweetopic.mgp.</span></span><span class="sig-name descname"><span class="pre">MovieGroupProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_clusters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess" title="Permalink to this definition">#</a></dt>
 <dd><p>Class for fitting a dirichlet mixture model with the movie group process
 algorithm described in Yin &amp; Wang’s paper (2014).</p>
-<dl class="simple">
-<dt>n_clusters: int, default 8</dt><dd><p>Number of mixture components in the model.</p>
-</dd>
-<dt>alpha: float, default 0.1</dt><dd><p>Willingness of a document joining an empty cluster.</p>
-</dd>
-<dt>beta: float, default 0.1</dt><dd><p>Willingness to join clusters, where the terms in the document
-are not present.</p>
-</dd>
-<dt>multiple_occurance: bool, default True</dt><dd><p>Specifies whether a term should only be counted once in each document.
-If set to False, Formula 3 will be used, else  FOrmula 4 will be used.</p>
-</dd>
-</dl>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cluster_word_distribution</strong> (<em>matrix of shape</em><em> (</em><em>n_clusters</em><em>, </em><em>n_vocab</em><em>)</em>) – Contains the amount a word occurs in a certain cluster.</p></li>
-<li><p><strong>cluster_doc_count</strong> (<em>array of shape</em><em> (</em><em>n_clusters</em><em>,</em><em>)</em>) – Array containing how many documents there are in each cluster.</p></li>
-<li><p><strong>cluster_word_count</strong> (<em>array of shape</em><em> (</em><em>n_clusters</em><em>,</em><em>)</em>) – Contains the amount of words there are in each cluster.</p></li>
-<li><p><strong>vectorizer</strong> (<em>CountVectorizer</em>) – BOW vectorizer from sklearn.
-It is used to transform documents into bag of words embeddings.</p></li>
-<li><p><strong>n_vocab</strong> (<em>int</em>) – Number of total vocabulary items seen during fitting.</p></li>
-<li><p><strong>n_documents</strong> (<em>int</em>) – Total number of documents seen during fitting.</p></li>
+<li><p><strong>n_clusters</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">8</span></code>) – Number of mixture components in the model.</p></li>
+<li><p><strong>alpha</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">0.1</span></code>) – Willingness of a document joining an empty cluster.</p></li>
+<li><p><strong>beta</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">0.1</span></code>) – Willingness to join clusters, where the terms in the document
+are not present.</p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.cluster_word_distribution">
+<span class="sig-name descname"><span class="pre">cluster_word_distribution</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.cluster_word_distribution" title="Permalink to this definition">#</a></dt>
+<dd><p>Contains the amount a word occurs in a certain cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">matrix</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_clusters</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_vocab)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.cluster_doc_count">
+<span class="sig-name descname"><span class="pre">cluster_doc_count</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.cluster_doc_count" title="Permalink to this definition">#</a></dt>
+<dd><p>Array containing how many documents there are in each cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_clusters,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.cluster_word_count">
+<span class="sig-name descname"><span class="pre">cluster_word_count</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.cluster_word_count" title="Permalink to this definition">#</a></dt>
+<dd><p>Contains the amount of words there are in each cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_clusters,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.vectorizer">
+<span class="sig-name descname"><span class="pre">vectorizer</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.vectorizer" title="Permalink to this definition">#</a></dt>
+<dd><p>BOW vectorizer from sklearn.
+It is used to transform documents into bag of words embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.n_vocab">
+<span class="sig-name descname"><span class="pre">n_vocab</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.n_vocab" title="Permalink to this definition">#</a></dt>
+<dd><p>Number of total vocabulary items seen during fitting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.n_documents">
+<span class="sig-name descname"><span class="pre">n_documents</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.n_documents" title="Permalink to this definition">#</a></dt>
+<dd><p>Total number of documents seen during fitting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.components_">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">components_</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.components_" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">components_</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.components_" title="Permalink to this definition">#</a></dt>
 <dd><p>Alias of cluster_word_distribution for compatibility with
 sklearn.</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">vectorizer_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tweetopic.mgp.MovieGroupProcess" title="tweetopic.mgp.MovieGroupProcess"><span class="pre">MovieGroupProcess</span></a></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.fit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">vectorizer_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#tweetopic.mgp.MovieGroupProcess" title="tweetopic.mgp.MovieGroupProcess"><span class="pre">MovieGroupProcess</span></a></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.fit" title="Permalink to this definition">#</a></dt>
 <dd><p>Fits the model with the MGP algorithm described in Yin and Wang
 (2014).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>documents</strong> (<em>iterable of str</em>) – Stream of documents to fit the model with.</p></li>
-<li><p><strong>n_iterations</strong> (<em>int, default 30</em>) – Number of iterations used for fitting the model.
+<li><p><strong>documents</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Stream of documents to fit the model with.</p></li>
+<li><p><strong>n_iterations</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">30</span></code>) – Number of iterations used for fitting the model.
 Results usually improve with higher number of iterations.</p></li>
 <li><p><strong>**vectorizer_kwargs</strong> – The rest of the arguments supplied are passed to sklearn’s
 CountVectorizer.
@@ -125,8 +296,11 @@ For a detailed list of arguments consult the documentation:
 <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html">http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html</a></p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>MovieGroupProcess</em> – The same model fitted.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The same model fitted.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tweetopic.mgp.MovieGroupProcess" title="tweetopic.mgp.MovieGroupProcess"><code class="xref py py-class docutils literal notranslate"><span class="pre">MovieGroupProcess</span></code></a></p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -135,139 +309,210 @@ For a detailed list of arguments consult the documentation:
 convenience.</p>
 </div>
 </dd></dl>
-
+<dl class="py method">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">vectorizer_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.fit_transform" title="Permalink to this definition">#</a></dt>
+<dd><p>Fits the model and assigns cluster labels to each document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>documents</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Stream of documents to fit the model with.</p></li>
+<li><p><strong>n_iterations</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">30</span></code>) – Number of iterations used for fitting the model.
+Results usually improve with higher number of iterations.</p></li>
+<li><p><strong>**vectorizer_kwargs</strong> – The rest of the arguments supplied are passed to sklearn’s
+CountVectorizer.
+For a detailed list of arguments consult the documentation:
+<a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html">http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html</a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Matrix of probabilities of documents belonging to each cluster.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_documents</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_clusters)</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <cite>documents</cite> argument has to be a repeatable iterable.
+Please keep this in mind when using generators.
+We recommend that you use the @multigen wrapper in such cases:
+<a class="reference external" href="https://stackoverflow.com/questions/1376438/how-to-make-a-repeating-generator-in-python">https://stackoverflow.com/questions/1376438/how-to-make-a-repeating-generator-in-python</a></p>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.load">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#tweetopic.mgp.MovieGroupProcess" title="tweetopic.mgp.MovieGroupProcess"><span class="pre">MovieGroupProcess</span></a></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.load" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads model from the given directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Path to the directory where the model should is saved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The saved model.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tweetopic.mgp.MovieGroupProcess" title="tweetopic.mgp.MovieGroupProcess"><code class="xref py py-class docutils literal notranslate"><span class="pre">MovieGroupProcess</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.most_important_words">
-<span class="sig-name descname"><span class="pre">most_important_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.most_important_words" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">most_important_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.most_important_words" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculates the most important words for each cluster.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>top_n</strong> (<em>int or None, default 10</em>) – Top N words to return. If None, all words are returned.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>top_n</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">10</span></code>) – Top N words to return. If None, all words are returned.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>list of dict of str to int</em> – Dictionary for each cluster mapping the words to number of occurances.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary for each cluster mapping the words to number of occurances.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> to <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
 </dd>
 </dl>
 </dd></dl>
-
+<dl class="py property">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.n_components_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_components_</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.n_components_" title="Permalink to this definition">#</a></dt>
+<dd><p>Alias of n_clusters for Sklearn compatibility.</p>
+</dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.predict" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.predict" title="Permalink to this definition">#</a></dt>
 <dd><p>Predicts mixture component labels for the given documents.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>documents</strong> (<em>iterable of str</em>) – Stream of text documents.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>documents</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Stream of text documents.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>array of shape (n_documents, n_clusters)</em> – Matrix of probabilities of documents belonging to each cluster.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Matrix of probabilities of documents belonging to each cluster.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_documents</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_clusters)</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
 </dd>
 </dl>
 </dd></dl>
-
+<dl class="py method">
+<dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.save" title="Permalink to this definition">#</a></dt>
+<dd><p>Persists model to disk to the given directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Path to the directory where the model should be saved.
+If the directory does not exist, it will be created.</p>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.top_words">
-<span class="sig-name descname"><span class="pre">top_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.top_words" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">top_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.top_words" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculates the top words for each cluster.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>top_n</strong> (<em>int or None, default 10</em>) – Top N words to return. If None, all words are returned.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>top_n</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">10</span></code>) – Top N words to return. If None, all words are returned.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>list of dict of str to int</em> – Dictionary for each cluster mapping the words to number of occurances.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary for each cluster mapping the words to number of occurances.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> to <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">csr_matrix</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.transform" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">csr_matrix</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.transform" title="Permalink to this definition">#</a></dt>
 <dd><p>Predicts mixture component labels from BOW representations of the
 provided documents produced by self.vectorizer. This function is mostly
 here for sklearn compatibility.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>embeddings</strong> (<em>sparse array of shape (n_documents, n_vocab)</em>) – BOW embeddings of documents</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>embeddings</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_documents</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_vocab)</span></code>) – BOW embeddings of documents</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>array of shape (n_documents, n_clusters)</em> – Matrix of probabilities of documents belonging to each cluster.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Matrix of probabilities of documents belonging to each cluster.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_documents</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_clusters)</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised.</p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.visualise">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">visualise</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.visualise" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">visualise</span></span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.visualise" title="Permalink to this definition">#</a></dt>
 <dd><p>Alias of visualize() for those living on this side of the
 Pacific.</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.mgp.MovieGroupProcess.visualize">
-<span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.visualize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.mgp.MovieGroupProcess.visualize" title="Permalink to this definition">#</a></dt>
 <dd><p>Visualizes the model with pyLDAvis for inspection of the different
 mixture components :)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>ModuleNotFoundError</strong> – If pyLDAvis is not installed an exception is thrown.</p>
 </dd>
 </dl>
 </dd></dl>
-
 </dd></dl>
-
 <div class="toctree-wrapper compound">
 </div>
 </section>
 
-
-      </article>
-
-      <footer><div class="mt-20 mb-4 text-sm text-gray-700">&copy; 2022, Márton Kardos&nbsp;Made with <a href="https://www.sphinx-doc.org">Sphinx 5.1.1</a></div>
-      </footer><button
-  data-scroll-target="scrollToTop"
-  data-action="scroll#scrollToTop"
-  class="fixed bottom-0 right-0 p-2 m-4 z-10 rounded-full bg-gray-700 text-white opacity-0 transition-opacity duration-1000 pointer-events-none hover:bg-gray-300 hover:text-link focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-gray-200 focus:text-link tooltipped tooltipped-nw"
-  aria-label="Scroll to top"
->
-  <svg class="fill-current stroke-current h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
-  </svg>
-</button></div>
-  </main>
-
-
-      <button
-  data-search-target="snackbar"
-  data-action="search#hideSnackbar"
-  class="fixed bottom-0 right-0 z-20 opacity-0 p-4 m-4 tracking-wide bg-gray-900 text-gray-100 transition transform transform-gpu duration-500 translate-y-full"
->
-  Clear highlights
-</button><div
-  data-sidebar-target="screen"
-  data-action="click->sidebar#close"
-  class="fixed hidden inset-0 bg-black bg-opacity-50">
-</div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Márton Kardos
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
     </div>
-    
+    <aside class="toc-drawer no-toc">
       
-  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-  <script src="_static/jquery.js"></script>
-  <script src="_static/underscore.js"></script>
-  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script src="_static/doctools.js"></script>
-<script src="_static/theme.a9d041328d1560cbc665.js"></script>
-    
-  </body>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
 </html>
