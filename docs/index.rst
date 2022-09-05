@@ -1,4 +1,4 @@
-.. image:: _static/icon_with_text.svg
+.. image:: _static/icon_with_title.png
    :width: 600
    
 tweetopic API reference

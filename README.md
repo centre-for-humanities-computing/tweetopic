@@ -1,4 +1,4 @@
-![Logo with text](./docs/_static/icon_with_text.svg)
+![Logo with text](./docs/_static/icon_with_title.png)
 
 # tweetopic: Blazing Fast Topic modelling for Short Texts
 
