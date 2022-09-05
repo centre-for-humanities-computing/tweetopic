@@ -2,9 +2,9 @@
 
 # tweetopic: Blazing Fast Topic modelling for Short Texts
 
-[![PyPI version](https://badge.fury.io/py/tweettopics.svg)](https://pypi.org/project/tweettopics/)
-[![pip downloads](https://img.shields.io/pypi/dm/tweettopics.svg)](https://pypi.org/project/tweettopics/)
-[![python version](https://img.shields.io/badge/Python-%3E=3.7-blue)](https://github.com/centre-for-humanities-computing/tweettopics)
+[![PyPI version](https://badge.fury.io/py/tweettopics.svg)](https://pypi.org/project/tweetopic/)
+[![pip downloads](https://img.shields.io/pypi/dm/tweettopics.svg)](https://pypi.org/project/tweetopic/)
+[![python version](https://img.shields.io/badge/Python-%3E=3.7-blue)](https://github.com/centre-for-humanities-computing/tweetopic)
 [![Code style: black](https://img.shields.io/badge/Code%20Style-Black-black)](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html)
 <br>
 ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
