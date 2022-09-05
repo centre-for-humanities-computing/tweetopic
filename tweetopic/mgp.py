@@ -168,8 +168,8 @@ class MovieGroupProcess:
     """Class for fitting a dirichlet mixture model with the movie group process
     algorithm described in Yin & Wang's paper (2014).
 
-    Hyperparameters
-    ---------------
+    Parameters
+    ----------
     n_clusters: int, default 8
         Number of mixture components in the model.
     alpha: float, default 0.1
@@ -179,7 +179,7 @@ class MovieGroupProcess:
         are not present.
     multiple_occurance: bool, default True
         Specifies whether a term should only be counted once in each document.
-        If set to False, Formula 3 will be used, else  FOrmula 4 will be used.
+        If set to False, Formula 3 will be used, else  Formula 4 will be used.
 
     Attributes
     ----------

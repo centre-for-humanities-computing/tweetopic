@@ -1,7 +1,5 @@
-.. image:: _static/icon_w_title.png
-   :width: 600
-   
-tweetopic API reference
+
+MovieGroupProcess
 =====================================
 
 .. automodule:: tweetopic.mgp
