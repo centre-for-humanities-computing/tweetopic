@@ -138,7 +138,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -204,7 +204,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -212,8 +212,20 @@
         <article role="main">
           <section id="dirichlet-mixture-model">
 <h1>Dirichlet Mixture Model<a class="headerlink" href="#dirichlet-mixture-model" title="Permalink to this heading">#</a></h1>
-<p>tweetopic provides a fully sklearn compatible model for topic modelling.
-The Dirichlet mixture model pretty much has the same usage as and NMF or LDA model from sklearn.</p>
+<p>The <cite>tweetopic.DMM</cite> class provides utilities for fitting and using_tweetopic
+Dirichlet Mixture Models.</p>
+<a class="reference internal image-reference" href="_images/simulation.png"><img alt="Observations drawn from a DMM" src="_images/simulation.png" style="width: 800px;"/></a>
+<p><em>Simulation of 1000 observations drawn from a DMM</em>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Dirichlet_process#/media/File:DP_clustering_simulation.png">source: Wikipedia</a></p>
+<p>The Dirichlet Mixture Model or DMM is a generative probabilistic model,
+that assumes that all data points in the population are generated from
+a mixture of dirichlet distributions with unknown parameters.</p>
+<p>DMMs can be thought of as a fuzzy clustering method, but can also be employed as topic models.
+It has been demonstrated that DMMs work particularly well for topic modelling over short texts (Yin and Wang, 2014).</p>
+<a class="reference internal image-reference" href="_images/plate_notation.png"><img alt="Graphical model with plate notation" src="_images/plate_notation.png" style="width: 400px;"/></a>
+<p><em>Graphical model of DMM with plate notation (Yin &amp; Wang, 2014)</em></p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
 <p>Creating a model:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">DMM</span>
 
@@ -234,6 +246,11 @@ The Dirichlet mixture model pretty much has the same usage as and NMF or LDA mod
 </pre></div>
 </div>
 <p><a class="reference internal" href="tweetopic.dmm.html#tweetopic-dmm"><span class="std std-ref">API reference</span></a></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.researchgate.net/publication/266660462_A_Dirichlet_multinomial_mixture_model-based_approach_for_short_text_clustering">Yin, J., &amp; Wang, J. (2014). A Dirichlet Multinomial Mixture Model-Based Approach for Short Text Clustering.</a> <em>In Proceedings of the 20th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 233–242). Association for Computing Machinery.</em></p>
+</section>
 </section>
 
         </article>
@@ -281,8 +298,28 @@ The Dirichlet mixture model pretty much has the same usage as and NMF or LDA mod
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Dirichlet Mixture Model</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
