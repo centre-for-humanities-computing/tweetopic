@@ -3,7 +3,7 @@
 DMM
 =======================
 
-`Usage guide <usage dmm>`_
+:ref:`Usage guide <usage dmm>`
 
 
 .. autoclass:: tweetopic.dmm.DMM

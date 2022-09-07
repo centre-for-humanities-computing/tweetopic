@@ -1,4 +1,4 @@
-.. _usage dmm :
+.. _usage dmm:
 
 Dirichlet Multinomial Mixture Model
 ===================================
@@ -44,6 +44,8 @@ will usually result in better convergence.
 
 Usage
 ^^^^^^^
+(:ref:`API reference <tweetopic dmm>`)
+
 
 Creating a model:
 
@@ -69,8 +71,6 @@ Predicting cluster labels for unseen documents:
 .. code-block:: python
 
     dmm.transform(new_docs)
-
-:ref:`API reference <tweetopic dmm>`
 
 References
 ^^^^^^^^^^

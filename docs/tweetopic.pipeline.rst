@@ -3,7 +3,7 @@
 TopicPipeline
 =============
 
-`Usage guide <usage pipeline>`_
+:ref:`Usage guide <usage pipeline>`
 
 .. autoclass:: tweetopic.pipeline.TopicPipeline
     :members:

@@ -6,6 +6,10 @@ Topic Pipelines
 A topic pipeline provides a concise way of text vectorization, topic modelling,
 and visual inspection of topic models.
 
+Usage
+^^^^^^
+(:ref:`API reference <tweetopic pipeline>`)
+
 Create a vectorizer and topic model:
 
 .. code-block:: python
@@ -86,4 +90,3 @@ or use rich visualizations with PyLDAvis:
     PyLDAvis has to be installed for you to be able to use this, please
     install optional dependencies.
 
-:ref:`API reference <tweetopic pipeline>`
