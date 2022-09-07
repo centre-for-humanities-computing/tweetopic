@@ -1,5 +1,4 @@
-"""Module containing a fully sklearn compatible Dirichlet Mixture Model.
-"""
+"""Module containing a fully sklearn compatible Dirichlet Mixture Model."""
 
 from __future__ import annotations
 
@@ -11,14 +10,14 @@ import sklearn
 from numpy.typing import ArrayLike
 
 from tweetopic._doc import init_doc_words
-from tweetopic._mgp import _fit_model, _init_clusters, predict_doc
+from tweetopic._mgp import _fit_model, _init_clusters
 from tweetopic._prob import predict_doc
 from tweetopic.exceptions import NotFittedException
 
 
 class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
-    """Implementation of the Dirichlet Mixture Model with Gibbs Sampling solver.
-    The class aims to achieve full compatibility with sklearn.
+    """Implementation of the Dirichlet Mixture Model with Gibbs Sampling
+    solver. The class aims to achieve full compatibility with sklearn.
 
     Parameters
     ----------
@@ -119,8 +118,8 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         return self
 
     def fit(self, X: Union[spr.spmatrix, ArrayLike], y: None = None):
-        """Fits the model using Gibbs Sampling.
-        Detailed description of the algorithm in Yin and Wang (2014).
+        """Fits the model using Gibbs Sampling. Detailed description of the
+        algorithm in Yin and Wang (2014).
 
         Parameters
         ----------
@@ -182,7 +181,8 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         return self
 
     def transform(self, X: Union[spr.spmatrix, ArrayLike]) -> np.ndarray:
-        """Predicts probabilities for each document belonging to each component.
+        """Predicts probabilities for each document belonging to each
+        component.
 
         Parameters
         ----------
@@ -228,7 +228,9 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         return np.stack(predictions)
 
     def fit_transform(
-        self, X: Union[spr.spmatrix, ArrayLike], y: None = None
+        self,
+        X: Union[spr.spmatrix, ArrayLike],
+        y: None = None,
     ) -> np.ndarray:
         """Fits the model, then transforms the given data.
 
@@ -243,6 +245,5 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         -------
         array of shape (n_samples, n_components)
             Probabilities for each document belonging to each cluster.
-
         """
         return self.fit(X).transform(X)

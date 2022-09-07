@@ -1,5 +1,5 @@
-"""Utilities for easier fitting, inspection and visualization of topic models.
-"""
+"""Utilities for easier fitting, inspection and visualization of topic
+models."""
 
 from __future__ import annotations
 
@@ -103,7 +103,9 @@ class TopicPipeline:
             ) from exception
         pyLDAvis.enable_notebook()
         return pyLDAvis.sklearn.prepare(
-            self.topic_model, self.vectorizer.transform(texts), self.vectorizer
+            self.topic_model,
+            self.vectorizer.transform(texts),
+            self.vectorizer,
         )
 
     @property

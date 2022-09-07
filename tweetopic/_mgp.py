@@ -8,9 +8,9 @@ from typing import Iterable
 import joblib
 import numpy as np
 import scipy.sparse as spr
+from deprecated import deprecated
 from numba import njit
 from sklearn.feature_extraction.text import CountVectorizer
-from deprecated import deprecated
 
 from tweetopic._doc import add_doc, init_doc_words, remove_doc
 from tweetopic._prob import predict_doc, sample_categorical
@@ -169,7 +169,7 @@ def _fit_model(
 
 
 @deprecated(
-    reason="Deprecated in favor of DMM and TopicPipeline for sklearn compatibility."
+    reason="Deprecated in favor of DMM and TopicPipeline for sklearn compatibility.",
 )
 class MovieGroupProcess:
     """Class for fitting a dirichlet mixture model with the movie group process
