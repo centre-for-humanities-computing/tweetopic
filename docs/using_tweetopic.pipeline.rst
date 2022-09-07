@@ -64,7 +64,8 @@ Inspect topics by looking at the top words in each topic:
 or use rich visualizations with PyLDAvis:
 
 .. code-block:: python
-    pipeline.visualize()
+    
+    pipeline.visualize(texts)
 
 .. image:: _static/pyldavis.png
     :width: 800

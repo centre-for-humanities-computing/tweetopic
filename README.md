@@ -21,6 +21,7 @@
 - High consistency and coherence :dart:
 - High quality topics :fire:
 - Easy visualization and inspection :eyes:
+- Full scikit-learn compatibility :nut_and_bolt:
 
 ## 🛠 Installation
 
@@ -83,7 +84,7 @@ pipeline.top_words(top_n=3)
 Or use rich visualizations provided by [pyLDAvis](https://github.com/bmabey/pyLDAvis):
 
 ```python
-pipeline.visualize()
+pipeline.visualize(texts)
 ```
 
 ![PyLDAvis visualization](https://github.com/centre-for-humanities-computing/tweetopic/blob/main/docs/_static/pyldavis.png)
