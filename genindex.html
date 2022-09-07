@@ -159,20 +159,21 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">Pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">Movie Group Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">TopicPipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">MovieGroupProcess</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
@@ -351,6 +352,14 @@
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="tweetopic.mgp.html#tweetopic._mgp.MovieGroupProcess.predict">predict() (tweetopic._mgp.MovieGroupProcess method)</a>
+
+        <ul>
+          <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.predict">(tweetopic.dmm.DMM method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.predict_proba">predict_proba() (tweetopic.dmm.DMM method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -424,13 +433,11 @@
         <li><a href="tweetopic.mgp.html#tweetopic._mgp.MovieGroupProcess.vectorizer">vectorizer (tweetopic._mgp.MovieGroupProcess attribute)</a>
 </li>
         <li><a href="tweetopic.mgp.html#tweetopic._mgp.MovieGroupProcess.visualise">visualise (tweetopic._mgp.MovieGroupProcess property)</a>
-
-        <ul>
-          <li><a href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.visualise">(tweetopic.pipeline.TopicPipeline property)</a>
 </li>
-        </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.visualise">visualise() (tweetopic.pipeline.TopicPipeline method)</a>
+</li>
         <li><a href="tweetopic.mgp.html#tweetopic._mgp.MovieGroupProcess.visualize">visualize() (tweetopic._mgp.MovieGroupProcess method)</a>
 
         <ul>
