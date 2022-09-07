@@ -40,8 +40,6 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         during fitting.
     cluster_doc_count: array of shape (n_components,)
         Array containing how many documents there are in each cluster.
-    cluster_word_count: array of shape (n_components,)
-        Contains the amount of words there are in each cluster.
     n_features_in_: int
         Number of total vocabulary items seen during fitting.
     n_documents: int
