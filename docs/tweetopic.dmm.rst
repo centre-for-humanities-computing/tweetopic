@@ -6,5 +6,5 @@ DMM
 `Usage guide <usage dmm>`_
 
 
-.. automodule:: tweetopic.dmm
+.. autoclass:: tweetopic.dmm.DMM
     :members:

@@ -1,10 +1,10 @@
 .. _usage dmm :
 
-Dirichlet Mixture Model
-=======================
+Dirichlet Multinomial Mixture Model
+===================================
 
 The `tweetopic.DMM` class provides utilities for fitting and using
-Dirichlet Mixture Models.
+Dirichlet Multinomial Mixture Models.
 
 .. image:: _static/simulation.png
     :width: 800
@@ -14,7 +14,7 @@ Dirichlet Mixture Models.
 `source: Wikipedia <https://en.wikipedia.org/wiki/Dirichlet_process#/media/File:DP_clustering_simulation.png>`_
 
 
-The Dirichlet Mixture Model or DMM is a generative probabilistic model,
+The Dirichlet Multinomial Mixture Model or DMM is a generative probabilistic model,
 that assumes that all data points in the population are generated from
 a mixture of dirichlet distributions with unknown parameters.
 
@@ -26,6 +26,21 @@ It has been demonstrated that DMMs work particularly well for topic modelling ov
     :alt: Graphical model with plate notation
 
 *Graphical model of DMM with plate notation (Yin & Wang, 2014)*
+
+Dirichlet Multinomial Mixtures in tweetopic are fitted with `Gibbs sampling <https://en.wikipedia.org/wiki/Gibbs_sampling>`_ .
+Since Gibbs sampling is an iterative `ḾCMC <https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo>`_ method, increasing the number of iterations 
+will usually result in better convergence.
+
+| The parameters *alpha* and *beta* can be explained in terms of the *Movie Group Process*, an analogy used for the fitting algorithm in Yin and Wang(2014).
+| The fitting procedure can be thought of as a process, where students in a classroom have to divide themselves up into groups based on their movie preferences.
+| Each student expresses their preferences in the form of a list of favorite movies (analogous to documents being lists of words). 
+| In each iteration the students will try to choose a table (cluster/component) based on these two rules:
+
+- Rule 1: Prefer tables with more students.
+- Rule 2: Choose a table where students have similar preferences to your own.
+
+| Here *alpha* represents the willingness of a student to join tables with lower number of students.
+| While *beta* represents the willingness of students to join tables with preferences differing from their own.
 
 Usage
 ^^^^^^^

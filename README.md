@@ -49,7 +49,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 # text corpus.
 vectorizer = CountVectorizer(min_df=15, max_df=0.1)
 
-# Creating a Dirichlet Mixture Model with 30 components
+# Creating a Dirichlet Multinomial Mixture Model with 30 components
 dmm = DMM(n_clusters=30, n_iterations=100, alpha=0.1, beta=0.1)
 
 # Creating topic pipeline

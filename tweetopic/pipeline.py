@@ -4,15 +4,32 @@ models."""
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Iterable, Union
+from typing import Iterable, Protocol, Union
 
 import numpy as np
+import scipy.sparse as spr
+from numpy.typing import ArrayLike
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 
 from tweetopic.dmm import DMM
 
-# TODO: type this a bit better
-Vectorizer = Any
+
+class Vectorizer(Protocol):
+    """Vectorizer protocol for static typing purposes."""
+
+    def fit(self, raw_documents) -> Vectorizer:  # type: ignore
+        pass
+
+    def transform(self, raw_documents) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
+        pass
+
+    def fit_transform(self, raw_documents) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
+        pass
+
+    def get_feature_names_out(self) -> np.ndarray:  # type: ignore
+        pass
+
+
 TopicModel = Union[NMF, LatentDirichletAllocation, DMM]
 
 
@@ -22,7 +39,7 @@ class TopicPipeline:
 
     Parameters
     ----------
-    vectorizer: sklearn vectorizer model
+    vectorizer: Vectorizer
         Transformer that extracts BOW embeddings from texts
     topic_model: DMM, NMF or LatentDirichletAllocation
         Topic model to add to the pipeline.
@@ -109,8 +126,8 @@ class TopicPipeline:
         )
 
     def visualise(self, texts: Iterable[str]):
-        """Alias of :meth:`~tweetopic.pipeline.TopicPipeline.visualize` for those living on this side of the
-        Pacific."""
+        """Alias of :meth:`~tweetopic.pipeline.TopicPipeline.visualize` for
+        those living on this side of the Pacific."""
         return self.visualize
 
     def top_words(self, top_n: int | None = 10) -> list[dict[str, int]]:

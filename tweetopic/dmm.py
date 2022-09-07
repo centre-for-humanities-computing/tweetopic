@@ -227,13 +227,15 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
 
     def predict_proba(self, X: Union[spr.spmatrix, ArrayLike]) -> np.ndarray:
         """Alias of :meth:`~tweetopic.dmm.DMM.transform` .
-        Mainly exists for compatibility with density estimators in sklearn.
+
+        Mainly exists for compatibility with density estimators in
+        sklearn.
         """
         return self.transform(X)
 
     def predict(self, X: Union[spr.spmatrix, ArrayLike]) -> np.ndarray:
-        """Predicts cluster labels for a set of documents.
-        Mainly exists for compatibility with density estimators in sklearn.
+        """Predicts cluster labels for a set of documents. Mainly exists for
+        compatibility with density estimators in sklearn.
 
         Parameters
         ----------

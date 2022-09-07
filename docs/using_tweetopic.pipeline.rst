@@ -31,7 +31,7 @@ Create a vectorizer and topic model:
     and 
     `NMF <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html>`_
     from sklearn.
-    If DMM doesn't suit your purposes, your still free to use the convenience of topic pipelines.
+    If DMM doesn't suit your purposes, you're still free to use the convenience of topic pipelines.
 
 Add the two components to a tweetopic pipeline:
 
@@ -46,6 +46,11 @@ Fit pipelines on a stream of texts:
 .. code-block:: python
 
     pipeline.fit(texts)
+
+.. note::
+    It is highly advisable to pre-process texts with an NLP library
+    such as `Spacy <https://spacy.io/>`_ or `NLTK <https://www.nltk.org/>`_.
+    Removal of stop/function words and lemmatization could drastically improve the quality of topics. 
 
 Inspect topics by looking at the top words in each topic:
 

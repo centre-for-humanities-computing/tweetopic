@@ -1,9 +1,9 @@
 import scipy.sparse as spr
 from sklearn.feature_extraction.text import CountVectorizer
-from tweetopic.dmm import DMM
-from tweetopic.exceptions import NotFittedException
 
 from tests.sample import sample_texts
+from tweetopic.dmm import DMM
+from tweetopic.exceptions import NotFittedException
 
 sample = CountVectorizer().fit_transform(sample_texts)
 assert isinstance(sample, spr.csr_matrix)

@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Model persistence" href="using_tweetopic.model_persistence.html" /><link rel="prev" title="Dirichlet Mixture Model" href="using_tweetopic.dmm.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Model persistence" href="using_tweetopic.model_persistence.html" /><link rel="prev" title="Dirichlet Multinomial Mixture Model" href="using_tweetopic.dmm.html" />
 
     <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Topic Pipelines - </title>
@@ -169,7 +169,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Topic Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
@@ -242,7 +242,7 @@ and visual inspection of topic models.</p>
 and
 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html">NMF</a>
 from sklearn.
-If DMM doesn’t suit your purposes, your still free to use the convenience of topic pipelines.</p>
+If DMM doesn’t suit your purposes, you’re still free to use the convenience of topic pipelines.</p>
 </div>
 <p>Add the two components to a tweetopic pipeline:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">TopicPipeline</span>
@@ -253,6 +253,12 @@ If DMM doesn’t suit your purposes, your still free to use the convenience of t
 <p>Fit pipelines on a stream of texts:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is highly advisable to pre-process texts with an NLP library
+such as <a class="reference external" href="https://spacy.io/">Spacy</a> or <a class="reference external" href="https://www.nltk.org/">NLTK</a>.
+Removal of stop/function words and lemmatization could drastically improve the quality of topics.</p>
 </div>
 <p>Inspect topics by looking at the top words in each topic:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span><span class="o">.</span><span class="n">top_words</span><span class="p">(</span><span class="n">top_n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -305,7 +311,7 @@ install optional dependencies.</p>
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Dirichlet Mixture Model</div>
+                <div class="title">Dirichlet Multinomial Mixture Model</div>
                 
               </div>
             </a>
