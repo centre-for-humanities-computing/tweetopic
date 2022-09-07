@@ -167,7 +167,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
@@ -214,16 +214,14 @@
           <section id="topicpipeline">
 <span id="tweetopic-pipeline"></span><h1>TopicPipeline<a class="headerlink" href="#topicpipeline" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="usagepipeline">Usage guide</a></p>
-<span class="target" id="module-tweetopic.pipeline"></span><p>Utilities for easier fitting, inspection and visualization of topic
-models.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tweetopic.pipeline.</span></span><span class="sig-name descname"><span class="pre">TopicPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vectorizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">NMF</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">LatentDirichletAllocation</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM" title="tweetopic.dmm.DMM"><span class="pre">DMM</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tweetopic.pipeline.</span></span><span class="sig-name descname"><span class="pre">TopicPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vectorizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Vectorizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">NMF</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">LatentDirichletAllocation</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM" title="tweetopic.dmm.DMM"><span class="pre">DMM</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline" title="Permalink to this definition">#</a></dt>
 <dd><p>Provides a full pipeline for topic modelling with useful utilities.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>vectorizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn</span> <span class="pre">vectorizer</span> <span class="pre">model</span></code>) – Transformer that extracts BOW embeddings from texts</p></li>
+<li><p><strong>vectorizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vectorizer</span></code>) – Transformer that extracts BOW embeddings from texts</p></li>
 <li><p><strong>topic_model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DMM</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NMF</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">LatentDirichletAllocation</span></code>) – Topic model to add to the pipeline.</p></li>
 </ul>
 </dd>
@@ -293,8 +291,8 @@ mixture components :)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.visualise">
 <span class="sig-name descname"><span class="pre">visualise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline.visualise" title="Permalink to this definition">#</a></dt>
-<dd><p>Alias of <a class="reference internal" href="#tweetopic.pipeline.TopicPipeline.visualize" title="tweetopic.pipeline.TopicPipeline.visualize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">visualize()</span></code></a> for those living on this side of the
-Pacific.</p>
+<dd><p>Alias of <a class="reference internal" href="#tweetopic.pipeline.TopicPipeline.visualize" title="tweetopic.pipeline.TopicPipeline.visualize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">visualize()</span></code></a> for
+those living on this side of the Pacific.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.top_words">

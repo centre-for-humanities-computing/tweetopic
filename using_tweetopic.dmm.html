@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Topic Pipelines" href="using_tweetopic.pipeline.html" /><link rel="prev" title="Installation" href="installation.html" />
 
     <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.03.04"/>
-        <title>Dirichlet Mixture Model - </title>
+        <title>Dirichlet Multinomial Mixture Model - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -167,7 +167,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Dirichlet Mixture Model</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Dirichlet Multinomial Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
@@ -211,20 +211,37 @@
           </label>
         </div>
         <article role="main">
-          <section id="dirichlet-mixture-model">
-<span id="usage-dmm"></span><h1>Dirichlet Mixture Model<a class="headerlink" href="#dirichlet-mixture-model" title="Permalink to this heading">#</a></h1>
+          <section id="dirichlet-multinomial-mixture-model">
+<span id="usage-dmm"></span><h1>Dirichlet Multinomial Mixture Model<a class="headerlink" href="#dirichlet-multinomial-mixture-model" title="Permalink to this heading">#</a></h1>
 <p>The <cite>tweetopic.DMM</cite> class provides utilities for fitting and using
-Dirichlet Mixture Models.</p>
+Dirichlet Multinomial Mixture Models.</p>
 <a class="reference internal image-reference" href="_images/simulation.png"><img alt="Observations drawn from a DMM" src="_images/simulation.png" style="width: 800px;"/></a>
 <p><em>Simulation of 1000 observations drawn from a DMM</em>
 <a class="reference external" href="https://en.wikipedia.org/wiki/Dirichlet_process#/media/File:DP_clustering_simulation.png">source: Wikipedia</a></p>
-<p>The Dirichlet Mixture Model or DMM is a generative probabilistic model,
+<p>The Dirichlet Multinomial Mixture Model or DMM is a generative probabilistic model,
 that assumes that all data points in the population are generated from
 a mixture of dirichlet distributions with unknown parameters.</p>
 <p>DMMs can be thought of as a fuzzy clustering method, but can also be employed as topic models.
 It has been demonstrated that DMMs work particularly well for topic modelling over short texts (Yin and Wang, 2014).</p>
 <a class="reference internal image-reference" href="_images/plate_notation.png"><img alt="Graphical model with plate notation" src="_images/plate_notation.png" style="width: 400px;"/></a>
 <p><em>Graphical model of DMM with plate notation (Yin &amp; Wang, 2014)</em></p>
+<p>Dirichlet Multinomial Mixtures in tweetopic are fitted with <a class="reference external" href="https://en.wikipedia.org/wiki/Gibbs_sampling">Gibbs sampling</a> .
+Since Gibbs sampling is an iterative <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">ḾCMC</a> method, increasing the number of iterations
+will usually result in better convergence.</p>
+<div class="line-block">
+<div class="line">The parameters <em>alpha</em> and <em>beta</em> can be explained in terms of the <em>Movie Group Process</em>, an analogy used for the fitting algorithm in Yin and Wang(2014).</div>
+<div class="line">The fitting procedure can be thought of as a process, where students in a classroom have to divide themselves up into groups based on their movie preferences.</div>
+<div class="line">Each student expresses their preferences in the form of a list of favorite movies (analogous to documents being lists of words).</div>
+<div class="line">In each iteration the students will try to choose a table (cluster/component) based on these two rules:</div>
+</div>
+<ul class="simple">
+<li><p>Rule 1: Prefer tables with more students.</p></li>
+<li><p>Rule 2: Choose a table where students have similar preferences to your own.</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Here <em>alpha</em> represents the willingness of a student to join tables with lower number of students.</div>
+<div class="line">While <em>beta</em> represents the willingness of students to join tables with preferences differing from their own.</div>
+</div>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
 <p>Creating a model:</p>
@@ -311,7 +328,7 @@ It has been demonstrated that DMMs work particularly well for topic modelling ov
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Dirichlet Mixture Model</a><ul>
+<li><a class="reference internal" href="#">Dirichlet Multinomial Mixture Model</a><ul>
 <li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
 </ul>

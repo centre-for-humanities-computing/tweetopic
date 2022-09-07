@@ -167,7 +167,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
@@ -214,7 +214,6 @@
           <section id="dmm">
 <span id="tweetopic-dmm"></span><h1>DMM<a class="headerlink" href="#dmm" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="usagedmm">Usage guide</a></p>
-<span class="target" id="module-tweetopic.dmm"></span><p>Module containing a fully sklearn compatible Dirichlet Mixture Model.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tweetopic.dmm.DMM">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tweetopic.dmm.</span></span><span class="sig-name descname"><span class="pre">DMM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.dmm.DMM" title="Permalink to this definition">#</a></dt>
@@ -358,14 +357,15 @@ component.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.dmm.DMM.predict_proba">
 <span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.dmm.DMM.predict_proba" title="Permalink to this definition">#</a></dt>
-<dd><p>Alias of <a class="reference internal" href="#tweetopic.dmm.DMM.transform" title="tweetopic.dmm.DMM.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transform()</span></code></a> .
-Mainly exists for compatibility with density estimators in sklearn.</p>
+<dd><p>Alias of <a class="reference internal" href="#tweetopic.dmm.DMM.transform" title="tweetopic.dmm.DMM.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transform()</span></code></a> .</p>
+<p>Mainly exists for compatibility with density estimators in
+sklearn.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.dmm.DMM.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.dmm.DMM.predict" title="Permalink to this definition">#</a></dt>
-<dd><p>Predicts cluster labels for a set of documents.
-Mainly exists for compatibility with density estimators in sklearn.</p>
+<dd><p>Predicts cluster labels for a set of documents. Mainly exists for
+compatibility with density estimators in sklearn.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>X</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array-like</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">matrix</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_samples</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_features)</span></code>) – Document-term matrix.</p>
