@@ -24,7 +24,11 @@ Create a vectorizer and topic model:
     )
 
 .. note::
-    Topic pipelines in tweetopic also support LatentDirichletAllocation and NMF from sklearn.
+    Topic pipelines in tweetopic also support 
+    `LatentDirichletAllocation <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html>`_
+    and 
+    `NMF <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html>`_
+    from sklearn.
     If DMM doesn't suit your purposes, your still free to use the convenience of topic pipelines.
 
 Add the two components to a tweetopic pipeline:
@@ -64,7 +68,7 @@ Inspect topics by looking at the top words in each topic:
 or use rich visualizations with PyLDAvis:
 
 .. code-block:: python
-    
+
     pipeline.visualize(texts)
 
 .. image:: _static/pyldavis.png
