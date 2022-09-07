@@ -1,7 +1,7 @@
 Dirichlet Mixture Model
 =======================
 
-The `tweetopic.DMM` class provides utilities for fitting and using_tweetopic
+The `tweetopic.DMM` class provides utilities for fitting and using
 Dirichlet Mixture Models.
 
 .. image:: _static/simulation.png
