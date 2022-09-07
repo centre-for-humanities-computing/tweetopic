@@ -59,5 +59,9 @@ napoleon_use_ivar = False
 napoleon_use_param = True
 napoleon_use_rtype = True
 napoleon_preprocess_types = True
-napoleon_type_aliases = False
+napoleon_type_aliases = None
 napoleon_attr_annotations = True
+
+# Keeping type aliases:
+
+autodoc_type_aliases = {"ArrayLike": "ArrayLike"}
