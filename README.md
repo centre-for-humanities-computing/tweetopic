@@ -38,30 +38,33 @@ pip install tweetopic[viz]
 
 ## 👩‍💻 Usage
 
-To create a model you should import `MovieGroupProcess` from the package:
+For easy topic modelling, tweetopic provides you the TopicPipeline class:
 
 ```python
-from tweetopic import MovieGroupProcess
+from tweetopic import TopicPipeline, DMM
+from sklearn.feature_extraction.text import CountVectorizer
 
-# Creating a model with 30 clusters
-mgp = MovieGroupProcess(n_clusters=30, alpha=0.1, beta=0.1)
+# Creating a vectorizer for extracting document-term matrix from the
+# text corpus.
+vectorizer = CountVectorizer(min_df=15, max_df=0.1)
+
+# Creating a Dirichlet Mixture Model with 30 components
+dmm = DMM(n_clusters=30, n_iterations=100, alpha=0.1, beta=0.1)
+
+# Creating topic pipeline
+pipeline = TopicPipeline(vectorizer, dmm)
 ```
 
 You may fit the model with a stream of short texts:
 
 ```python
-mgp.fit(
-    texts,
-    n_iterations=1000, # You may specify the number of iterations
-    max_df=0.1, # As well as parameters for the vectorizer.
-    min_df=15
-)
+pipeline.fit(texts)
 ```
 
-To examine the structure of the clusters you can either look at the most frequently occuring words:
+To examine the structure of the topics you can either look at the most frequently occuring words:
 
 ```python
-mgp.top_words(top_n=3)
+pipeline.top_words(top_n=3)
 -----------------------------------------------------------------
 
 [
@@ -80,14 +83,14 @@ mgp.top_words(top_n=3)
 Or use rich visualizations provided by [pyLDAvis](https://github.com/bmabey/pyLDAvis):
 
 ```python
-mgp.visualize()
+pipeline.visualize()
 ```
 
 ![PyLDAvis visualization](https://github.com/centre-for-humanities-computing/tweetopic/blob/main/docs/_static/pyldavis.png)
 
 > Note: You must install optional dependencies if you intend to use pyLDAvis
 
-## [API reference](https://centre-for-humanities-computing.github.io/tweetopic/)
+## [Documentation](https://centre-for-humanities-computing.github.io/tweetopic/)
 
 ## Limitations
 

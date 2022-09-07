@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Installation" href="installation.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Dirichlet Mixture Model" href="tweetopic.dmm.html" /><link rel="prev" title="Dirichlet Mixture Model" href="using_tweetopic.dmm.html" />
 
     <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title></title>
+        <title>Topic Pipelines - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -129,7 +129,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand"> </div></a>
+      <a href="index.html"><div class="brand"> </div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -140,7 +140,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -149,7 +149,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo only-light" src="_static/icon_w_title_below.png" alt="Light Logo"/>
@@ -163,12 +163,11 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Topic Pipelines</a></li>
 </ul>
 </li>
 </ul>
@@ -176,7 +175,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">Pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">Movie Group Process</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
@@ -207,42 +205,73 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="tweetopic">
-<h1>tweetopic<a class="headerlink" href="#tweetopic" title="Permalink to this heading">#</a></h1>
-<p>tweetopic is a Python library for blazing fast and convenient topic
-modelling for Tweets and other short texts.</p>
-<p>This website contains the API reference for tweetopic as well as
-a usage guide for getting started with tweetopic.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
-</ul>
-</li>
-</ul>
+          <section id="topic-pipelines">
+<h1>Topic Pipelines<a class="headerlink" href="#topic-pipelines" title="Permalink to this heading">#</a></h1>
+<p>A topic pipeline provides a concise way of text vectorization, topic modelling,
+and visual inspection of topic models.</p>
+<p>Create a vectorizer and topic model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">DMM</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span>
+    <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span>
+    <span class="n">max_df</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">min_df</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">dmm</span> <span class="o">=</span> <span class="n">DMM</span><span class="p">(</span>
+    <span class="n">n_components</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">n_iterations</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">Pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">Movie Group Process</a></li>
-</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Topic pipelines in tweetopic also support LatentDirichletAllocation and NMF from sklearn.
+If DMM doesn’t suit your purposes, your still free to use the convenience of topic pipelines.</p>
 </div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
-</ul>
+<p>Add the two components to a tweetopic pipeline:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">TopicPipeline</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">TopicPipeline</span><span class="p">(</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">dmm</span><span class="p">)</span>
+</pre></div>
 </div>
+<p>Fit pipelines on a stream of texts:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Inspect topics by looking at the top words in each topic:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span><span class="o">.</span><span class="n">top_words</span><span class="p">(</span><span class="n">top_n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;vaccine&#39;</span><span class="p">:</span> <span class="mf">1011.0</span><span class="p">,</span> <span class="s1">&#39;coronavirus&#39;</span><span class="p">:</span> <span class="mf">428.0</span><span class="p">,</span> <span class="s1">&#39;vaccines&#39;</span><span class="p">:</span> <span class="mf">396.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;afghanistan&#39;</span><span class="p">:</span> <span class="mf">586.0</span><span class="p">,</span> <span class="s1">&#39;taliban&#39;</span><span class="p">:</span> <span class="mf">509.0</span><span class="p">,</span> <span class="s1">&#39;says&#39;</span><span class="p">:</span> <span class="mf">464.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;man&#39;</span><span class="p">:</span> <span class="mf">362.0</span><span class="p">,</span> <span class="s1">&#39;prison&#39;</span><span class="p">:</span> <span class="mf">310.0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mf">288.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;police&#39;</span><span class="p">:</span> <span class="mf">567.0</span><span class="p">,</span> <span class="s1">&#39;floyd&#39;</span><span class="p">:</span> <span class="mf">444.0</span><span class="p">,</span> <span class="s1">&#39;trial&#39;</span><span class="p">:</span> <span class="mf">393.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;media&#39;</span><span class="p">:</span> <span class="mf">331.0</span><span class="p">,</span> <span class="s1">&#39;twitter&#39;</span><span class="p">:</span> <span class="mf">321.0</span><span class="p">,</span> <span class="s1">&#39;facebook&#39;</span><span class="p">:</span> <span class="mf">306.0</span><span class="p">},</span>
+    <span class="o">...</span>
+    <span class="p">{</span><span class="s1">&#39;pandemic&#39;</span><span class="p">:</span> <span class="mf">432.0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mf">427.0</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">:</span> <span class="mf">422.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;election&#39;</span><span class="p">:</span> <span class="mf">759.0</span><span class="p">,</span> <span class="s1">&#39;trump&#39;</span><span class="p">:</span> <span class="mf">573.0</span><span class="p">,</span> <span class="s1">&#39;republican&#39;</span><span class="p">:</span> <span class="mf">527.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;women&#39;</span><span class="p">:</span> <span class="mf">91.0</span><span class="p">,</span> <span class="s1">&#39;heard&#39;</span><span class="p">:</span> <span class="mf">84.0</span><span class="p">,</span> <span class="s1">&#39;depp&#39;</span><span class="p">:</span> <span class="mf">76.0</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>or use rich visualizations with PyLDAvis:</p>
+<a class="reference internal image-reference" href="_images/pyldavis.png"><img alt="PyLDAvis visualization" src="_images/pyldavis.png" style="width: 800px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PyLDAvis has to be installed for you to be able to use this, please
+install optional dependencies.</p>
+</div>
+<p><a class="reference internal" href="tweetopic.pipeline.html#tweetopic-pipeline"><span class="std std-ref">API reference</span></a></p>
 </section>
 
         </article>
@@ -250,16 +279,26 @@ a usage guide for getting started with tweetopic.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="installation.html">
+          <a class="next-page" href="tweetopic.dmm.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Installation</div>
+                <div class="title">Dirichlet Mixture Model</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          
+          <a class="prev-page" href="using_tweetopic.dmm.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Dirichlet Mixture Model</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -280,26 +319,8 @@ a usage guide for getting started with tweetopic.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">tweetopic</a><ul>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

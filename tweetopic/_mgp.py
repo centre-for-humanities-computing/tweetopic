@@ -10,6 +10,7 @@ import numpy as np
 import scipy.sparse as spr
 from numba import njit
 from sklearn.feature_extraction.text import CountVectorizer
+from deprecated import deprecated
 
 from tweetopic._doc import add_doc, init_doc_words, remove_doc
 from tweetopic._prob import predict_doc, sample_categorical
@@ -167,6 +168,9 @@ def _fit_model(
         print(f"    Transferred {total_transfers} documents.")
 
 
+@deprecated(
+    reason="Deprecated in favor of DMM and TopicPipeline for sklearn compatibility."
+)
 class MovieGroupProcess:
     """Class for fitting a dirichlet mixture model with the movie group process
     algorithm described in Yin & Wang's paper (2014).
@@ -196,6 +200,10 @@ class MovieGroupProcess:
         Number of total vocabulary items seen during fitting.
     n_documents: int
         Total number of documents seen during fitting.
+
+    ..deprecated:: 0.0.4
+        MovieGroupProcess will be removed in 0.1.0 in favor of DMM and TopicPipeline,
+        to ensure complete sklearn compatibility.
     """
 
     def __init__(

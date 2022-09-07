@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Installation" href="installation.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Topic Pipelines" href="using_tweetopic.pipeline.html" /><link rel="prev" title="Using tweetopic" href="using_tweetopic.html" />
 
     <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title></title>
+        <title>Dirichlet Mixture Model - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -129,7 +129,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand"> </div></a>
+      <a href="index.html"><div class="brand"> </div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -140,7 +140,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -149,7 +149,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo only-light" src="_static/icon_w_title_below.png" alt="Light Logo"/>
@@ -163,12 +163,11 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Dirichlet Mixture Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 </li>
 </ul>
@@ -176,7 +175,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">Pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">Movie Group Process</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
@@ -207,42 +205,36 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="tweetopic">
-<h1>tweetopic<a class="headerlink" href="#tweetopic" title="Permalink to this heading">#</a></h1>
-<p>tweetopic is a Python library for blazing fast and convenient topic
-modelling for Tweets and other short texts.</p>
-<p>This website contains the API reference for tweetopic as well as
-a usage guide for getting started with tweetopic.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
-</ul>
-</li>
-</ul>
+          <section id="dirichlet-mixture-model">
+<h1>Dirichlet Mixture Model<a class="headerlink" href="#dirichlet-mixture-model" title="Permalink to this heading">#</a></h1>
+<p>tweetopic provides a fully sklearn compatible model for topic modelling.
+The Dirichlet mixture model pretty much has the same usage as and NMF or LDA model from sklearn.</p>
+<p>Creating a model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">DMM</span>
+
+<span class="n">dmm</span> <span class="o">=</span> <span class="n">DMM</span><span class="p">(</span>
+    <span class="n">n_components</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">n_iterations</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">Pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">Movie Group Process</a></li>
-</ul>
+<p>Fitting the model on a document-term matrix:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">doc_term_matrix</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
-</ul>
+<p>Predicting cluster labels for unseen documents:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dmm</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">new_docs</span><span class="p">)</span>
+</pre></div>
 </div>
+<p><a class="reference internal" href="tweetopic.dmm.html#tweetopic-dmm"><span class="std std-ref">API reference</span></a></p>
 </section>
 
         </article>
@@ -250,16 +242,26 @@ a usage guide for getting started with tweetopic.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="installation.html">
+          <a class="next-page" href="using_tweetopic.pipeline.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Installation</div>
+                <div class="title">Topic Pipelines</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          
+          <a class="prev-page" href="using_tweetopic.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Using tweetopic</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -280,26 +282,8 @@ a usage guide for getting started with tweetopic.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">tweetopic</a><ul>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
