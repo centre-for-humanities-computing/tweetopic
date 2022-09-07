@@ -2,10 +2,12 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Dirichlet Mixture Model" href="tweetopic.dmm.html" /><link rel="prev" title="Topic Pipelines" href="using_tweetopic.pipeline.html" />
 
-    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.04.07"/><title>Index - </title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.04.07"/>
+        <title>Model persistence - </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -161,12 +163,12 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Model persistence</a></li>
 </ul>
 </li>
 </ul>
@@ -210,10 +212,23 @@
           </label>
         </div>
         <article role="main">
-          
-<section class="genindex-section">
-  <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"></div>
+          <section id="model-persistence">
+<h1>Model persistence<a class="headerlink" href="#model-persistence" title="Permalink to this heading">#</a></h1>
+<p>For model persistence we suggest you use joblib,
+since it stores numpy arrays much more efficiently:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
+<span class="n">dump</span><span class="p">(</span><span class="n">dmm</span><span class="p">,</span> <span class="s2">"dmm_model.joblib"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You may load the model as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dmm</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s2">"dmm_model.joblib"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a comprehensive overview of limitations,
+consult <a class="reference external" href="https://scikit-learn.org/stable/model_persistence.html">Sklearn’s documentation</a></p>
+</div>
 </section>
 
         </article>
@@ -221,8 +236,26 @@
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="tweetopic.dmm.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Dirichlet Mixture Model</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="using_tweetopic.pipeline.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Topic Pipelines</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
