@@ -1,4 +1,4 @@
-Movie Group Process
+MovieGroupProcess
 ===================
 
 .. warning::

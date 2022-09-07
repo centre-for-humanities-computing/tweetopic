@@ -227,6 +227,33 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
             predictions.append(pred)
         return np.stack(predictions)
 
+    def predict_proba(self, X: Union[spr.spmatrix, ArrayLike]) -> np.ndarray:
+        """Alias of :meth:`~tweetopic.dmm.DMM.transform` .
+        Mainly exists for compatibility with density estimators in sklearn.
+        """
+        return self.transform(X)
+
+    def predict(self, X: Union[spr.spmatrix, ArrayLike]) -> np.ndarray:
+        """Predicts cluster labels for a set of documents.
+        Mainly exists for compatibility with density estimators in sklearn.
+
+        Parameters
+        ----------
+        X: array-like or sparse matrix of shape (n_samples, n_features)
+            Document-term matrix.
+
+        Returns
+        -------
+        array of shape (n_samples,)
+            Cluster label for each document.
+
+        Raises
+        ------
+        NotFittedException
+            If the model is not fitted, an exception will be raised
+        """
+        return np.argmax(self.transform(X), axis=1)
+
     def fit_transform(
         self,
         X: Union[spr.spmatrix, ArrayLike],

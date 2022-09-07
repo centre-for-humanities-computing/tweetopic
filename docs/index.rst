@@ -10,9 +10,17 @@ a usage guide for getting started with tweetopic.
 
 .. toctree::
     :maxdepth: 2
+    :caption: Getting started
 
     installation
-    using_tweetopic
+
+.. toctree::
+    :maxdepth: 3
+    :caption: Usage
+    
+    using_tweetopic.dmm
+    using_tweetopic.pipeline
+    using_tweetopic.model_persistence
 
 .. toctree::
     :maxdepth: 3

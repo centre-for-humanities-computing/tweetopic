@@ -1,3 +1,5 @@
+.. _usage dmm :
+
 Dirichlet Mixture Model
 =======================
 

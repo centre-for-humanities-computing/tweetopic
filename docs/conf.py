@@ -62,6 +62,6 @@ napoleon_preprocess_types = True
 napoleon_type_aliases = None
 napoleon_attr_annotations = True
 
-# Keeping type aliases:
-
+# Autodoc settings:
 autodoc_type_aliases = {"ArrayLike": "ArrayLike"}
+autodoc_member_order = "bysource"

@@ -1,7 +1,10 @@
 .. _tweetopic dmm:
 
-Dirichlet Mixture Model
+DMM
 =======================
+
+`Usage guide <usage dmm>`_
+
 
 .. automodule:: tweetopic.dmm
     :members:

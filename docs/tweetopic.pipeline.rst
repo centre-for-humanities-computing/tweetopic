@@ -1,7 +1,9 @@
 .. _tweetopic pipeline:
 
-Pipeline
+TopicPipeline
 =============
+
+`Usage guide <usage pipeline>`_
 
 .. automodule:: tweetopic.pipeline
     :members:

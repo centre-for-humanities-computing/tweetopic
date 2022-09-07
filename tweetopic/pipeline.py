@@ -108,9 +108,8 @@ class TopicPipeline:
             self.vectorizer,
         )
 
-    @property
-    def visualise(self):
-        """Alias of visualize() for those living on this side of the
+    def visualise(self, texts: Iterable[str]):
+        """Alias of :meth:`~tweetopic.pipeline.TopicPipeline.visualize` for those living on this side of the
         Pacific."""
         return self.visualize
 

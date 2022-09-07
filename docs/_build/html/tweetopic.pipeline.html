@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Movie Group Process" href="tweetopic.mgp.html" /><link rel="prev" title="Dirichlet Mixture Model" href="tweetopic.dmm.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="MovieGroupProcess" href="tweetopic.mgp.html" /><link rel="prev" title="DMM" href="tweetopic.dmm.html" />
 
     <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title>Pipeline - </title>
+        <title>TopicPipeline - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -163,20 +163,21 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">Movie Group Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">TopicPipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">MovieGroupProcess</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
@@ -213,9 +214,10 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-tweetopic.pipeline">
-<span id="pipeline"></span><span id="tweetopic-pipeline"></span><h1>Pipeline<a class="headerlink" href="#module-tweetopic.pipeline" title="Permalink to this heading">#</a></h1>
-<p>Utilities for easier fitting, inspection and visualization of topic
+          <section id="topicpipeline">
+<span id="tweetopic-pipeline"></span><h1>TopicPipeline<a class="headerlink" href="#topicpipeline" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="usagepipeline">Usage guide</a></p>
+<span class="target" id="module-tweetopic.pipeline"></span><p>Utilities for easier fitting, inspection and visualization of topic
 models.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline">
@@ -264,6 +266,45 @@ models.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline.transform" title="Permalink to this definition">#</a></dt>
+<dd><p>Transforms given texts with the fitted pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>texts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Texts to transform.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Document-topic matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_documents</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_components)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.visualize">
+<span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline.visualize" title="Permalink to this definition">#</a></dt>
+<dd><p>Visualizes the model with pyLDAvis for inspection of the different
+mixture components :)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>texts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Texts to visualize the model with.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ModuleNotFoundError</strong> – If pyLDAvis is not installed an exception is thrown.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.visualise">
+<span class="sig-name descname"><span class="pre">visualise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline.visualise" title="Permalink to this definition">#</a></dt>
+<dd><p>Alias of <a class="reference internal" href="#tweetopic.pipeline.TopicPipeline.visualize" title="tweetopic.pipeline.TopicPipeline.visualize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">visualize()</span></code></a> for those living on this side of the
+Pacific.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.top_words">
 <span class="sig-name descname"><span class="pre">top_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline.top_words" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculates the top words for each cluster.</p>
@@ -283,45 +324,6 @@ models.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline.transform" title="Permalink to this definition">#</a></dt>
-<dd><p>Transforms given texts with the fitted pipeline.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>texts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Texts to transform.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Document-topic matrix.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_documents</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_components)</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.visualise">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">visualise</span></span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline.visualise" title="Permalink to this definition">#</a></dt>
-<dd><p>Alias of visualize() for those living on this side of the
-Pacific.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.pipeline.TopicPipeline.visualize">
-<span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.pipeline.TopicPipeline.visualize" title="Permalink to this definition">#</a></dt>
-<dd><p>Visualizes the model with pyLDAvis for inspection of the different
-mixture components :)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>texts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Texts to visualize the model with.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ModuleNotFoundError</strong> – If pyLDAvis is not installed an exception is thrown.</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -336,7 +338,7 @@ mixture components :)</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Movie Group Process</div>
+                <div class="title">MovieGroupProcess</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -347,7 +349,7 @@ mixture components :)</p>
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Dirichlet Mixture Model</div>
+                <div class="title">DMM</div>
                 
               </div>
             </a>
