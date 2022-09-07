@@ -2,12 +2,10 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Topic Pipelines" href="using_tweetopic.pipeline.html" /><link rel="prev" title="Using tweetopic" href="using_tweetopic.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
-    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.03.04"/>
-        <title>Dirichlet Mixture Model - </title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.03.04"/><title>Python Module Index - </title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
@@ -161,10 +159,10 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul class="current">
+  <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Dirichlet Mixture Model</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="using_tweetopic.html">Using tweetopic</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Mixture Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
@@ -210,57 +208,52 @@
           </label>
         </div>
         <article role="main">
-          <section id="dirichlet-mixture-model">
-<h1>Dirichlet Mixture Model<a class="headerlink" href="#dirichlet-mixture-model" title="Permalink to this heading">#</a></h1>
-<p>tweetopic provides a fully sklearn compatible model for topic modelling.
-The Dirichlet mixture model pretty much has the same usage as and NMF or LDA model from sklearn.</p>
-<p>Creating a model:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">DMM</span>
-
-<span class="n">dmm</span> <span class="o">=</span> <span class="n">DMM</span><span class="p">(</span>
-    <span class="n">n_components</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
-    <span class="n">n_iterations</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>Fitting the model on a document-term matrix:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">doc_term_matrix</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Predicting cluster labels for unseen documents:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dmm</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">new_docs</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><a class="reference internal" href="tweetopic.dmm.html#tweetopic-dmm"><span class="std std-ref">API reference</span></a></p>
+          
+<section class="domainindex-section">
+  <h1>Python Module Index</h1>
+  <div class="domainindex-jumpbox"><a href="#cap-t"><strong>t</strong></a></div>
 </section>
+<table class="domainindex-table">
+  <tr class="pcap">
+    <td></td><td>&#160;</td><td></td>
+  </tr>
+  <tr class="cap" id="cap-t">
+    <td></td><td><strong>t</strong></td><td></td>
+  </tr>
+  <tr>
+    <td><img src="_static/minus.png" class="toggler"
+              id="toggle-1" style="display: none" alt="-" /></td>
+    <td>
+        <code class="xref">tweetopic</code></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="tweetopic.mgp.html#module-tweetopic._mgp"><code class="xref">tweetopic._mgp</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="tweetopic.dmm.html#module-tweetopic.dmm"><code class="xref">tweetopic.dmm</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="tweetopic.pipeline.html#module-tweetopic.pipeline"><code class="xref">tweetopic.pipeline</code></a></td><td>
+    <em></em></td>
+  </tr>
+</table>
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="using_tweetopic.pipeline.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Topic Pipelines</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="using_tweetopic.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Using tweetopic</div>
-                
-              </div>
-            </a>
+          
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
