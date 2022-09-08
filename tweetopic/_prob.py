@@ -3,8 +3,6 @@ from math import exp, log
 import numpy as np
 from numba import njit
 
-from tweetopic._doc import MAX_UNIQUE_WORDS
-
 
 @njit(parallel=False)
 def sample_categorical(pvals: np.ndarray) -> int:
@@ -50,6 +48,7 @@ def _cond_prob(
     cluster_doc_count: np.ndarray,
     cluster_word_count: np.ndarray,
     cluster_word_distribution: np.ndarray,
+    max_unique_words: int,
 ) -> float:
     """Computes the conditional probability of a certain document joining the
     given mixture component.
@@ -84,6 +83,8 @@ def _cond_prob(
         Contains the amount of words there are in each cluster.
     cluster_word_distribution: matrix of shape (n_clusters, n_vocab)
         Contains the amount a word occurs in a certain cluster.
+    max_unique_words: int
+        Maximum number of unique words seen in a document.
     """
     # I broke the formula into different pieces so that it's easier to write
     # I could not find a better way to organize it, as I'm not in total command of
@@ -94,7 +95,7 @@ def _cond_prob(
         (cluster_doc_count[i_cluster] + alpha) / (n_docs - 1 + n_clusters * alpha),
     )
     log_numerator = 0
-    for i_unique in range(MAX_UNIQUE_WORDS):
+    for i_unique in range(max_unique_words):
         i_word = doc_unique_words[i_document, i_unique]
         count = doc_unique_word_counts[i_document, i_unique]
         if not count:
@@ -127,6 +128,7 @@ def predict_doc(
     cluster_doc_count: np.ndarray,
     cluster_word_count: np.ndarray,
     cluster_word_distribution: np.ndarray,
+    max_unique_words: int,
 ) -> None:
     """Computes the parameters of the multinomial distribution used for
     sampling.
@@ -159,6 +161,8 @@ def predict_doc(
         Contains the amount of words there are in each cluster.
     cluster_word_distribution: matrix of shape (n_clusters, n_vocab)
         Contains the amount a word occurs in a certain cluster.
+    max_unique_words: int
+        Maximum number of unique words seen in a document.
 
     NOTE
     ----
@@ -184,6 +188,7 @@ def predict_doc(
             cluster_doc_count=cluster_doc_count,
             cluster_word_count=cluster_word_count,
             cluster_word_distribution=cluster_word_distribution,
+            max_unique_words=max_unique_words,
         )
     # Normalize probability vector
     norm_term = sum(probabilities) or 1

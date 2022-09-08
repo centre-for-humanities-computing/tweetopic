@@ -10,7 +10,7 @@ import sklearn
 from numpy.typing import ArrayLike
 
 from tweetopic._doc import init_doc_words
-from tweetopic._mgp import _fit_model, _init_clusters
+from tweetopic._mgp import fit_model, init_clusters
 from tweetopic._prob import predict_doc
 from tweetopic.exceptions import NotFittedException
 
@@ -44,6 +44,8 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         Number of total vocabulary items seen during fitting.
     n_documents: int
         Total number of documents seen during fitting.
+    max_unique_words: int
+        Maximum number of unique words in a document seen during fitting.
     """
 
     def __init__(
@@ -62,6 +64,7 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         self.cluster_word_count = None
         self.n_features_in_ = 0
         self.n_documents = 0
+        self.max_unique_words = 0
 
     @property
     def _fitted(self) -> bool:
@@ -135,13 +138,16 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         ----
         fit() works in-place too, the fitted model is returned for convenience.
         """
-        if not isinstance(X, spr.spmatrix):
-            # Converting X into sparse array if it isn't one already.
-            X = spr.csr_matrix(X)
+        # Converting X into sparse array if it isn't one already.
+        X = spr.csr_matrix(X)
         self.n_documents, self.n_features_in_ = X.shape
+        # Calculating the number of nonzero elements for each row
+        # using the internal properties of CSR matrices.
+        self.max_unique_words = np.max(np.diff(X.indptr))
         print("Calculating unique words.")
         doc_unique_words, doc_unique_word_counts = init_doc_words(
             X.tolil(),
+            max_unique_words=self.max_unique_words,
         )
         print("Initialising mixture components")
         initial_clusters = np.random.multinomial(
@@ -153,16 +159,17 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         self.cluster_doc_count = np.zeros(self.n_components)
         self.components_ = np.zeros((self.n_components, self.n_features_in_))
         self.cluster_word_count = np.zeros(self.n_components)
-        _init_clusters(
+        init_clusters(
             cluster_word_distribution=self.components_,
             cluster_word_count=self.cluster_word_count,
             cluster_doc_count=self.cluster_doc_count,
             doc_clusters=doc_clusters,
             doc_unique_words=doc_unique_words,
             doc_unique_word_counts=doc_unique_word_counts,
+            max_unique_words=self.max_unique_words,
         )
         print("Fitting model")
-        _fit_model(
+        fit_model(
             n_iter=self.n_iterations,
             alpha=self.alpha,
             beta=self.beta,
@@ -175,6 +182,7 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
             cluster_doc_count=self.cluster_doc_count,
             cluster_word_count=self.cluster_word_count,
             cluster_word_distribution=self.components_,
+            max_unique_words=self.max_unique_words,
         )
         return self
 
@@ -198,10 +206,13 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
             If the model is not fitted, an exception will be raised
         """
         self._check_fitted()
-        if not isinstance(X, spr.spmatrix):
-            # Converting X into sparse array if it isn't one already.
-            X = spr.csr_matrix(X)
-        doc_unique_words, doc_unique_word_counts = init_doc_words(X.tolil())
+        # Converting X into sparse array if it isn't one already.
+        X = spr.csr_matrix(X)
+        sample_max_unique_words = np.max(np.diff(X.indptr))
+        doc_unique_words, doc_unique_word_counts = init_doc_words(
+            X.tolil(),
+            max_unique_words=sample_max_unique_words,
+        )
         doc_words_count = np.sum(doc_unique_word_counts, axis=1)
         n_docs = X.shape[0]
         predictions = []
@@ -221,6 +232,7 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
                 cluster_doc_count=self.cluster_doc_count,  # type: ignore
                 cluster_word_count=self.cluster_word_count,  # type: ignore
                 cluster_word_distribution=self.components_,  # type: ignore
+                max_unique_words=sample_max_unique_words,
             )
             predictions.append(pred)
         return np.stack(predictions)
