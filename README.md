@@ -37,7 +37,7 @@ If you intend to use the visualization features of PyLDAvis, install the package
 pip install tweetopic[viz]
 ```
 
-## 👩‍💻 Usage
+## 👩‍💻 Usage ([documentation](https://centre-for-humanities-computing.github.io/tweetopic/))
 
 For easy topic modelling, tweetopic provides you the TopicPipeline class:
 
@@ -90,23 +90,6 @@ pipeline.visualize(texts)
 ![PyLDAvis visualization](https://github.com/centre-for-humanities-computing/tweetopic/blob/main/docs/_static/pyldavis.png)
 
 > Note: You must install optional dependencies if you intend to use pyLDAvis
-
-## [Documentation](https://centre-for-humanities-computing.github.io/tweetopic/)
-
-## Limitations
-
-tweetopic is so efficient and fast, as it exploits the fact that it's only short texts, we want to cluster. The number of unique terms in any document _MUST_ be less than 256.
-Additionally any term in any document may at most appear 255 times.
-<br>As of now, this requirement is not enforced by the package, please be aware of this, as it might cause strange behaviour.
-
-> Note: If it is so demanded, this restriction could be relaxed, make sure to file an issue, if you intend to use tweetopic for longer texts.
-
-## Differences from the [gsdmm](https://github.com/rwalk/gsdmm) package
-
-- _tweetopic_ is usually orders of magnitude faster than _gsdmm_ thanks to the clever use of data structures and numba accelarated loops.
-  After some surface level benchmarking it seems that in many cases _tweetopic_ performs the same task about 60 times faster.
-- _tweetopic_ supports texts where a term occurs multiple times. _gsdmm_ only implements single occurance terms.
-- gsdmm is no longer maintained
 
 ## 🎓 References
 
