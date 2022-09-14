@@ -59,7 +59,8 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         self.n_iterations = n_iterations
         self.alpha = alpha
         self.beta = beta
-        self.components_ = None
+        # Not none for typing reasons
+        self.components_ = np.array(0)
         self.cluster_doc_count = None
         self.cluster_word_count = None
         self.n_features_in_ = 0

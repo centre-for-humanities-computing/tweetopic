@@ -28,6 +28,7 @@ a usage guide for getting started with tweetopic.
 
     tweetopic.dmm
     tweetopic.pipeline
+    tweetopic.typing
 
 .. toctree::
    

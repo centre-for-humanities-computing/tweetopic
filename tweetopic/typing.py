@@ -1,9 +1,10 @@
 """Module for typing topic models and vectorizers."""
 from __future__ import annotations
 
-from typing import Iterable, Protocol, Union
+from typing import Iterable, Protocol, Union, Mapping, Any
 
 import scipy.sparse as spr
+import numpy as np
 from numpy.typing import ArrayLike
 
 
@@ -11,17 +12,61 @@ class Vectorizer(Protocol):
     """Vectorizer protocol for static typing."""
 
     def fit(self, raw_documents: Iterable[str]) -> Vectorizer:  # type: ignore
+        """Fits vectorizer on a stream of documents.
+
+        Parameters
+        ----------
+        raw_documents: iterable of str
+            Stream of text documents.
+
+        Returns
+        -------
+        Vectorizer
+            Fitted vectorizer
+        """
         pass
 
     def transform(self, raw_documents: Iterable[str]) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
+        """Transforms documents into vector embeddings.
+
+        Parameters
+        ----------
+        raw_documents: iterable of str
+            Stream of text documents.
+
+        Returns
+        -------
+        array-like or sparse matrix of shape (n_documents, n_vocab)
+            Document embeddings.
+        """
         pass
 
     def fit_transform(
         self, raw_documents: Iterable[str]
     ) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
+        """Fits vectorizer and transforms documents
+        into vector embeddings.
+
+        Parameters
+        ----------
+        raw_documents: iterable of str
+            Stream of text documents.
+
+        Returns
+        -------
+        array-like or sparse matrix of shape (n_documents, n_vocab)
+            Document embeddings.
+        """
         pass
 
-    def get_feature_names_out(self) -> ArrayLike:  # type: ignore
+    def get_feature_names_out(self) -> Union[Mapping[int, str], np.ndarray]:  # type: ignore
+        """Extracts feature names from the vectorizer.
+
+        Returns
+        -------
+        mapping of int to str or ndarray of string objects
+            Maps term indices to feature names
+        """
         pass
 
 
@@ -37,15 +82,17 @@ class TopicModel(Protocol):
     """
 
     n_components: int
-    components_: Union[ArrayLike, spr.spmatrix]
+    components_: np.ndarray
 
-    def fit(self, embeddings: Union[ArrayLike, spr.spmatrix]) -> TopicModel:  # type: ignore
+    def fit(self, X: Union[ArrayLike, spr.spmatrix], y: Any) -> TopicModel:  # type: ignore
         """Fits topic model.
 
         Parameters
         ----------
-        embeddings: array-like or sparse matrix of shape (n_documents, n_vocab)
+        X: array-like or sparse matrix of shape (n_documents, n_vocab)
             Document-term matrix.
+        y: Any
+            Ignored, exists for compatibility.
 
         Returns
         -------
@@ -55,36 +102,38 @@ class TopicModel(Protocol):
         pass
 
     def transform(
-        self, embeddings: Union[ArrayLike, spr.spmatrix]
-    ) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
+        self, X: Union[ArrayLike, spr.spmatrix]
+    ) -> Union[np.ndarray, spr.spmatrix]:  # type: ignore
         """Transforms document embeddings into topic distributions.
 
         Parameters
         ----------
-        embeddings: array-like or sparse matrix of shape (n_documents, n_vocab)
+        X: array-like or sparse matrix of shape (n_documents, n_vocab)
             Document-term matrix.
 
         Returns
         -------
-        array-like or sparse matrix of shape (n_documents, n_components)
+        array or sparse matrix of shape (n_documents, n_components)
             Document-topic distribution.
         """
         pass
 
     def fit_transform(
-        self, embeddings: Union[ArrayLike, spr.spmatrix]
-    ) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
+        self, X: Union[ArrayLike, spr.spmatrix], y: Any
+    ) -> Union[np.ndarray, spr.spmatrix]:  # type: ignore
         """Fits the topic model and transforms
         document embeddings into topic distributions.
 
         Parameters
         ----------
-        embeddings: array-like or sparse matrix of shape (n_documents, n_vocab)
+        X: array-like or sparse matrix of shape (n_documents, n_vocab)
             Document-term matrix.
+        y: Any
+            Ignored, sklearn compatibility.
 
         Returns
         -------
-        array-like or sparse matrix of shape (n_documents, n_components)
+        array or sparse matrix of shape (n_documents, n_components)
             Document-topic distribution.
         """
         pass

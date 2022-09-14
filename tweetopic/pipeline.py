@@ -20,7 +20,7 @@ class TopicPipeline:
     ----------
     vectorizer: Vectorizer
         Transformer that extracts BOW embeddings from texts
-    topic_model: DMM, NMF or LatentDirichletAllocation
+    topic_model: TopicModel
         Topic model to add to the pipeline.
     """
 

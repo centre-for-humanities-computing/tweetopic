@@ -33,8 +33,8 @@ Create a vectorizer and topic model:
     Topic pipelines in tweetopic also support 
     `LatentDirichletAllocation <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html>`_
     and 
-    `NMF <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html>`_
-    from sklearn.
+    `NMF <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html>`_,
+    as well as any sklean compatible topic model *(see* :class:`tweetopic.typing.TopicModel` *)*.
     If DMM doesn't suit your purposes, you're still free to use the convenience of topic pipelines.
 
 Add the two components to a tweetopic pipeline:
