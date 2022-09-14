@@ -3,13 +3,15 @@ models."""
 
 from __future__ import annotations
 
+import warnings
 from dataclasses import dataclass
 from typing import Iterable, Union
 
 import numpy as np
 import scipy.sparse as spr
 from numpy.typing import ArrayLike
-from tweetopic.typing import Vectorizer, TopicModel
+
+from tweetopic.typing import TopicModel, Vectorizer
 
 
 @dataclass
@@ -85,23 +87,24 @@ class TopicPipeline:
         texts: iterable of str
             Texts to visualize the model with.
 
+        Returns
+        -------
+        PreparedData
+            Graph data. Instantly displayed in a notebook.
+
         Raises
         ------
         ModuleNotFoundError
             If pyLDAvis is not installed an exception is thrown.
         """
         try:
-            import pyLDAvis
-            import pyLDAvis.sklearn
+            from tweetopic._visualize import prepare_pipeline
         except ModuleNotFoundError as exception:
             raise ImportError(
                 "Optional dependency pyLDAvis not installed.",
             ) from exception
-        pyLDAvis.enable_notebook()
-        return pyLDAvis.sklearn.prepare(
-            self.topic_model,
-            self.vectorizer.transform(texts),
-            self.vectorizer,
+        return prepare_pipeline(
+            self.vectorizer, self.topic_model, self.vectorizer.transform(texts)
         )
 
     def visualise(self, texts: Iterable[str]):

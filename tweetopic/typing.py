@@ -1,10 +1,10 @@
 """Module for typing topic models and vectorizers."""
 from __future__ import annotations
 
-from typing import Iterable, Protocol, Union, Mapping, Any
+from typing import Any, Iterable, Mapping, Protocol, Union
 
-import scipy.sparse as spr
 import numpy as np
+import scipy.sparse as spr
 from numpy.typing import ArrayLike
 
 
@@ -26,7 +26,7 @@ class Vectorizer(Protocol):
         """
         pass
 
-    def transform(self, raw_documents: Iterable[str]) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
+    def transform(self, raw_documents: Iterable[str]) -> Union[np.ndarray, spr.spmatrix]:  # type: ignore
         """Transforms documents into vector embeddings.
 
         Parameters
@@ -36,14 +36,14 @@ class Vectorizer(Protocol):
 
         Returns
         -------
-        array-like or sparse matrix of shape (n_documents, n_vocab)
+        array or sparse matrix of shape (n_documents, n_vocab)
             Document embeddings.
         """
         pass
 
     def fit_transform(
         self, raw_documents: Iterable[str]
-    ) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
+    ) -> Union[np.ndarray, spr.spmatrix]:  # type: ignore
         """Fits vectorizer and transforms documents
         into vector embeddings.
 
@@ -54,7 +54,7 @@ class Vectorizer(Protocol):
 
         Returns
         -------
-        array-like or sparse matrix of shape (n_documents, n_vocab)
+        array or sparse matrix of shape (n_documents, n_vocab)
             Document embeddings.
         """
         pass
@@ -84,7 +84,7 @@ class TopicModel(Protocol):
     n_components: int
     components_: np.ndarray
 
-    def fit(self, X: Union[ArrayLike, spr.spmatrix], y: Any) -> TopicModel:  # type: ignore
+    def fit(self, X: Union[ArrayLike, spr.spmatrix], y: None = None) -> TopicModel:  # type: ignore
         """Fits topic model.
 
         Parameters
@@ -119,7 +119,7 @@ class TopicModel(Protocol):
         pass
 
     def fit_transform(
-        self, X: Union[ArrayLike, spr.spmatrix], y: Any
+        self, X: Union[ArrayLike, spr.spmatrix], y: None = None
     ) -> Union[np.ndarray, spr.spmatrix]:  # type: ignore
         """Fits the topic model and transforms
         document embeddings into topic distributions.
