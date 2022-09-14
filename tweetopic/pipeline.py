@@ -3,7 +3,6 @@ models."""
 
 from __future__ import annotations
 
-import warnings
 from dataclasses import dataclass
 from typing import Iterable, Union
 
@@ -104,7 +103,9 @@ class TopicPipeline:
                 "Optional dependency pyLDAvis not installed.",
             ) from exception
         return prepare_pipeline(
-            self.vectorizer, self.topic_model, self.vectorizer.transform(texts)
+            self.vectorizer,
+            self.topic_model,
+            self.vectorizer.transform(texts),
         )
 
     def visualise(self, texts: Iterable[str]):

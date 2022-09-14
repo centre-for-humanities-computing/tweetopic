@@ -1,7 +1,7 @@
 """Module for typing topic models and vectorizers."""
 from __future__ import annotations
 
-from typing import Any, Iterable, Mapping, Protocol, Union
+from typing import Iterable, Mapping, Protocol, Union
 
 import numpy as np
 import scipy.sparse as spr
@@ -42,10 +42,10 @@ class Vectorizer(Protocol):
         pass
 
     def fit_transform(
-        self, raw_documents: Iterable[str]
+        self,
+        raw_documents: Iterable[str],
     ) -> Union[np.ndarray, spr.spmatrix]:  # type: ignore
-        """Fits vectorizer and transforms documents
-        into vector embeddings.
+        """Fits vectorizer and transforms documents into vector embeddings.
 
         Parameters
         ----------
@@ -102,7 +102,8 @@ class TopicModel(Protocol):
         pass
 
     def transform(
-        self, X: Union[ArrayLike, spr.spmatrix]
+        self,
+        X: Union[ArrayLike, spr.spmatrix],
     ) -> Union[np.ndarray, spr.spmatrix]:  # type: ignore
         """Transforms document embeddings into topic distributions.
 
@@ -119,10 +120,12 @@ class TopicModel(Protocol):
         pass
 
     def fit_transform(
-        self, X: Union[ArrayLike, spr.spmatrix], y: None = None
+        self,
+        X: Union[ArrayLike, spr.spmatrix],
+        y: None = None,
     ) -> Union[np.ndarray, spr.spmatrix]:  # type: ignore
-        """Fits the topic model and transforms
-        document embeddings into topic distributions.
+        """Fits the topic model and transforms document embeddings into topic
+        distributions.
 
         Parameters
         ----------

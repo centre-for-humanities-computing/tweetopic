@@ -1,13 +1,13 @@
-"""Module for aiding visualization with pyLDAvis"""
+"""Module for aiding visualization with pyLDAvis."""
 
-from typing import Union
 import warnings
+from typing import Union
 
 import numpy as np
 import pyLDAvis
+import scipy.sparse as spr
 from pyLDAvis._prepare import PreparedData
 from pyLDAvis.sklearn import _row_norm
-import scipy.sparse as spr
 
 from tweetopic.typing import TopicModel, Vectorizer
 
@@ -16,7 +16,7 @@ try:
 except AttributeError:
     warnings.warn(
         "Could not enable notebook displaying,"
-        "visualizations can only be saved, not displayed."
+        "visualizations can only be saved, not displayed.",
     )
 
 
@@ -25,7 +25,7 @@ def prepare_pipeline(
     model: TopicModel,
     embeddings: Union[np.ndarray, spr.spmatrix],
 ) -> PreparedData:
-    """Prepares data for visualization"""
+    """Prepares data for visualization."""
     return pyLDAvis.prepare(
         vocab=vectorizer.get_feature_names_out(),
         doc_lengths=embeddings.sum(axis=1).getA1(),
