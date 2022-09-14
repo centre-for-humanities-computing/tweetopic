@@ -128,7 +128,7 @@ class TopicPipeline:
     def visualise(self, texts: Iterable[str]):
         """Alias of :meth:`~tweetopic.pipeline.TopicPipeline.visualize` for
         those living on this side of the Pacific."""
-        return self.visualize
+        return self.visualize(texts)
 
     def top_words(self, top_n: int | None = 10) -> list[dict[str, int]]:
         """Calculates the top words for each cluster.
