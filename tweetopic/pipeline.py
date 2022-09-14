@@ -4,33 +4,12 @@ models."""
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, Protocol, Union
+from typing import Iterable, Union
 
 import numpy as np
 import scipy.sparse as spr
 from numpy.typing import ArrayLike
-from sklearn.decomposition import NMF, LatentDirichletAllocation
-
-from tweetopic.dmm import DMM
-
-
-class Vectorizer(Protocol):
-    """Vectorizer protocol for static typing purposes."""
-
-    def fit(self, raw_documents) -> Vectorizer:  # type: ignore
-        pass
-
-    def transform(self, raw_documents) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
-        pass
-
-    def fit_transform(self, raw_documents) -> Union[ArrayLike, spr.spmatrix]:  # type: ignore
-        pass
-
-    def get_feature_names_out(self) -> np.ndarray:  # type: ignore
-        pass
-
-
-TopicModel = Union[NMF, LatentDirichletAllocation, DMM]
+from tweetopic.typing import Vectorizer, TopicModel
 
 
 @dataclass
@@ -65,7 +44,7 @@ class TopicPipeline:
         self.topic_model.fit(doc_term_matrix)
         return self
 
-    def fit_transform(self, texts: Iterable[str]) -> np.ndarray:
+    def fit_transform(self, texts: Iterable[str]) -> Union[ArrayLike, spr.spmatrix]:
         """Fits vectorizer and topic model and transforms the given text.
 
         Parameters
@@ -75,13 +54,13 @@ class TopicPipeline:
 
         Returns
         -------
-        array of shape (n_documents, n_components)
+        array-like or sparse matrix of shape (n_documents, n_components)
             Document-topic matrix.
         """
         doc_term_matrix = self.vectorizer.fit_transform(texts)
         return self.topic_model.fit_transform(doc_term_matrix)
 
-    def transform(self, texts: Iterable[str]) -> np.ndarray:
+    def transform(self, texts: Iterable[str]) -> Union[ArrayLike, spr.spmatrix]:
         """Transforms given texts with the fitted pipeline.
 
         Parameters
@@ -91,7 +70,7 @@ class TopicPipeline:
 
         Returns
         -------
-        array of shape (n_documents, n_components)
+        array-like or sparse matrix of shape (n_documents, n_components)
             Document-topic matrix.
         """
         doc_term_matrix = self.vectorizer.transform(texts)
@@ -127,7 +106,7 @@ class TopicPipeline:
 
     def visualise(self, texts: Iterable[str]):
         """Alias of :meth:`~tweetopic.pipeline.TopicPipeline.visualize` for
-        those living on this side of the Pacific."""
+        those living on this side of the Atlantic."""
         return self.visualize(texts)
 
     def top_words(self, top_n: int | None = 10) -> list[dict[str, int]]:
