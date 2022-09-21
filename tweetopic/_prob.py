@@ -4,7 +4,7 @@ import numpy as np
 from numba import njit
 
 
-@njit(parallel=False)
+@njit(fastmath=True)
 def sample_categorical(pvals: np.ndarray) -> int:
     """Samples from a categorical distribution given its parameters.
 
@@ -33,7 +33,7 @@ def sample_categorical(pvals: np.ndarray) -> int:
         return 0
 
 
-@njit(parallel=False)
+@njit(fastmath=True)
 def _cond_prob(
     i_cluster: int,
     i_document: int,
@@ -92,7 +92,8 @@ def _cond_prob(
     # I use logs instead of computing the products directly,
     # as it would quickly result in numerical overflow.
     log_norm_term = log(
-        (cluster_doc_count[i_cluster] + alpha) / (n_docs - 1 + n_clusters * alpha),
+        (cluster_doc_count[i_cluster] + alpha)
+        / (n_docs - 1 + n_clusters * alpha),
     )
     log_numerator = 0
     for i_unique in range(max_unique_words):
@@ -113,7 +114,7 @@ def _cond_prob(
     return res
 
 
-@njit(parallel=False)
+@njit(parallel=False, fastmath=True)
 def predict_doc(
     probabilities: np.ndarray,
     i_document: int,
