@@ -92,8 +92,7 @@ def _cond_prob(
     # I use logs instead of computing the products directly,
     # as it would quickly result in numerical overflow.
     log_norm_term = log(
-        (cluster_doc_count[i_cluster] + alpha)
-        / (n_docs - 1 + n_clusters * alpha),
+        (cluster_doc_count[i_cluster] + alpha) / (n_docs - 1 + n_clusters * alpha),
     )
     log_numerator = 0
     for i_unique in range(max_unique_words):
