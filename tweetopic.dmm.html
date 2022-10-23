@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="TopicPipeline" href="tweetopic.pipeline.html" /><link rel="prev" title="Model persistence" href="using_tweetopic.model_persistence.html" />
 
-    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.2.3, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.03.04"/>
         <title>DMM - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
@@ -222,9 +222,8 @@ solver. The class aims to achieve full compatibility with sklearn.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_components</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">8</span></code>) – Number of mixture components in the model.</p></li>
-<li><p><strong>n_iterations</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">30</span></code>) – Number of iterations during fitting.
-If the model converges earlier, fitting will stop.</p></li>
+<li><p><strong>n_components</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Number of mixture components in the model.</p></li>
+<li><p><strong>n_iterations</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">30</span></code>) – Number of iterations during fitting.</p></li>
 <li><p><strong>alpha</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">0.1</span></code>) – Willingness of a document joining an empty cluster.</p></li>
 <li><p><strong>beta</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">0.1</span></code>) – Willingness to join clusters, where the terms in the document
 are not present.</p></li>
