@@ -168,12 +168,14 @@
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.btm.html">Biterm Topic Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.btm.html">BTM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">TopicPipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.typing.html">Typing</a></li>
 </ul>
@@ -215,19 +217,29 @@
           
 <section class="genindex-section">
   <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#V"><strong>V</strong></a></div>
+  <div class="genindex-jumpbox"><a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#V"><strong>V</strong></a></div>
 </section>
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM">BTM (class in tweetopic.btm)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
 <section id="C" class="genindex-section">
   <h2>C</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.cluster_doc_count">cluster_doc_count (tweetopic.dmm.DMM attribute)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.components_">components_ (tweetopic.dmm.DMM attribute)</a>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM.components_">components_ (tweetopic.btm.BTM attribute)</a>
 
         <ul>
+          <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.components_">(tweetopic.dmm.DMM attribute)</a>
+</li>
           <li><a href="tweetopic.typing.html#tweetopic.typing.TopicModel.components_">(tweetopic.typing.TopicModel attribute)</a>
 </li>
         </ul></li>
@@ -249,9 +261,11 @@
   <h2>F</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.fit">fit() (tweetopic.dmm.DMM method)</a>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM.fit">fit() (tweetopic.btm.BTM method)</a>
 
         <ul>
+          <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.fit">(tweetopic.dmm.DMM method)</a>
+</li>
           <li><a href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.fit">(tweetopic.pipeline.TopicPipeline method)</a>
 </li>
           <li><a href="tweetopic.typing.html#tweetopic.typing.TopicModel.fit">(tweetopic.typing.TopicModel method)</a>
@@ -261,9 +275,11 @@
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.fit_transform">fit_transform() (tweetopic.dmm.DMM method)</a>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM.fit_transform">fit_transform() (tweetopic.btm.BTM method)</a>
 
         <ul>
+          <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.fit_transform">(tweetopic.dmm.DMM method)</a>
+</li>
           <li><a href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.fit_transform">(tweetopic.pipeline.TopicPipeline method)</a>
 </li>
           <li><a href="tweetopic.typing.html#tweetopic.typing.TopicModel.fit_transform">(tweetopic.typing.TopicModel method)</a>
@@ -283,8 +299,12 @@
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.get_params">get_params() (tweetopic.dmm.DMM method)</a>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM.get_params">get_params() (tweetopic.btm.BTM method)</a>
+
+        <ul>
+          <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.get_params">(tweetopic.dmm.DMM method)</a>
 </li>
+        </ul></li>
     </ul></td>
   </tr></table>
 </section>
@@ -314,12 +334,16 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="tweetopic.typing.html#tweetopic.typing.TopicModel.n_components">n_components (tweetopic.typing.TopicModel attribute)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.n_documents">n_documents (tweetopic.dmm.DMM attribute)</a>
 </li>
-        <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.n_features_in_">n_features_in_ (tweetopic.dmm.DMM attribute)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM.n_features_in_">n_features_in_ (tweetopic.btm.BTM attribute)</a>
+
+        <ul>
+          <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.n_features_in_">(tweetopic.dmm.DMM attribute)</a>
 </li>
+        </ul></li>
     </ul></td>
   </tr></table>
 </section>
@@ -342,8 +366,12 @@
   <h2>S</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.set_params">set_params() (tweetopic.dmm.DMM method)</a>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM.set_params">set_params() (tweetopic.btm.BTM method)</a>
+
+        <ul>
+          <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.set_params">(tweetopic.dmm.DMM method)</a>
 </li>
+        </ul></li>
     </ul></td>
   </tr></table>
 </section>
@@ -354,13 +382,17 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.top_words">top_words() (tweetopic.pipeline.TopicPipeline method)</a>
 </li>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM.topic_distribution">topic_distribution (tweetopic.btm.BTM attribute)</a>
+</li>
         <li><a href="tweetopic.typing.html#tweetopic.typing.TopicModel">TopicModel (class in tweetopic.typing)</a>
 </li>
         <li><a href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline">TopicPipeline (class in tweetopic.pipeline)</a>
 </li>
-        <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.transform">transform() (tweetopic.dmm.DMM method)</a>
+        <li><a href="tweetopic.btm.html#tweetopic.btm.BTM.transform">transform() (tweetopic.btm.BTM method)</a>
 
         <ul>
+          <li><a href="tweetopic.dmm.html#tweetopic.dmm.DMM.transform">(tweetopic.dmm.DMM method)</a>
+</li>
           <li><a href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.transform">(tweetopic.pipeline.TopicPipeline method)</a>
 </li>
           <li><a href="tweetopic.typing.html#tweetopic.typing.TopicModel.transform">(tweetopic.typing.TopicModel method)</a>

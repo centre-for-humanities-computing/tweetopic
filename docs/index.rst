@@ -19,6 +19,7 @@ a usage guide for getting started with tweetopic.
     :caption: Usage
     
     using_tweetopic.dmm
+    using_tweetopic.btm
     using_tweetopic.pipeline
     using_tweetopic.model_persistence
 
@@ -27,6 +28,7 @@ a usage guide for getting started with tweetopic.
     :caption: API reference
 
     tweetopic.dmm
+    tweetopic.btm
     tweetopic.pipeline
     tweetopic.typing
 

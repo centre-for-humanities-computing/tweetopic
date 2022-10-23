@@ -21,7 +21,7 @@ a mixture of dirichlet distributions with unknown parameters.
 DMMs can be thought of as a fuzzy clustering method, but can also be employed as topic models.
 It has been demonstrated that DMMs work particularly well for topic modelling over short texts (Yin and Wang, 2014). 
 
-.. image:: _static/plate_notation.png
+.. image:: _static/dmm_plate_notation.png
     :width: 400
     :alt: Graphical model with plate notation
 

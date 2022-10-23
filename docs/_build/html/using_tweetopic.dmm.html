@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Topic Pipelines" href="using_tweetopic.pipeline.html" /><link rel="prev" title="Installation" href="installation.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Biterm Topic Model" href="using_tweetopic.btm.html" /><link rel="prev" title="Installation" href="installation.html" />
 
     <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Dirichlet Multinomial Mixture Model - </title>
@@ -170,14 +170,16 @@
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Dirichlet Multinomial Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.btm.html">Biterm Topic Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.btm.html">DMM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">TopicPipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.mgp.html">MovieGroupProcess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.typing.html">Typing</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
@@ -226,7 +228,7 @@ that assumes that all data points in the population are generated from
 a mixture of dirichlet distributions with unknown parameters.</p>
 <p>DMMs can be thought of as a fuzzy clustering method, but can also be employed as topic models.
 It has been demonstrated that DMMs work particularly well for topic modelling over short texts (Yin and Wang, 2014).</p>
-<a class="reference internal image-reference" href="_images/plate_notation.png"><img alt="Graphical model with plate notation" src="_images/plate_notation.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/dmm_plate_notation.png"><img alt="Graphical model with plate notation" src="_images/dmm_plate_notation.png" style="width: 400px;" /></a>
 <p><em>Graphical model of DMM with plate notation (Yin &amp; Wang, 2014)</em></p>
 <p>Dirichlet Multinomial Mixtures in tweetopic are fitted with <a class="reference external" href="https://en.wikipedia.org/wiki/Gibbs_sampling">Gibbs sampling</a> .
 Since Gibbs sampling is an iterative <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">ḾCMC</a> method, increasing the number of iterations
@@ -279,12 +281,12 @@ will usually result in better convergence.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="using_tweetopic.pipeline.html">
+          <a class="next-page" href="using_tweetopic.btm.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Topic Pipelines</div>
+                <div class="title">Biterm Topic Model</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
