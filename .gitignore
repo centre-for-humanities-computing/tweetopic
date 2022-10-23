@@ -13,6 +13,7 @@ __pycache__/
 *.zip
 *.csv
 *.txt
+*.joblib
 
 # Other
 /tweetopic/_old.py

@@ -9,9 +9,8 @@ import scipy.sparse as spr
 import sklearn
 from numpy.typing import ArrayLike
 
+from tweetopic._dmm import fit_model, init_clusters, predict_doc
 from tweetopic._doc import init_doc_words
-from tweetopic._mgp import fit_model, init_clusters
-from tweetopic._prob import predict_doc
 from tweetopic.exceptions import NotFittedException
 
 
@@ -21,11 +20,10 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
 
     Parameters
     ----------
-    n_components: int, default 8
+    n_components: int
         Number of mixture components in the model.
     n_iterations: int, default 30
         Number of iterations during fitting.
-        If the model converges earlier, fitting will stop.
     alpha: float, default 0.1
         Willingness of a document joining an empty cluster.
     beta: float, default 0.1

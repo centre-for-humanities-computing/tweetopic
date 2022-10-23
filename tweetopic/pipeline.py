@@ -9,6 +9,7 @@ from typing import Iterable, Union
 import numpy as np
 import scipy.sparse as spr
 from numpy.typing import ArrayLike
+from sklearn.preprocessing import normalize
 
 from tweetopic.typing import TopicModel, Vectorizer
 
@@ -45,7 +46,9 @@ class TopicPipeline:
         self.topic_model.fit(doc_term_matrix)
         return self
 
-    def fit_transform(self, texts: Iterable[str]) -> Union[ArrayLike, spr.spmatrix]:
+    def fit_transform(
+        self, texts: Iterable[str]
+    ) -> Union[ArrayLike, spr.spmatrix]:
         """Fits vectorizer and topic model and transforms the given text.
 
         Parameters
@@ -61,7 +64,9 @@ class TopicPipeline:
         doc_term_matrix = self.vectorizer.fit_transform(texts)
         return self.topic_model.fit_transform(doc_term_matrix)
 
-    def transform(self, texts: Iterable[str]) -> Union[ArrayLike, spr.spmatrix]:
+    def transform(
+        self, texts: Iterable[str]
+    ) -> Union[ArrayLike, spr.spmatrix]:
         """Transforms given texts with the fitted pipeline.
 
         Parameters
@@ -102,10 +107,13 @@ class TopicPipeline:
             raise ImportError(
                 "Optional dependency pyLDAvis not installed.",
             ) from exception
+        dtm = self.vectorizer.transform(texts)
+        # dtm = dtm[(dtm.sum(axis=1) > 0).getA1()]  # type: ignore
+        # normalize(dtm, norm="l1", axis=1, copy=False)
         return prepare_pipeline(
             self.vectorizer,
             self.topic_model,
-            self.vectorizer.transform(texts),
+            dtm,
         )
 
     def visualise(self, texts: Iterable[str]):
