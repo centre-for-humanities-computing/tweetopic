@@ -6,6 +6,6 @@ authors:
   given-names: "Márton"
   orcid: "https://orcid.org/0000-0001-9652-4498"
 title: "tweetopic: Blazing fast topic modelling for short texts."
-version: 0.1.2
+version: 0.2.0
 date-released: 2022-09-21
 url: "https://github.com/centre-for-humanities-computing/tweetopic"
