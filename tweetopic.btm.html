@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="BTM" href="tweetopic.btm.html" /><link rel="prev" title="Model persistence" href="using_tweetopic.model_persistence.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="TopicPipeline" href="tweetopic.pipeline.html" /><link rel="prev" title="DMM" href="tweetopic.dmm.html" />
 
     <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.03.04"/>
-        <title>DMM - </title>
+        <title>BTM - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -174,8 +174,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">DMM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.btm.html">BTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">BTM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">TopicPipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.typing.html">Typing</a></li>
 </ul>
@@ -213,31 +213,28 @@
           </label>
         </div>
         <article role="main">
-          <section id="dmm">
-<span id="tweetopic-dmm"></span><h1>DMM<a class="headerlink" href="#dmm" title="Permalink to this heading">#</a></h1>
-<p><a class="reference internal" href="using_tweetopic.dmm.html#usage-dmm"><span class="std std-ref">Usage guide</span></a></p>
+          <section id="btm">
+<span id="tweetopic-btm"></span><h1>BTM<a class="headerlink" href="#btm" title="Permalink to this heading">#</a></h1>
+<p><a class="reference internal" href="using_tweetopic.btm.html#usage-btm"><span class="std std-ref">Usage guide</span></a></p>
 <dl class="py class">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tweetopic.dmm.</span></span><span class="sig-name descname"><span class="pre">DMM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.dmm.DMM" title="Permalink to this definition">#</a></dt>
-<dd><p>Implementation of the Dirichlet Mixture Model with Gibbs Sampling
-solver. The class aims to achieve full compatibility with sklearn.</p>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tweetopic.btm.</span></span><span class="sig-name descname"><span class="pre">BTM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.btm.BTM" title="Permalink to this definition">#</a></dt>
+<dd><p>Implementation of the Biterm Topic Model with Gibbs Sampling
+solver.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_components</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Number of mixture components in the model.</p></li>
-<li><p><strong>n_iterations</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">30</span></code>) – Number of iterations during fitting.</p></li>
-<li><p><strong>alpha</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">0.1</span></code>) – Willingness of a document joining an empty cluster.</p></li>
-<li><p><strong>beta</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">0.1</span></code>) – Willingness to join clusters, where the terms in the document
-are not present.</p></li>
+<li><p><strong>n_components</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Number of topics in the model.</p></li>
+<li><p><strong>n_iterations</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">100</span></code>) – Number of iterations furing fitting.</p></li>
+<li><p><strong>alpha</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">6.0</span></code>) – Dirichlet prior for topic distribution.</p></li>
+<li><p><strong>beta</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <em>default</em> <code class="docutils literal notranslate"><span class="pre">0.1</span></code>) – Dirichlet prior for topic-word distribution.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.components_">
-<span class="sig-name descname"><span class="pre">components_</span></span><a class="headerlink" href="#tweetopic.dmm.DMM.components_" title="Permalink to this definition">#</a></dt>
-<dd><p>Describes all components of the topic distribution.
-Contains the amount each word has been assigned to each component
-during fitting.</p>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM.components_">
+<span class="sig-name descname"><span class="pre">components_</span></span><a class="headerlink" href="#tweetopic.btm.BTM.components_" title="Permalink to this definition">#</a></dt>
+<dd><p>Conditional probabilities of all terms given a topic.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_components</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_vocab)</span></code></p>
@@ -245,9 +242,9 @@ during fitting.</p>
 </dl>
 </dd></dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.cluster_doc_count">
-<span class="sig-name descname"><span class="pre">cluster_doc_count</span></span><a class="headerlink" href="#tweetopic.dmm.DMM.cluster_doc_count" title="Permalink to this definition">#</a></dt>
-<dd><p>Array containing how many documents there are in each cluster.</p>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM.topic_distribution">
+<span class="sig-name descname"><span class="pre">topic_distribution</span></span><a class="headerlink" href="#tweetopic.btm.BTM.topic_distribution" title="Permalink to this definition">#</a></dt>
+<dd><p>Prior probability of each topic.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_components,)</span></code></p>
@@ -255,8 +252,8 @@ during fitting.</p>
 </dl>
 </dd></dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.n_features_in_">
-<span class="sig-name descname"><span class="pre">n_features_in_</span></span><a class="headerlink" href="#tweetopic.dmm.DMM.n_features_in_" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM.n_features_in_">
+<span class="sig-name descname"><span class="pre">n_features_in_</span></span><a class="headerlink" href="#tweetopic.btm.BTM.n_features_in_" title="Permalink to this definition">#</a></dt>
 <dd><p>Number of total vocabulary items seen during fitting.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -264,29 +261,9 @@ during fitting.</p>
 </dd>
 </dl>
 </dd></dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.n_documents">
-<span class="sig-name descname"><span class="pre">n_documents</span></span><a class="headerlink" href="#tweetopic.dmm.DMM.n_documents" title="Permalink to this definition">#</a></dt>
-<dd><p>Total number of documents seen during fitting.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.max_unique_words">
-<span class="sig-name descname"><span class="pre">max_unique_words</span></span><a class="headerlink" href="#tweetopic.dmm.DMM.max_unique_words" title="Permalink to this definition">#</a></dt>
-<dd><p>Maximum number of unique words in a document seen during fitting.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
-</dd>
-</dl>
-</dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tweetopic.dmm.DMM.get_params" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#tweetopic.btm.BTM.get_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -305,15 +282,15 @@ during fitting.</p>
 </div>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#tweetopic.dmm.DMM" title="tweetopic.dmm.DMM"><span class="pre">DMM</span></a></span></span><a class="headerlink" href="#tweetopic.dmm.DMM.set_params" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#tweetopic.btm.BTM" title="tweetopic.btm.BTM"><span class="pre">BTM</span></a></span></span><a class="headerlink" href="#tweetopic.btm.BTM.set_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Set parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Estimator instance</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#tweetopic.dmm.DMM" title="tweetopic.dmm.DMM"><code class="xref py py-class docutils literal notranslate"><span class="pre">DMM</span></code></a></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DMM</span></code></p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -322,10 +299,10 @@ during fitting.</p>
 </div>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.dmm.DMM.fit" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.btm.BTM.fit" title="Permalink to this definition">#</a></dt>
 <dd><p>Fits the model using Gibbs Sampling. Detailed description of the
-algorithm in Yin and Wang (2014).</p>
+algorithm in Yan et al. (2013).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -337,7 +314,7 @@ algorithm in Yin and Wang (2014).</p>
 <dd class="field-even"><p>The fitted model.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#tweetopic.dmm.DMM" title="tweetopic.dmm.DMM"><code class="xref py py-class docutils literal notranslate"><span class="pre">DMM</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#tweetopic.btm.BTM" title="tweetopic.btm.BTM"><code class="xref py py-class docutils literal notranslate"><span class="pre">BTM</span></code></a></p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -346,10 +323,10 @@ algorithm in Yin and Wang (2014).</p>
 </div>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.dmm.DMM.transform" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.btm.BTM.transform" title="Permalink to this definition">#</a></dt>
 <dd><p>Predicts probabilities for each document belonging to each
-component.</p>
+topic.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>X</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array-like</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">matrix</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_samples</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_features)</span></code>) – Document-term matrix.</p>
@@ -366,35 +343,8 @@ component.</p>
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.predict_proba">
-<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.dmm.DMM.predict_proba" title="Permalink to this definition">#</a></dt>
-<dd><p>Alias of <a class="reference internal" href="#tweetopic.dmm.DMM.transform" title="tweetopic.dmm.DMM.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transform()</span></code></a> .</p>
-<p>Mainly exists for compatibility with density estimators in
-sklearn.</p>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.dmm.DMM.predict" title="Permalink to this definition">#</a></dt>
-<dd><p>Predicts cluster labels for a set of documents. Mainly exists for
-compatibility with density estimators in sklearn.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>X</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array-like</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">matrix</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_samples</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n_features)</span></code>) – Document-term matrix.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Cluster label for each document.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span> <span class="pre">(n_samples,)</span></code></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>NotFittedException</strong> – If the model is not fitted, an exception will be raised</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="tweetopic.dmm.DMM.fit_transform">
-<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.dmm.DMM.fit_transform" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="tweetopic.btm.BTM.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.btm.BTM.fit_transform" title="Permalink to this definition">#</a></dt>
 <dd><p>Fits the model, then transforms the given data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -419,23 +369,23 @@ compatibility with density estimators in sklearn.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="tweetopic.btm.html">
+          <a class="next-page" href="tweetopic.pipeline.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">BTM</div>
+                <div class="title">TopicPipeline</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="using_tweetopic.model_persistence.html">
+          <a class="prev-page" href="tweetopic.dmm.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Model persistence</div>
+                <div class="title">DMM</div>
                 
               </div>
             </a>
@@ -471,20 +421,16 @@ compatibility with density estimators in sklearn.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">DMM</a><ul>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM"><code class="docutils literal notranslate"><span class="pre">DMM</span></code></a><ul>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.components_"><code class="docutils literal notranslate"><span class="pre">DMM.components_</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.cluster_doc_count"><code class="docutils literal notranslate"><span class="pre">DMM.cluster_doc_count</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.n_features_in_"><code class="docutils literal notranslate"><span class="pre">DMM.n_features_in_</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.n_documents"><code class="docutils literal notranslate"><span class="pre">DMM.n_documents</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.max_unique_words"><code class="docutils literal notranslate"><span class="pre">DMM.max_unique_words</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.get_params"><code class="docutils literal notranslate"><span class="pre">DMM.get_params()</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.set_params"><code class="docutils literal notranslate"><span class="pre">DMM.set_params()</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.fit"><code class="docutils literal notranslate"><span class="pre">DMM.fit()</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.transform"><code class="docutils literal notranslate"><span class="pre">DMM.transform()</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.predict_proba"><code class="docutils literal notranslate"><span class="pre">DMM.predict_proba()</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.predict"><code class="docutils literal notranslate"><span class="pre">DMM.predict()</span></code></a></li>
-<li><a class="reference internal" href="#tweetopic.dmm.DMM.fit_transform"><code class="docutils literal notranslate"><span class="pre">DMM.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#">BTM</a><ul>
+<li><a class="reference internal" href="#tweetopic.btm.BTM"><code class="docutils literal notranslate"><span class="pre">BTM</span></code></a><ul>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.components_"><code class="docutils literal notranslate"><span class="pre">BTM.components_</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.topic_distribution"><code class="docutils literal notranslate"><span class="pre">BTM.topic_distribution</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.n_features_in_"><code class="docutils literal notranslate"><span class="pre">BTM.n_features_in_</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.get_params"><code class="docutils literal notranslate"><span class="pre">BTM.get_params()</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.set_params"><code class="docutils literal notranslate"><span class="pre">BTM.set_params()</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.fit"><code class="docutils literal notranslate"><span class="pre">BTM.fit()</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.transform"><code class="docutils literal notranslate"><span class="pre">BTM.transform()</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.fit_transform"><code class="docutils literal notranslate"><span class="pre">BTM.fit_transform()</span></code></a></li>
 </ul>
 </li>
 </ul>

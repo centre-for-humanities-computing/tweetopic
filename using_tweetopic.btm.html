@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Biterm Topic Model" href="using_tweetopic.btm.html" /><link rel="prev" title="Installation" href="installation.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Topic Pipelines" href="using_tweetopic.pipeline.html" /><link rel="prev" title="Dirichlet Multinomial Mixture Model" href="using_tweetopic.dmm.html" />
 
     <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.03.04"/>
-        <title>Dirichlet Multinomial Mixture Model - </title>
+        <title>Biterm Topic Model - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -167,8 +167,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Dirichlet Multinomial Mixture Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.btm.html">Biterm Topic Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Biterm Topic Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
@@ -213,63 +213,44 @@
           </label>
         </div>
         <article role="main">
-          <section id="dirichlet-multinomial-mixture-model">
-<span id="usage-dmm"></span><h1>Dirichlet Multinomial Mixture Model<a class="headerlink" href="#dirichlet-multinomial-mixture-model" title="Permalink to this heading">#</a></h1>
-<p>The <cite>tweetopic.DMM</cite> class provides utilities for fitting and using
-Dirichlet Multinomial Mixture Models.</p>
-<a class="reference internal image-reference" href="_images/simulation.png"><img alt="Observations drawn from a DMM" src="_images/simulation.png" style="width: 800px;"/></a>
-<p><em>Simulation of 1000 observations drawn from a DMM</em>
-<a class="reference external" href="https://en.wikipedia.org/wiki/Dirichlet_process#/media/File:DP_clustering_simulation.png">source: Wikipedia</a></p>
-<p>The Dirichlet Multinomial Mixture Model or DMM is a generative probabilistic model,
-that assumes that all data points in the population are generated from
-a mixture of dirichlet distributions with unknown parameters.</p>
-<p>DMMs can be thought of as a fuzzy clustering method, but can also be employed as topic models.
-It has been demonstrated that DMMs work particularly well for topic modelling over short texts (Yin and Wang, 2014).</p>
-<a class="reference internal image-reference" href="_images/dmm_plate_notation.png"><img alt="Graphical model with plate notation" src="_images/dmm_plate_notation.png" style="width: 400px;"/></a>
-<p><em>Graphical model of DMM with plate notation (Yin &amp; Wang, 2014)</em></p>
-<p>Dirichlet Multinomial Mixtures in tweetopic are fitted with <a class="reference external" href="https://en.wikipedia.org/wiki/Gibbs_sampling">Gibbs sampling</a> .
+          <section id="biterm-topic-model">
+<span id="usage-btm"></span><h1>Biterm Topic Model<a class="headerlink" href="#biterm-topic-model" title="Permalink to this heading">#</a></h1>
+<p>The <cite>tweetopic.BTM</cite> class provides utilities for fitting and using
+Biterm Topic Models</p>
+<p>The Biterm Topic Model is a generative probabilistic model for topic modelling.
+Instead of describing the document generation process, biterm models focus on describing how word coocurrances are generated from a topic distribution.
+This allows them to capture word-to-word relations better in short texts, but unlike DMM, they can also work well for corpora containing longer texts.</p>
+<a class="reference internal image-reference" href="_images/btm_plate_notation.png"><img alt="Graphical model with plate notation" src="_images/btm_plate_notation.png" style="width: 400px;"/></a>
+<p><em>Graphical model of BTM with plate notation (Yan et al. 2013)</em></p>
+<p>BTMs in tweetopic are fitted with <a class="reference external" href="https://en.wikipedia.org/wiki/Gibbs_sampling">Gibbs sampling</a> .
 Since Gibbs sampling is an iterative <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">ḾCMC</a> method, increasing the number of iterations
 will usually result in better convergence.</p>
-<div class="line-block">
-<div class="line">The parameters <em>alpha</em> and <em>beta</em> can be explained in terms of the <em>Movie Group Process</em>, an analogy used for the fitting algorithm in Yin and Wang(2014).</div>
-<div class="line">The fitting procedure can be thought of as a process, where students in a classroom have to divide themselves up into groups based on their movie preferences.</div>
-<div class="line">Each student expresses their preferences in the form of a list of favorite movies (analogous to documents being lists of words).</div>
-<div class="line">In each iteration the students will try to choose a table (cluster/component) based on these two rules:</div>
-</div>
-<ul class="simple">
-<li><p>Rule 1: Prefer tables with more students.</p></li>
-<li><p>Rule 2: Choose a table where students have similar preferences to your own.</p></li>
-</ul>
-<div class="line-block">
-<div class="line">Here <em>alpha</em> represents the willingness of a student to join tables with lower number of students.</div>
-<div class="line">While <em>beta</em> represents the willingness of students to join tables with preferences differing from their own.</div>
-</div>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
-<p>(<a class="reference internal" href="tweetopic.dmm.html#tweetopic-dmm"><span class="std std-ref">API reference</span></a>)</p>
+<p>(<a class="reference internal" href="tweetopic.btm.html#tweetopic-btm"><span class="std std-ref">API reference</span></a>)</p>
 <p>Creating a model:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">DMM</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">BTM</span>
 
-<span class="n">dmm</span> <span class="o">=</span> <span class="n">DMM</span><span class="p">(</span>
+<span class="n">btm</span> <span class="o">=</span> <span class="n">BTM</span><span class="p">(</span>
     <span class="n">n_components</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
     <span class="n">n_iterations</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span>
     <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p>Fitting the model on a document-term matrix:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">doc_term_matrix</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">btm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">doc_term_matrix</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Predicting cluster labels for unseen documents:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dmm</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">new_docs</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">btm</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">new_docs</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://www.researchgate.net/publication/266660462_A_Dirichlet_multinomial_mixture_model-based_approach_for_short_text_clustering">Yin, J., &amp; Wang, J. (2014). A Dirichlet Multinomial Mixture Model-Based Approach for Short Text Clustering.</a> <em>In Proceedings of the 20th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 233–242). Association for Computing Machinery.</em></p>
+<p><a class="reference external" href="https://dl.acm.org/doi/10.1145/2488388.2488514">Yan, X., Guo, J., Lan, Y., &amp; Cheng, X. (2013). A Biterm Topic Model for Short Texts.</a> <em>Proceedings of the 22nd International Conference on World Wide Web, 1445–1456. Παρουσιάστηκε στο Rio de Janeiro, Brazil.</em> doi:10.1145/2488388.2488514</p>
 </section>
 </section>
 
@@ -278,23 +259,23 @@ will usually result in better convergence.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="using_tweetopic.btm.html">
+          <a class="next-page" href="using_tweetopic.pipeline.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Biterm Topic Model</div>
+                <div class="title">Topic Pipelines</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="installation.html">
+          <a class="prev-page" href="using_tweetopic.dmm.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Installation</div>
+                <div class="title">Dirichlet Multinomial Mixture Model</div>
                 
               </div>
             </a>
@@ -330,7 +311,7 @@ will usually result in better convergence.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Dirichlet Multinomial Mixture Model</a><ul>
+<li><a class="reference internal" href="#">Biterm Topic Model</a><ul>
 <li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
 </ul>
