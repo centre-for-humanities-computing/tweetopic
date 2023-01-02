@@ -7,15 +7,19 @@ import numpy as np
 import scipy.sparse as spr
 import sklearn
 from numpy.typing import ArrayLike
-from tweetopic._btm import (compute_biterm_set, corpus_unique_biterms,
-                            fit_model, predict_docs)
+
+from tweetopic._btm import (
+    compute_biterm_set,
+    corpus_unique_biterms,
+    fit_model,
+    predict_docs,
+)
 from tweetopic._doc import init_doc_words
 from tweetopic.exceptions import NotFittedException
 
 
 class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
-    """Implementation of the Biterm Topic Model with Gibbs Sampling
-    solver.
+    """Implementation of the Biterm Topic Model with Gibbs Sampling solver.
 
     Parameters
     ----------
@@ -136,7 +140,8 @@ class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
             max_unique_words=max_unique_words,
         )
         biterms = corpus_unique_biterms(
-            doc_unique_words, doc_unique_word_counts
+            doc_unique_words,
+            doc_unique_word_counts,
         )
         biterm_set = compute_biterm_set(biterms)
         self.topic_distribution, self.components_ = fit_model(
@@ -152,8 +157,7 @@ class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
     # TODO: Something goes terribly wrong here, fix this
 
     def transform(self, X: Union[spr.spmatrix, ArrayLike]) -> np.ndarray:
-        """Predicts probabilities for each document belonging to each
-        topic.
+        """Predicts probabilities for each document belonging to each topic.
 
         Parameters
         ----------
