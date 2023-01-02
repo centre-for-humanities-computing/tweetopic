@@ -47,7 +47,8 @@ class TopicPipeline:
         return self
 
     def fit_transform(
-        self, texts: Iterable[str]
+        self,
+        texts: Iterable[str],
     ) -> Union[ArrayLike, spr.spmatrix]:
         """Fits vectorizer and topic model and transforms the given text.
 
@@ -65,7 +66,8 @@ class TopicPipeline:
         return self.topic_model.fit_transform(doc_term_matrix)
 
     def transform(
-        self, texts: Iterable[str]
+        self,
+        texts: Iterable[str],
     ) -> Union[ArrayLike, spr.spmatrix]:
         """Transforms given texts with the fitted pipeline.
 

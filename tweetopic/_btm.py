@@ -1,4 +1,4 @@
-"""Module for utility functions for fitting BTMs"""
+"""Module for utility functions for fitting BTMs."""
 
 import random
 from typing import Dict, Tuple, TypeVar
@@ -6,12 +6,14 @@ from typing import Dict, Tuple, TypeVar
 import numba
 import numpy as np
 from numba import njit
+
 from tweetopic._prob import norm_prob, sample_categorical
 
 
 @njit
 def doc_unique_biterms(
-    doc_unique_words: np.ndarray, doc_unique_word_counts: np.ndarray
+    doc_unique_words: np.ndarray,
+    doc_unique_word_counts: np.ndarray,
 ) -> Dict[Tuple[int, int], int]:
     (n_max_unique_words,) = doc_unique_words.shape
     biterm_counts = dict()
@@ -42,7 +44,7 @@ T = TypeVar("T")
 
 @njit
 def nb_add_counter(dest: Dict[T, int], source: Dict[T, int]):
-    """Adds one counter dict to another in place with Numba"""
+    """Adds one counter dict to another in place with Numba."""
     for key in source:
         if key in dest:
             dest[key] += source[key]
@@ -52,17 +54,20 @@ def nb_add_counter(dest: Dict[T, int], source: Dict[T, int]):
 
 @njit
 def corpus_unique_biterms(
-    doc_unique_words: np.ndarray, doc_unique_word_counts: np.ndarray
+    doc_unique_words: np.ndarray,
+    doc_unique_word_counts: np.ndarray,
 ) -> Dict[Tuple[int, int], int]:
     n_documents, _ = doc_unique_words.shape
     biterm_counts = doc_unique_biterms(
-        doc_unique_words[0], doc_unique_word_counts[0]
+        doc_unique_words[0],
+        doc_unique_word_counts[0],
     )
     for i_doc in range(1, n_documents):
         doc_unique_words_i = doc_unique_words[i_doc]
         doc_unique_word_counts_i = doc_unique_word_counts[i_doc]
         doc_biterms = doc_unique_biterms(
-            doc_unique_words_i, doc_unique_word_counts_i
+            doc_unique_words_i,
+            doc_unique_word_counts_i,
         )
         nb_add_counter(biterm_counts, doc_biterms)
     return biterm_counts
@@ -70,7 +75,7 @@ def corpus_unique_biterms(
 
 @njit
 def compute_biterm_set(
-    biterm_counts: Dict[Tuple[int, int], int]
+    biterm_counts: Dict[Tuple[int, int], int],
 ) -> np.ndarray:
     return np.array(list(biterm_counts.keys()))
 
@@ -115,7 +120,12 @@ def add_biterm(
     topic_biterm_count: np.ndarray,
 ) -> None:
     add_remove_biterm(
-        True, i_biterm, i_topic, biterms, topic_word_count, topic_biterm_count
+        True,
+        i_biterm,
+        i_topic,
+        biterms,
+        topic_word_count,
+        topic_biterm_count,
     )
 
 
@@ -128,7 +138,12 @@ def remove_biterm(
     topic_biterm_count: np.ndarray,
 ) -> None:
     add_remove_biterm(
-        False, i_biterm, i_topic, biterms, topic_word_count, topic_biterm_count
+        False,
+        i_biterm,
+        i_topic,
+        biterms,
+        topic_word_count,
+        topic_biterm_count,
     )
 
 
@@ -146,7 +161,11 @@ def init_components(
         i_topic = random.randint(0, n_components - 1)
         biterm_topic_assignments[i_biterm] = i_topic
         add_biterm(
-            i_biterm, i_topic, biterms, topic_word_count, topic_biterm_count
+            i_biterm,
+            i_topic,
+            biterms,
+            topic_word_count,
+            topic_biterm_count,
         )
     return biterm_topic_assignments, topic_word_count, topic_biterm_count
 
@@ -360,7 +379,10 @@ def predict_docs(
         )
         biterms = doc_unique_biterms(words, word_counts)
         prob_topic_given_document(
-            pred, biterms, topic_distribution, topic_word_distribution
+            pred,
+            biterms,
+            topic_distribution,
+            topic_word_distribution,
         )
         predictions[i_doc, :] = pred
     return predictions

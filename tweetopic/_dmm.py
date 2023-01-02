@@ -1,4 +1,5 @@
-"""Module containing tools for fitting a Dirichlet Multinomial Mixture Model."""
+"""Module containing tools for fitting a Dirichlet Multinomial Mixture
+Model."""
 from __future__ import annotations
 
 from math import exp, log
@@ -6,7 +7,7 @@ from math import exp, log
 import numpy as np
 from numba import njit
 
-from tweetopic._prob import sample_categorical, norm_prob
+from tweetopic._prob import norm_prob, sample_categorical
 
 
 @njit
@@ -197,8 +198,7 @@ def _cond_prob(
     # I use logs instead of computing the products directly,
     # as it would quickly result in numerical overflow.
     log_norm_term = log(
-        (cluster_doc_count[i_cluster] + alpha)
-        / (n_docs - 1 + n_clusters * alpha),
+        (cluster_doc_count[i_cluster] + alpha) / (n_docs - 1 + n_clusters * alpha),
     )
     log_numerator = 0
     for i_unique in range(max_unique_words):
