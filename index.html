@@ -2,10 +2,10 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Installation" href="installation.html" />
 
-    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-6.1.3, furo 2022.03.04"/>
         <title></title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
@@ -169,7 +169,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.btm.html">Biterm Topic Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
@@ -228,88 +228,19 @@ a usage guide for getting started with tweetopic.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html#usage">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.dmm.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.btm.html">Biterm Topic Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.btm.html#usage">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.btm.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_tweetopic.pipeline.html#usage">Usage</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.btm.html">Biterm Topic Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM"><code class="docutils literal notranslate"><span class="pre">DMM</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.components_"><code class="docutils literal notranslate"><span class="pre">DMM.components_</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.cluster_doc_count"><code class="docutils literal notranslate"><span class="pre">DMM.cluster_doc_count</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.n_features_in_"><code class="docutils literal notranslate"><span class="pre">DMM.n_features_in_</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.n_documents"><code class="docutils literal notranslate"><span class="pre">DMM.n_documents</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.max_unique_words"><code class="docutils literal notranslate"><span class="pre">DMM.max_unique_words</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.get_params"><code class="docutils literal notranslate"><span class="pre">DMM.get_params()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.set_params"><code class="docutils literal notranslate"><span class="pre">DMM.set_params()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.fit"><code class="docutils literal notranslate"><span class="pre">DMM.fit()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.transform"><code class="docutils literal notranslate"><span class="pre">DMM.transform()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.predict_proba"><code class="docutils literal notranslate"><span class="pre">DMM.predict_proba()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.predict"><code class="docutils literal notranslate"><span class="pre">DMM.predict()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.dmm.html#tweetopic.dmm.DMM.fit_transform"><code class="docutils literal notranslate"><span class="pre">DMM.fit_transform()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.btm.html">BTM</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM"><code class="docutils literal notranslate"><span class="pre">BTM</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM.components_"><code class="docutils literal notranslate"><span class="pre">BTM.components_</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM.topic_distribution"><code class="docutils literal notranslate"><span class="pre">BTM.topic_distribution</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM.n_features_in_"><code class="docutils literal notranslate"><span class="pre">BTM.n_features_in_</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM.get_params"><code class="docutils literal notranslate"><span class="pre">BTM.get_params()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM.set_params"><code class="docutils literal notranslate"><span class="pre">BTM.set_params()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM.fit"><code class="docutils literal notranslate"><span class="pre">BTM.fit()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM.transform"><code class="docutils literal notranslate"><span class="pre">BTM.transform()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.btm.html#tweetopic.btm.BTM.fit_transform"><code class="docutils literal notranslate"><span class="pre">BTM.fit_transform()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">TopicPipeline</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline"><code class="docutils literal notranslate"><span class="pre">TopicPipeline</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.fit"><code class="docutils literal notranslate"><span class="pre">TopicPipeline.fit()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.fit_transform"><code class="docutils literal notranslate"><span class="pre">TopicPipeline.fit_transform()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.transform"><code class="docutils literal notranslate"><span class="pre">TopicPipeline.transform()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.visualize"><code class="docutils literal notranslate"><span class="pre">TopicPipeline.visualize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.visualise"><code class="docutils literal notranslate"><span class="pre">TopicPipeline.visualise()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.pipeline.html#tweetopic.pipeline.TopicPipeline.top_words"><code class="docutils literal notranslate"><span class="pre">TopicPipeline.top_words()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.typing.html">Typing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.Vectorizer"><code class="docutils literal notranslate"><span class="pre">Vectorizer</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.Vectorizer.fit"><code class="docutils literal notranslate"><span class="pre">Vectorizer.fit()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.Vectorizer.transform"><code class="docutils literal notranslate"><span class="pre">Vectorizer.transform()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.Vectorizer.fit_transform"><code class="docutils literal notranslate"><span class="pre">Vectorizer.fit_transform()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.Vectorizer.get_feature_names_out"><code class="docutils literal notranslate"><span class="pre">Vectorizer.get_feature_names_out()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.TopicModel"><code class="docutils literal notranslate"><span class="pre">TopicModel</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.TopicModel.n_components"><code class="docutils literal notranslate"><span class="pre">TopicModel.n_components</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.TopicModel.components_"><code class="docutils literal notranslate"><span class="pre">TopicModel.components_</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.TopicModel.fit"><code class="docutils literal notranslate"><span class="pre">TopicModel.fit()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.TopicModel.transform"><code class="docutils literal notranslate"><span class="pre">TopicModel.transform()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.TopicModel.fit_transform"><code class="docutils literal notranslate"><span class="pre">TopicModel.fit_transform()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.btm.html">BTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">TopicPipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.typing.html">Typing</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -361,9 +292,6 @@ a usage guide for getting started with tweetopic.</p>
     </aside>
   </div>
 </div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
