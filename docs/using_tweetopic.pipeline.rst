@@ -1,14 +1,9 @@
 .. _usage pipeline:
 
-Topic Pipelines
-================
+Pipelines
+=========
 
-A topic pipeline provides a concise way of text vectorization, topic modelling,
-and visual inspection of topic models.
-
-Usage
-^^^^^^
-(:ref:`API reference <tweetopic pipeline>`)
+To avoid data leakage and make it easier to operate with topic models, we recommend that you use scikit-learn's `Pipeline <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html>`_
 
 Create a vectorizer and topic model:
 
@@ -29,13 +24,40 @@ Create a vectorizer and topic model:
         beta=0.2,
     )
 
+Add the two components to a tweetopic pipeline:
+
+.. code-block:: python
+
+    from sklearn.pipeline import Pipeline
+
+    pipeline = Pipeline([
+        ("vectorizer", vectorizer),
+        ("dmm", dmm)
+    ])
+
+Fit pipelines on a stream of texts:
+
+.. code-block:: python
+
+    pipeline.fit(texts)
+
 .. note::
-    Topic pipelines in tweetopic also support 
-    `LatentDirichletAllocation <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html>`_
-    and 
-    `NMF <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html>`_,
-    as well as any sklean compatible topic model *(see* :class:`tweetopic.typing.TopicModel` *)*.
-    If DMM doesn't suit your purposes, you're still free to use the convenience of topic pipelines.
+    It is highly advisable to pre-process texts with an NLP library
+    such as `Spacy <https://spacy.io/>`_ or `NLTK <https://www.nltk.org/>`_.
+    Removal of stop/function words and lemmatization could drastically improve the quality of topics. 
+
+
+
+Topic Pipelines
+^^^^^^^^^^^^^^^^^^^
+(:ref:`API reference <tweetopic pipeline>`)
+.. warning::
+   We no longer recommend using TopicPipeline and encourage our users to use scikit-learn's `Pipeline <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html>`_
+   Pipelines instead.
+   
+A topic pipeline provides a concise way of text vectorization, topic modelling,
+and visual inspection of topic models.
+
 
 Add the two components to a tweetopic pipeline:
 
@@ -50,11 +72,6 @@ Fit pipelines on a stream of texts:
 .. code-block:: python
 
     pipeline.fit(texts)
-
-.. note::
-    It is highly advisable to pre-process texts with an NLP library
-    such as `Spacy <https://spacy.io/>`_ or `NLTK <https://www.nltk.org/>`_.
-    Removal of stop/function words and lemmatization could drastically improve the quality of topics. 
 
 Inspect topics by looking at the top words in each topic:
 

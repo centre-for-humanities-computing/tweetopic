@@ -30,19 +30,14 @@ Install from PyPI:
 pip install tweetopic
 ```
 
-If you intend to use the visualization features of PyLDAvis, install the package with optional dependencies:
-
-```bash
-pip install tweetopic[viz]
-```
-
 ## 👩‍💻 Usage ([documentation](https://centre-for-humanities-computing.github.io/tweetopic/))
 
-For easy topic modelling, tweetopic provides you the TopicPipeline class:
+Train your a topic model on a corpus of short texts:
 
 ```python
-from tweetopic import TopicPipeline, DMM
+from tweetopic import DMM
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.pipeline import Pipeline
 
 # Creating a vectorizer for extracting document-term matrix from the
 # text corpus.
@@ -52,7 +47,10 @@ vectorizer = CountVectorizer(min_df=15, max_df=0.1)
 dmm = DMM(n_components=30, n_iterations=100, alpha=0.1, beta=0.1)
 
 # Creating topic pipeline
-pipeline = TopicPipeline(vectorizer, dmm)
+pipeline = Pipeline([
+    ("vectorizer", vectorizer),
+    ("dmm", dmm),
+])
 ```
 
 You may fit the model with a stream of short texts:
@@ -61,34 +59,23 @@ You may fit the model with a stream of short texts:
 pipeline.fit(texts)
 ```
 
-To examine the structure of the topics you can either look at the most frequently occuring words:
+To investigate internal structure of topics and their relations to words and indicidual documents we recommend using [topicwizard](https://github.com/x-tabdeveloping/topic-wizard).
 
-```python
-pipeline.top_words(top_n=3)
------------------------------------------------------------------
+Install it from PyPI:
 
-[
-    {'vaccine': 1011.0, 'coronavirus': 428.0, 'vaccines': 396.0},
-    {'afghanistan': 586.0, 'taliban': 509.0, 'says': 464.0},
-    {'man': 362.0, 'prison': 310.0, 'year': 288.0},
-    {'police': 567.0, 'floyd': 444.0, 'trial': 393.0},
-    {'media': 331.0, 'twitter': 321.0, 'facebook': 306.0},
-    ...
-    {'pandemic': 432.0, 'year': 427.0, 'new': 422.0},
-    {'election': 759.0, 'trump': 573.0, 'republican': 527.0},
-    {'women': 91.0, 'heard': 84.0, 'depp': 76.0}
-]
+```bash
+pip install topic-wizard
 ```
 
-Or use rich visualizations provided by [pyLDAvis](https://github.com/bmabey/pyLDAvis):
+Then visualize your topic model:
 
 ```python
-pipeline.visualize(texts)
+import topicwizard
+
+topicwizard.visualize(pipeline=pipeline, corpus=texts)
 ```
 
-![PyLDAvis visualization](https://github.com/centre-for-humanities-computing/tweetopic/blob/main/docs/_static/pyldavis.png)
-
-> Note: You must install optional dependencies if you intend to use pyLDAvis
+![topicwizard visualization](docs/_static/topicwizard.png)
 
 ## 🎓 References
 

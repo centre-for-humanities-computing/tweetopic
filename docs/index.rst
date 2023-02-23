@@ -9,13 +9,13 @@ This website contains the API reference for tweetopic as well as
 a usage guide for getting started with tweetopic.
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Getting started
 
     installation
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 1
     :caption: Usage
     
     using_tweetopic.dmm
@@ -24,7 +24,7 @@ a usage guide for getting started with tweetopic.
     using_tweetopic.model_persistence
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 1
     :caption: API reference
 
     tweetopic.dmm
