@@ -51,6 +51,7 @@ Fit pipelines on a stream of texts:
 Topic Pipelines
 ^^^^^^^^^^^^^^^^^^^
 (:ref:`API reference <tweetopic pipeline>`)
+
 .. warning::
    We no longer recommend using TopicPipeline and encourage our users to use scikit-learn's `Pipeline <https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html>`_
    Pipelines instead.

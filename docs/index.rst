@@ -21,6 +21,7 @@ a usage guide for getting started with tweetopic.
     using_tweetopic.dmm
     using_tweetopic.btm
     using_tweetopic.pipeline
+    using_tweetopic.visualization
     using_tweetopic.model_persistence
 
 .. toctree::
