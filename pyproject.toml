@@ -1,0 +1,23 @@
+[tool.black]
+line-length=79
+
+[tool.poetry]
+name = "tweetopic"
+version = "0.2.1"
+description = "Topic modelling over short texts"
+authors = ["Márton Kardos <power.up1163@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8.0"
+numpy = ">=1.19,<1.24.0"
+numba = "~0.57.0"
+scikit-learn = ">=1.1.1,<1.3.0"
+joblib = ">=1.1.0"
+deprecated = ">=1.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
