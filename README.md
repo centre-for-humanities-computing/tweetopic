@@ -1,6 +1,10 @@
-![Logo with text](./docs/_static/icon_w_title.png)
+<img align="left" width="82" height="82" src="docs/_static/icon.svg">
 
-# tweetopic: Blazing Fast Topic modelling for Short Texts
+# tweetopic
+
+<br>
+
+Blazing Fast Topic modelling for Short Texts
 
 [![PyPI version](https://badge.fury.io/py/tweetopic.svg)](https://pypi.org/project/tweetopic/)
 [![pip downloads](https://img.shields.io/pypi/dm/tweetopic.svg)](https://pypi.org/project/tweetopic/)
