@@ -3,7 +3,7 @@ line-length=79
 
 [tool.poetry]
 name = "tweetopic"
-version = "0.2.2"
+version = "0.3.0"
 description = "Topic modelling over short texts"
 authors = ["Márton Kardos <power.up1163@gmail.com>"]
 license = "MIT"
