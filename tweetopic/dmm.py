@@ -22,8 +22,9 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
     ----------
     n_components: int
         Number of mixture components in the model.
-    n_iterations: int, default 30
+    n_iterations: int, default 50
         Number of iterations during fitting.
+        If you find your results are unsatisfactory, increase this number.
     alpha: float, default 0.1
         Willingness of a document joining an empty cluster.
     beta: float, default 0.1
@@ -48,8 +49,8 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
 
     def __init__(
         self,
-        n_components: int = 8,
-        n_iterations: int = 30,
+        n_components: int,
+        n_iterations: int = 50,
         alpha: float = 0.1,
         beta: float = 0.1,
     ):
@@ -142,13 +143,12 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         self.n_documents, self.n_features_in_ = X.shape
         # Calculating the number of nonzero elements for each row
         # using the internal properties of CSR matrices.
+        print("Initializing components.")
         self.max_unique_words = np.max(np.diff(X.indptr))
-        print("Calculating unique words.")
         doc_unique_words, doc_unique_word_counts = init_doc_words(
             X.tolil(),
             max_unique_words=self.max_unique_words,
         )
-        print("Initialising mixture components")
         initial_clusters = np.random.multinomial(
             1,
             np.ones(self.n_components) / self.n_components,
@@ -167,7 +167,6 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
             doc_unique_word_counts=doc_unique_word_counts,
             max_unique_words=self.max_unique_words,
         )
-        print("Fitting model")
         fit_model(
             n_iter=self.n_iterations,
             alpha=self.alpha,

@@ -7,8 +7,13 @@ import numpy as np
 import scipy.sparse as spr
 import sklearn
 from numpy.typing import ArrayLike
-from tweetopic._btm import (compute_biterm_set, corpus_unique_biterms,
-                            fit_model, predict_docs)
+
+from tweetopic._btm import (
+    compute_biterm_set,
+    corpus_unique_biterms,
+    fit_model,
+    predict_docs,
+)
 from tweetopic._doc import init_doc_words
 from tweetopic.exceptions import NotFittedException
 
@@ -93,7 +98,7 @@ class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
 
         Returns
         -------
-        DMM
+        BTM
             Estimator instance
 
         Note

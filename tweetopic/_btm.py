@@ -3,9 +3,10 @@
 import random
 from typing import Dict, Tuple, TypeVar
 
-import numba
 import numpy as np
 from numba import njit
+from tqdm import tqdm
+
 from tweetopic._prob import norm_prob, sample_categorical
 
 
@@ -228,6 +229,49 @@ def estimate_parameters(
 
 
 @njit(fastmath=True)
+def _sampling_step(
+    alpha: float,
+    beta: float,
+    n_components: int,
+    n_vocab: int,
+    biterms: np.ndarray,
+    n_biterms: int,
+    biterm_topic_assignments: np.ndarray,
+    topic_word_count: np.ndarray,
+    topic_biterm_count: np.ndarray,
+    prediction: np.ndarray,
+):
+    for i_biterm in range(n_biterms):
+        prev_topic = biterm_topic_assignments[i_biterm]
+        remove_biterm(
+            i_biterm=i_biterm,
+            i_topic=prev_topic,
+            biterms=biterms,
+            topic_word_count=topic_word_count,
+            topic_biterm_count=topic_biterm_count,
+        )
+        propose_topic_biterm(
+            prediction=prediction,
+            i_biterm=i_biterm,
+            n_components=n_components,
+            alpha=alpha,
+            beta=beta,
+            n_vocab=n_vocab,
+            biterms=biterms,
+            topic_word_count=topic_word_count,
+            topic_biterm_count=topic_biterm_count,
+        )
+        next_topic = sample_categorical(prediction)
+        add_biterm(
+            i_biterm=i_biterm,
+            i_topic=next_topic,
+            biterms=biterms,
+            topic_word_count=topic_word_count,
+            topic_biterm_count=topic_biterm_count,
+        )
+        biterm_topic_assignments[i_biterm] = next_topic
+
+
 def fit_model(
     n_iter: int,
     alpha: float,
@@ -243,42 +287,20 @@ def fit_model(
     ) = init_components(n_components, n_vocab, biterms)
     n_biterms, _ = biterms.shape
     prediction = np.zeros(n_components)
-    for i_iter in range(n_iter):
-        n_transferred = 0
-        for i_biterm in range(n_biterms):
-            prev_topic = biterm_topic_assignments[i_biterm]
-            remove_biterm(
-                i_biterm=i_biterm,
-                i_topic=prev_topic,
-                biterms=biterms,
-                topic_word_count=topic_word_count,
-                topic_biterm_count=topic_biterm_count,
-            )
-            propose_topic_biterm(
-                prediction=prediction,
-                i_biterm=i_biterm,
-                n_components=n_components,
-                alpha=alpha,
-                beta=beta,
-                n_vocab=n_vocab,
-                biterms=biterms,
-                topic_word_count=topic_word_count,
-                topic_biterm_count=topic_biterm_count,
-            )
-            next_topic = sample_categorical(prediction)
-            add_biterm(
-                i_biterm=i_biterm,
-                i_topic=next_topic,
-                biterms=biterms,
-                topic_word_count=topic_word_count,
-                topic_biterm_count=topic_biterm_count,
-            )
-            biterm_topic_assignments[i_biterm] = next_topic
-            # NOTE: Consider branchless, if it affects performance
-            # n_tranferred += int(next_topic != prev_topic)
-            if next_topic != prev_topic:
-                n_transferred += 1
-        print(f" Iteration {i_iter}: transferred {n_transferred} biterms.")
+    iterator = tqdm(range(n_iter), desc="Sampling")
+    for _ in iterator:
+        _sampling_step(
+            alpha=alpha,
+            beta=beta,
+            n_components=n_components,
+            n_vocab=n_vocab,
+            biterms=biterms,
+            n_biterms=n_biterms,
+            biterm_topic_assignments=biterm_topic_assignments,
+            topic_word_count=topic_word_count,
+            topic_biterm_count=topic_biterm_count,
+            prediction=prediction,
+        )
     topic_distribution, topic_word_distribution = estimate_parameters(
         alpha=alpha,
         beta=beta,
@@ -289,6 +311,72 @@ def fit_model(
         topic_biterm_count=topic_biterm_count,
     )
     return topic_distribution, topic_word_distribution
+
+
+#
+# @njit(fastmath=True)
+# def fit_model(
+#     n_iter: int,
+#     alpha: float,
+#     beta: float,
+#     n_components: int,
+#     n_vocab: int,
+#     biterms: np.ndarray,
+# ) -> Tuple[np.ndarray, np.ndarray]:
+#     (
+#         biterm_topic_assignments,
+#         topic_word_count,
+#         topic_biterm_count,
+#     ) = init_components(n_components, n_vocab, biterms)
+#     n_biterms, _ = biterms.shape
+#     prediction = np.zeros(n_components)
+#     for i_iter in range(n_iter):
+#         n_transferred = 0
+#         for i_biterm in range(n_biterms):
+#             prev_topic = biterm_topic_assignments[i_biterm]
+#             remove_biterm(
+#                 i_biterm=i_biterm,
+#                 i_topic=prev_topic,
+#                 biterms=biterms,
+#                 topic_word_count=topic_word_count,
+#                 topic_biterm_count=topic_biterm_count,
+#             )
+#             propose_topic_biterm(
+#                 prediction=prediction,
+#                 i_biterm=i_biterm,
+#                 n_components=n_components,
+#                 alpha=alpha,
+#                 beta=beta,
+#                 n_vocab=n_vocab,
+#                 biterms=biterms,
+#                 topic_word_count=topic_word_count,
+#                 topic_biterm_count=topic_biterm_count,
+#             )
+#             next_topic = sample_categorical(prediction)
+#             add_biterm(
+#                 i_biterm=i_biterm,
+#                 i_topic=next_topic,
+#                 biterms=biterms,
+#                 topic_word_count=topic_word_count,
+#                 topic_biterm_count=topic_biterm_count,
+#             )
+#             biterm_topic_assignments[i_biterm] = next_topic
+#             # NOTE: Consider branchless, if it affects performance
+#             # n_tranferred += int(next_topic != prev_topic)
+#             if next_topic != prev_topic:
+#                 n_transferred += 1
+#         print(f" Iteration {i_iter}: transferred {n_transferred} biterms.")
+#     topic_distribution, topic_word_distribution = estimate_parameters(
+#         alpha=alpha,
+#         beta=beta,
+#         n_components=n_components,
+#         n_vocab=n_vocab,
+#         n_biterms=n_biterms,
+#         topic_word_count=topic_word_count,
+#         topic_biterm_count=topic_biterm_count,
+#     )
+#     return topic_distribution, topic_word_distribution
+#
 
 
 @njit(fastmath=True)
