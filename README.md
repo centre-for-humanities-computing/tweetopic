@@ -4,8 +4,6 @@
 
 <br>
 
-Blazing Fast Topic modelling for Short Texts
-
 [![PyPI version](https://badge.fury.io/py/tweetopic.svg)](https://pypi.org/project/tweetopic/)
 [![pip downloads](https://img.shields.io/pypi/dm/tweetopic.svg)](https://pypi.org/project/tweetopic/)
 [![python version](https://img.shields.io/badge/Python-%3E=3.7-blue)](https://github.com/centre-for-humanities-computing/tweetopic)
@@ -15,7 +13,7 @@ Blazing Fast Topic modelling for Short Texts
 ![SciPy](https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=%white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
-:zap: Blazing Fast topic modelling over short texts utilizing the power of :1234: Numpy and :snake: Numba.
+:zap: Blazing Fast topic modelling over short texts in Python
 
 ## Features
 
