@@ -30,8 +30,6 @@ a usage guide for getting started with tweetopic.
 
     tweetopic.dmm
     tweetopic.btm
-    tweetopic.pipeline
-    tweetopic.typing
 
 .. toctree::
    

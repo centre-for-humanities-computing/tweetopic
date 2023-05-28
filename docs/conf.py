@@ -17,7 +17,11 @@ author = "Márton Kardos"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.coverage", "sphinx.ext.napoleon"]
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.coverage",
+    "sphinx.ext.napoleon",
+]
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
@@ -30,13 +34,11 @@ html_theme = "furo"
 # html_collapsible_definitions = True
 # html_awesome_code_headers = True
 html_favicon = "_static/icon.svg"
-# html_logo = "_static/icon_w_title_below.png"
+html_logo = "_static/icon.svg"
 html_title = " "
 html_static_path = ["_static"]
 html_theme_options = {
-    "sidebar_hide_name": True,
-    "light_logo": "icon_w_title_below.png",
-    "dark_logo": "icon_w_title_below_dark.png",
+    "sidebar_hide_name": False,
     "light_css_variables": {
         "color-api-name": "#28a4df",
         "color-api-pre-name": "#ffa671",

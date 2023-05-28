@@ -3,12 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Model persistence" href="using_tweetopic.model_persistence.html" /><link rel="prev" title="Dirichlet Multinomial Mixture Model" href="using_tweetopic.dmm.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Visualization" href="using_tweetopic.visualization.html" /><link rel="prev" title="Biterm Topic Model" href="using_tweetopic.btm.html" />
 
-    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title>Topic Pipelines - </title>
+    <link rel="shortcut icon" href="_static/icon.svg"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
+        <title>Pipelines - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -140,7 +140,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -152,13 +152,13 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   <div class="sidebar-logo-container">
-    <img class="sidebar-logo only-light" src="_static/icon_w_title_below.png" alt="Light Logo"/>
-    <img class="sidebar-logo only-dark" src="_static/icon_w_title_below_dark.png" alt="Dark Logo"/>
+    <img class="sidebar-logo" src="_static/icon.svg" alt="Logo"/>
   </div>
   
+  <span class="sidebar-brand-text"> </span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
-  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -170,14 +170,15 @@
 <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Topic Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.btm.html">Biterm Topic Model</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">TopicPipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.typing.html">Typing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tweetopic.btm.html">BTM</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
@@ -200,7 +201,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -208,19 +210,15 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="topic-pipelines">
-<span id="usage-pipeline"></span><h1>Topic Pipelines<a class="headerlink" href="#topic-pipelines" title="Permalink to this heading">#</a></h1>
-<p>A topic pipeline provides a concise way of text vectorization, topic modelling,
-and visual inspection of topic models.</p>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
-<p>(<a class="reference internal" href="tweetopic.pipeline.html#tweetopic-pipeline"><span class="std std-ref">API reference</span></a>)</p>
+          <section id="pipelines">
+<span id="usage-pipeline"></span><h1>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this heading">#</a></h1>
+<p>To avoid data leakage and make it easier to operate with topic models, we recommend that you use scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html">Pipeline</a></p>
 <p>Create a vectorizer and topic model:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">DMM</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
@@ -238,19 +236,13 @@ and visual inspection of topic models.</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Topic pipelines in tweetopic also support
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html">LatentDirichletAllocation</a>
-and
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html">NMF</a>,
-as well as any sklean compatible topic model <em>(see</em> <a class="reference internal" href="tweetopic.typing.html#tweetopic.typing.TopicModel" title="tweetopic.typing.TopicModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">tweetopic.typing.TopicModel</span></code></a> <em>)</em>.
-If DMM doesn’t suit your purposes, you’re still free to use the convenience of topic pipelines.</p>
-</div>
 <p>Add the two components to a tweetopic pipeline:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tweetopic</span> <span class="kn">import</span> <span class="n">TopicPipeline</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">TopicPipeline</span><span class="p">(</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">dmm</span><span class="p">)</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;vectorizer&quot;</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;dmm&quot;</span><span class="p">,</span> <span class="n">dmm</span><span class="p">)</span>
+<span class="p">])</span>
 </pre></div>
 </div>
 <p>Fit pipelines on a stream of texts:</p>
@@ -263,34 +255,6 @@ If DMM doesn’t suit your purposes, you’re still free to use the convenience 
 such as <a class="reference external" href="https://spacy.io/">Spacy</a> or <a class="reference external" href="https://www.nltk.org/">NLTK</a>.
 Removal of stop/function words and lemmatization could drastically improve the quality of topics.</p>
 </div>
-<p>Inspect topics by looking at the top words in each topic:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span><span class="o">.</span><span class="n">top_words</span><span class="p">(</span><span class="n">top_n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-    <span class="p">{</span><span class="s1">&#39;vaccine&#39;</span><span class="p">:</span> <span class="mf">1011.0</span><span class="p">,</span> <span class="s1">&#39;coronavirus&#39;</span><span class="p">:</span> <span class="mf">428.0</span><span class="p">,</span> <span class="s1">&#39;vaccines&#39;</span><span class="p">:</span> <span class="mf">396.0</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;afghanistan&#39;</span><span class="p">:</span> <span class="mf">586.0</span><span class="p">,</span> <span class="s1">&#39;taliban&#39;</span><span class="p">:</span> <span class="mf">509.0</span><span class="p">,</span> <span class="s1">&#39;says&#39;</span><span class="p">:</span> <span class="mf">464.0</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;man&#39;</span><span class="p">:</span> <span class="mf">362.0</span><span class="p">,</span> <span class="s1">&#39;prison&#39;</span><span class="p">:</span> <span class="mf">310.0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mf">288.0</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;police&#39;</span><span class="p">:</span> <span class="mf">567.0</span><span class="p">,</span> <span class="s1">&#39;floyd&#39;</span><span class="p">:</span> <span class="mf">444.0</span><span class="p">,</span> <span class="s1">&#39;trial&#39;</span><span class="p">:</span> <span class="mf">393.0</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;media&#39;</span><span class="p">:</span> <span class="mf">331.0</span><span class="p">,</span> <span class="s1">&#39;twitter&#39;</span><span class="p">:</span> <span class="mf">321.0</span><span class="p">,</span> <span class="s1">&#39;facebook&#39;</span><span class="p">:</span> <span class="mf">306.0</span><span class="p">},</span>
-    <span class="o">...</span>
-    <span class="p">{</span><span class="s1">&#39;pandemic&#39;</span><span class="p">:</span> <span class="mf">432.0</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mf">427.0</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">:</span> <span class="mf">422.0</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;election&#39;</span><span class="p">:</span> <span class="mf">759.0</span><span class="p">,</span> <span class="s1">&#39;trump&#39;</span><span class="p">:</span> <span class="mf">573.0</span><span class="p">,</span> <span class="s1">&#39;republican&#39;</span><span class="p">:</span> <span class="mf">527.0</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;women&#39;</span><span class="p">:</span> <span class="mf">91.0</span><span class="p">,</span> <span class="s1">&#39;heard&#39;</span><span class="p">:</span> <span class="mf">84.0</span><span class="p">,</span> <span class="s1">&#39;depp&#39;</span><span class="p">:</span> <span class="mf">76.0</span><span class="p">}</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-<p>or use rich visualizations with PyLDAvis:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="_images/pyldavis.png"><img alt="PyLDAvis visualization" src="_images/pyldavis.png" style="width: 800px;" /></a>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>PyLDAvis has to be installed for you to be able to use this, please
-install optional dependencies.</p>
-</div>
-</section>
 </section>
 
         </article>
@@ -298,23 +262,23 @@ install optional dependencies.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="using_tweetopic.model_persistence.html">
+          <a class="next-page" href="using_tweetopic.visualization.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Model persistence</div>
+                <div class="title">Visualization</div>
               </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="using_tweetopic.dmm.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
+          <a class="prev-page" href="using_tweetopic.btm.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Dirichlet Multinomial Mixture Model</div>
+                <div class="title">Biterm Topic Model</div>
                 
               </div>
             </a>
@@ -330,44 +294,21 @@ install optional dependencies.</p>
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Topic Pipelines</a><ul>
-<li><a class="reference internal" href="#usage">Usage</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
   </div>
 </div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
     </body>
 </html>

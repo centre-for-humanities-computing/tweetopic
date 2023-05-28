@@ -3,12 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="TopicPipeline" href="tweetopic.pipeline.html" /><link rel="prev" title="DMM" href="tweetopic.dmm.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="DMM" href="tweetopic.dmm.html" />
 
-    <link rel="shortcut icon" href="_static/icon.svg"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
+    <link rel="shortcut icon" href="_static/icon.svg"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
         <title>BTM - </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -140,7 +140,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -152,13 +152,13 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   <div class="sidebar-logo-container">
-    <img class="sidebar-logo only-light" src="_static/icon_w_title_below.png" alt="Light Logo"/>
-    <img class="sidebar-logo only-dark" src="_static/icon_w_title_below_dark.png" alt="Dark Logo"/>
+    <img class="sidebar-logo" src="_static/icon.svg" alt="Logo"/>
   </div>
   
+  <span class="sidebar-brand-text"> </span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
-  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -171,15 +171,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.dmm.html">Dirichlet Multinomial Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.btm.html">Biterm Topic Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Topic Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.pipeline.html">Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_tweetopic.visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_tweetopic.model_persistence.html">Model persistence</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tweetopic.dmm.html">DMM</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">BTM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.pipeline.html">TopicPipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tweetopic.typing.html">Typing</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/tweetopic">GitHub Repository</a></li>
@@ -202,7 +201,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -210,7 +210,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -297,7 +297,7 @@ solver.</p>
 <dd class="field-odd"><p>Estimator instance</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DMM</span></code></p>
+<dd class="field-even"><p><a class="reference internal" href="#tweetopic.btm.BTM" title="tweetopic.btm.BTM"><code class="xref py py-class docutils literal notranslate"><span class="pre">BTM</span></code></a></p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -308,7 +308,7 @@ solver.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.btm.BTM.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.btm.BTM.fit" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spmatrix</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ArrayLike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tweetopic.btm.BTM.fit" title="Permalink to this definition">#</a></dt>
 <dd><p>Fits the model using Gibbs Sampling. Detailed description of the
 algorithm in Yan et al. (2013).</p>
 <dl class="field-list simple">
@@ -333,7 +333,7 @@ algorithm in Yan et al. (2013).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.btm.BTM.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.btm.BTM.transform" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spmatrix</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ArrayLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.btm.BTM.transform" title="Permalink to this definition">#</a></dt>
 <dd><p>Predicts probabilities for each document belonging to each
 topic.</p>
 <dl class="field-list simple">
@@ -354,7 +354,7 @@ topic.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tweetopic.btm.BTM.fit_transform">
-<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">spmatrix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ArrayLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.btm.BTM.fit_transform" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">spmatrix</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ArrayLike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#tweetopic.btm.BTM.fit_transform" title="Permalink to this definition">#</a></dt>
 <dd><p>Fits the model, then transforms the given data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -381,17 +381,9 @@ topic.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="tweetopic.pipeline.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">TopicPipeline</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
+          
           <a class="prev-page" href="tweetopic.dmm.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
@@ -413,25 +405,50 @@ topic.</p>
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">BTM</a><ul>
+<li><a class="reference internal" href="#tweetopic.btm.BTM"><code class="docutils literal notranslate"><span class="pre">BTM</span></code></a><ul>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.components_"><code class="docutils literal notranslate"><span class="pre">BTM.components_</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.topic_distribution"><code class="docutils literal notranslate"><span class="pre">BTM.topic_distribution</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.n_features_in_"><code class="docutils literal notranslate"><span class="pre">BTM.n_features_in_</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.get_params"><code class="docutils literal notranslate"><span class="pre">BTM.get_params()</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.set_params"><code class="docutils literal notranslate"><span class="pre">BTM.set_params()</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.fit"><code class="docutils literal notranslate"><span class="pre">BTM.fit()</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.transform"><code class="docutils literal notranslate"><span class="pre">BTM.transform()</span></code></a></li>
+<li><a class="reference internal" href="#tweetopic.btm.BTM.fit_transform"><code class="docutils literal notranslate"><span class="pre">BTM.fit_transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
   </div>
 </div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
     </body>
 </html>
