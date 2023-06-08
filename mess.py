@@ -30,8 +30,8 @@ from tweetopic.sampling import (
 
 texts = [line for line in open("processed_sample.txt")]
 
-vectorizer = CountVectorizer(max_features=100, max_df=0.3, min_df=10)
-X = vectorizer.fit_transform(random.sample(texts, 10_000))
+vectorizer = CountVectorizer(max_features=4000, max_df=0.3, min_df=10)
+X = vectorizer.fit_transform(random.sample(texts, 20_000))
 
 model = BayesianDMM(
     n_components=5,
@@ -64,7 +64,12 @@ px.line(weights).show()
 
 X.shape
 
-predict_doc()
+predict_doc(
+    unique_words=doc_unique_words[0],
+    unique_word_counts=doc_unique_word_counts[0],
+    components=components[0],
+    weights=weights[0],
+)
 
 try:
     predict_one_doc(doc=docs[0], samples=np.array(model.samples[:2]))

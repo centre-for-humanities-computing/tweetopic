@@ -118,12 +118,10 @@ def posterior_predictive(
     return predict_all(doc_unique_words, doc_unique_word_counts)
 
 
-def dirichlet_multinomial_mixture_logpdf(
+def dmm_loglikelihood(
     components, weights, doc_unique_words, doc_unique_word_counts, alpha, beta
 ):
-    """Calculates logdensity of the DMM at a given point in parameter space."""
     docs = jnp.stack((doc_unique_words, doc_unique_word_counts), axis=1)
-    n_docs = doc_unique_words.shape[0]
 
     def doc_likelihood(doc):
         unique_words, unique_word_counts = doc
@@ -137,7 +135,11 @@ def dirichlet_multinomial_mixture_logpdf(
         ) + jnp.log(weights)
         return jax.scipy.special.logsumexp(component_logprobs)
 
-    likelihood = jnp.sum(jax.lax.map(doc_likelihood, docs))
+    loglikelihood = jnp.sum(jax.lax.map(doc_likelihood, docs))
+    return loglikelihood
+
+
+def dmm_logprior(components, weights, alpha, beta, n_docs):
     components_prior = jnp.sum(
         jax.lax.map(
             partial(symmetric_dirichlet_logpdf, alpha=alpha), components
@@ -146,7 +148,24 @@ def dirichlet_multinomial_mixture_logpdf(
     weights_prior = symmetric_dirichlet_multinomial_logpdf(
         weights, n=jnp.float64(n_docs), alpha=beta
     )
-    return likelihood + components_prior + weights_prior
+    return components_prior + weights_prior
+
+
+def dmm_logpdf(
+    components, weights, doc_unique_words, doc_unique_word_counts, alpha, beta
+):
+    """Calculates logdensity of the DMM at a given point in parameter space."""
+    n_docs = doc_unique_words.shape[0]
+    loglikelihood = dmm_loglikelihood(
+        components,
+        weights,
+        doc_unique_words,
+        doc_unique_word_counts,
+        alpha,
+        beta,
+    )
+    logprior = dmm_logprior(components, weights, alpha, beta, n_docs)
+    return logprior + loglikelihood
 
 
 class BayesianDMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
@@ -223,16 +242,21 @@ class BayesianDMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
             alpha=self.alpha,
             beta=self.beta,
         )
-        logdensity_fn = spread(
-            partial(
-                dirichlet_multinomial_mixture_logpdf,
+        logdensity_fn = partial(
+            dmm_logpdf,
+            doc_unique_words=doc_unique_words,
+            doc_unique_word_counts=doc_unique_word_counts,
+            alpha=self.alpha,
+            beta=self.beta,
+        )
+        samples = self.sampler(
+            initial_position,
+            logdensity_fn,
+            data=dict(
                 doc_unique_words=doc_unique_words,
                 doc_unique_word_counts=doc_unique_word_counts,
-                alpha=self.alpha,
-                beta=self.beta,
-            )
+            ),
         )
-        samples = self.sampler(initial_position, logdensity_fn)
         self.samples = samples
         return self
 
