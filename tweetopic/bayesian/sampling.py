@@ -19,11 +19,9 @@ Sampler = Callable[..., tuple[list[PyTree], Any]]
 def sample_nuts(
     initial_position: PyTree,
     logdensity_fn: Callable,
-    data: dict,
     seed: int = 0,
     n_warmup: int = 1000,
     n_samples: int = 1000,
-    data_axis: int = 0,
 ) -> tuple[list[PyTree], list[HMCState]]:
     """NUTS sampling loop for any logdensity function that can be JIT compiled
     with JAX.
@@ -50,7 +48,6 @@ def sample_nuts(
         State of the Hamiltonian Monte Carlo at each step.
         Mostly useful for debugging.
     """
-    logdensity_fn = spread(partial(logdensity_fn, **data))
     rng_key = jax.random.PRNGKey(seed)
     warmup_key, sampling_key = jax.random.split(rng_key)
     print("Warmup, window adaptation")
@@ -173,7 +170,7 @@ def sample_meanfield_vi(
     return samples, states
 
 
-def batch_data(rng_key, data, batch_size: int, data_size: int):
+def batch_data(rng_key, batch_size: int, data_size: int):
     while True:
         _, rng_key = jax.random.split(rng_key)
         idx = jax.random.choice(

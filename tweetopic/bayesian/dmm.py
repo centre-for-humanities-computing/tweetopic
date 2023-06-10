@@ -60,10 +60,14 @@ def sparse_multinomial_logpdf(
 def symmetric_dirichlet_logpdf(x, alpha):
     """Logdensity of a symmetric Dirichlet."""
     K = x.shape[0]
+    sums_to_one = jnp.abs(1 - jnp.sum(x)) <= 0.001
+    all_bigger_than_zero = jnp.all(x >= 0)
     return (
-        jax.lax.lgamma(alpha * K)
+        jnp.log(sums_to_one)
+        + jnp.log(all_bigger_than_zero)
+        + jax.lax.lgamma(alpha * K)
         - K * jax.lax.lgamma(alpha)
-        + (alpha - 1) * jnp.sum(jnp.log(x))
+        + (alpha - 1) * jnp.sum(jnp.nan_to_num(jnp.log(x)))
     )
 
 
@@ -223,10 +227,10 @@ class BayesianDMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         return self
 
     def fit(self, X, y=None):
-        # Filtering out empty documents
-        X = X[X.getnnz(1) > 0]
         # Converting X into sparse array if it isn't one already.
         X = spr.csr_matrix(X)
+        # Filtering out empty documents
+        X = X[X.getnnz(1) > 0]
         self.n_documents, self.n_features_in_ = X.shape
         # Calculating the number of nonzero elements for each row
         # using the internal properties of CSR matrices.
