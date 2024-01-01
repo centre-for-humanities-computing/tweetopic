@@ -11,7 +11,7 @@ def init_doc_words(
     n_docs, _ = doc_term_matrix.shape
     doc_unique_words = np.zeros((n_docs, max_unique_words)).astype(np.uint32)
     doc_unique_word_counts = np.zeros((n_docs, max_unique_words)).astype(
-        np.uint32
+        np.uint32,
     )
     for i_doc in range(n_docs):
         unique_words = doc_term_matrix[i_doc].rows[0]  # type: ignore
