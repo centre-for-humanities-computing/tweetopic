@@ -4,8 +4,8 @@ from typing import Callable
 
 
 def spread(fn: Callable):
-    """Creates a new function from the given function so that it takes one
-    dict (PyTree) and spreads the arguments."""
+    """Creates a new function from the given function so that it takes one dict
+    (PyTree) and spreads the arguments."""
 
     @wraps(fn)
     def inner(kwargs):
