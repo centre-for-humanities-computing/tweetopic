@@ -36,6 +36,7 @@ Creating a model:
         n_iterations=200,
         alpha=6.0,
         beta=0.2,
+        random_state=42,
     )
 
 Fitting the model on a document-term matrix:
