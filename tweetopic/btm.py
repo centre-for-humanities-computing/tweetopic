@@ -1,21 +1,19 @@
 """Module containing sklearn compatible Biterm Topic Model."""
+
 from __future__ import annotations
 
-from typing import Union
+from typing import Optional, Union
 
 import numpy as np
 import scipy.sparse as spr
 import sklearn
 from numpy.typing import ArrayLike
 
-from tweetopic._btm import (
-    compute_biterm_set,
-    corpus_unique_biterms,
-    fit_model,
-    predict_docs,
-)
+from tweetopic._btm import (compute_biterm_set, corpus_unique_biterms,
+                            fit_model, predict_docs)
 from tweetopic._doc import init_doc_words
 from tweetopic.exceptions import NotFittedException
+from tweetopic.utils import set_numba_seed
 
 
 class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
@@ -41,6 +39,8 @@ class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         Prior probability of each topic.
     n_features_in_: int
         Number of total vocabulary items seen during fitting.
+    random_state: int, default None
+        Random seed to use for reproducibility.
     """
 
     def __init__(
@@ -49,11 +49,13 @@ class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         n_iterations: int = 100,
         alpha: float = 6.0,
         beta: float = 0.1,
+        random_state: Optional[int] = None,
     ):
         self.n_components = n_components
         self.n_iterations = n_iterations
         self.alpha = alpha
         self.beta = beta
+        self.random_state = random_state
         # Not none for typing reasons
         self.components_ = np.array(0)
         self.topic_distribution = None
@@ -129,6 +131,8 @@ class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         ----
         fit() works in-place too, the fitted model is returned for convenience.
         """
+        if self.random_state is not None:
+            set_numba_seed(self.random_state)
         # Converting X into sparse array if it isn't one already.
         X = spr.csr_matrix(X)
         _, self.n_features_in_ = X.shape
@@ -140,9 +144,7 @@ class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
             X.tolil(),
             max_unique_words=max_unique_words,
         )
-        biterms = corpus_unique_biterms(
-            doc_unique_words, doc_unique_word_counts
-        )
+        biterms = corpus_unique_biterms(doc_unique_words, doc_unique_word_counts)
         biterm_set = compute_biterm_set(biterms)
         self.topic_distribution, self.components_ = fit_model(
             n_iter=self.n_iterations,

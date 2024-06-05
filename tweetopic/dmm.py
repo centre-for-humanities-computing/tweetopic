@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Optional, Union
 
 import numpy as np
 import scipy.sparse as spr
@@ -12,6 +12,7 @@ from numpy.typing import ArrayLike
 from tweetopic._dmm import fit_model, init_clusters, predict_doc
 from tweetopic._doc import init_doc_words
 from tweetopic.exceptions import NotFittedException
+from tweetopic.utils import set_numba_seed
 
 
 class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
@@ -30,6 +31,8 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
     beta: float, default 0.1
         Willingness to join clusters, where the terms in the document
         are not present.
+    random_state: int, default None
+        Random seed to use for reproducibility.
 
     Attributes
     ----------
@@ -53,11 +56,13 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         n_iterations: int = 50,
         alpha: float = 0.1,
         beta: float = 0.1,
+        random_state: Optional[int] = None,
     ):
         self.n_components = n_components
         self.n_iterations = n_iterations
         self.alpha = alpha
         self.beta = beta
+        self.random_state = random_state
         # Not none for typing reasons
         self.components_ = np.array(0)
         self.cluster_doc_count = None
@@ -138,6 +143,8 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         ----
         fit() works in-place too, the fitted model is returned for convenience.
         """
+        if self.random_state is not None:
+            set_numba_seed(self.random_state)
         # Converting X into sparse array if it isn't one already.
         X = spr.csr_matrix(X)
         self.n_documents, self.n_features_in_ = X.shape
