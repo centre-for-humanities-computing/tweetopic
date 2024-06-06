@@ -15,14 +15,6 @@
 <img src="docs/_static/banner.svg" height=400 align="center">
 </p>
 
-#### New in version 0.4.0 ✨
-You can now pass `random_state` to topic models to make your results reproducible.
-
-```python
-from tweetopic import DMM
-
-model = DMM(10, random_state=42)
-```
 
 ## Features
 
@@ -32,6 +24,15 @@ model = DMM(10, random_state=42)
 - High quality topics :fire:
 - Easy visualization and inspection :eyes:
 - Full scikit-learn compatibility :nut_and_bolt:
+
+#### New in version 0.4.0 ✨
+You can now pass `random_state` to topic models to make your results reproducible.
+
+```python
+from tweetopic import DMM
+
+model = DMM(10, random_state=42)
+```
 
 ## 🛠 Installation
 
