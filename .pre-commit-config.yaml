@@ -14,30 +14,30 @@ ci:
 
 repos:
   - repo: https://github.com/pycqa/isort
-    rev: 5.10.1
+    rev: 5.13.2
     hooks:
       - id: isort
         name: isort (python)
         args: ["--profile", "black", "--filter-files", "--skip __init__.py"]
 
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.2.3
+    rev: v3.1.0
     hooks:
       - id: add-trailing-comma
 
-  - repo: https://github.com/myint/docformatter
-    rev: v1.3.1
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.7.5
     hooks:
       - id: docformatter
         args: [--in-place]
 
   - repo: https://github.com/psf/black
-    rev: 22.3.0
+    rev: 24.4.2
     hooks:
       - id: black
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 4.0.1
+    rev: 7.1.0
     hooks:
       - id: flake8
         args: [--config, .flake8]
