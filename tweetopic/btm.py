@@ -192,6 +192,27 @@ class BTM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
             doc_unique_words=doc_unique_words,
             doc_unique_word_counts=doc_unique_word_counts,
         )
+    
+    def predict(self, X: Union[spr.spmatrix, ArrayLike]) -> np.ndarray:
+        """Predicts cluster labels for a set of documents. Mainly exists for
+        compatibility with density estimators in sklearn.
+
+        Parameters
+        ----------
+        X: array-like or sparse matrix of shape (n_samples, n_features)
+            Document-term matrix.
+
+        Returns
+        -------
+        array of shape (n_samples,)
+            Cluster label for each document.
+
+        Raises
+        ------
+        NotFittedException
+            If the model is not fitted, an exception will be raised
+        """
+        return np.argmax(self.transform(X), axis=1)
 
     def fit_transform(
         self,
