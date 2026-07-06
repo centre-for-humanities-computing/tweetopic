@@ -17,10 +17,14 @@ from sklearn.metrics import r2_score
 from tqdm import trange
 
 from tweetopic._doc import init_doc_words
-from tweetopic.bayesian.dmm import (BayesianDMM, posterior_predictive,
-                                    predict_doc, sparse_multinomial_logpdf,
-                                    symmetric_dirichlet_logpdf,
-                                    symmetric_dirichlet_multinomial_logpdf)
+from tweetopic.bayesian.dmm import (
+    BayesianDMM,
+    posterior_predictive,
+    predict_doc,
+    sparse_multinomial_logpdf,
+    symmetric_dirichlet_logpdf,
+    symmetric_dirichlet_multinomial_logpdf,
+)
 from tweetopic.bayesian.sampling import batch_data, sample_nuts
 from tweetopic.func import spread
 
@@ -58,23 +62,26 @@ def logprior_fn(params):
 
 def loglikelihood_fn(params, data):
     doc_likelihood = jax.vmap(
-        partial(sparse_multinomial_logpdf, component=params["component"])
+        partial(sparse_multinomial_logpdf, component=params["component"]),
     )
     return jnp.sum(
         doc_likelihood(
             unique_words=data["doc_unique_words"],
             unique_word_counts=data["doc_unique_word_counts"],
-        )
+        ),
     )
 
 
 logdensity_fn(position)
 
 logdensity_fn = lambda params: logprior_fn(params) + loglikelihood_fn(
-    params, data
+    params,
+    data,
 )
 grad_estimator = blackjax.sgmcmc.gradients.grad_estimator(
-    logprior_fn, loglikelihood_fn, data_size=n_documents
+    logprior_fn,
+    loglikelihood_fn,
+    data_size=n_documents,
 )
 rng_key = jax.random.PRNGKey(0)
 batch_key, warmup_key, sampling_key = jax.random.split(rng_key, 3)
@@ -88,8 +95,8 @@ batches = (
 )
 position = dict(
     component=jnp.array(
-        transform(stats.dirichlet.mean(alpha=np.full(n_features, alpha)))
-    )
+        transform(stats.dirichlet.mean(alpha=np.full(n_features, alpha))),
+    ),
 )
 
 samples, states = sample_nuts(position, logdensity_fn)

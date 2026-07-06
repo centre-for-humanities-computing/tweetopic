@@ -124,8 +124,9 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         return self
 
     def fit(self, X: Union[spr.spmatrix, ArrayLike], y: None = None):
-        """Fits the model using Gibbs Sampling. Detailed description of the
-        algorithm in Yin and Wang (2014).
+        """Fits the model using Gibbs Sampling.
+
+        Detailed description of the algorithm in Yin and Wang (2014).
 
         Parameters
         ----------
@@ -251,8 +252,9 @@ class DMM(sklearn.base.TransformerMixin, sklearn.base.BaseEstimator):
         return self.transform(X)
 
     def predict(self, X: Union[spr.spmatrix, ArrayLike]) -> np.ndarray:
-        """Predicts cluster labels for a set of documents. Mainly exists for
-        compatibility with density estimators in sklearn.
+        """Predicts cluster labels for a set of documents.
+
+        Mainly exists for compatibility with density estimators in sklearn.
 
         Parameters
         ----------
