@@ -1,4 +1,6 @@
-"""Module containing tools for fitting a Dirichlet Multinomial Mixture Model."""
+"""Module containing tools for fitting a Dirichlet Multinomial Mixture
+Model."""
+
 from __future__ import annotations
 
 from math import exp, log
